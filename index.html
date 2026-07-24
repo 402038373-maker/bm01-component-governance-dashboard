@@ -1,0 +1,3041 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>一级网组件治理看板</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{box-sizing:border-box;padding:0;background:inherit}iframe{display:block;width:100vw;max-width:none;height:100vh;margin:0;border:0}</style>
+</head>
+<body>
+<iframe referrerpolicy="no-referrer" title="Component Governance Dashboard" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src &#x27;self&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Component Governance Dashboard&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;component-governance-dashboard&quot;&gt;
+  &lt;style&gt;
+    body.analysis-page-active {
+      overflow: hidden;
+    }
+    #component-governance-dashboard {
+      color: var(--foreground);
+      min-width: 0;
+      padding: 0 clamp(16px, 2vw, 32px) 24px;
+    }
+    #component-governance-dashboard.analysis-mode {
+      height: calc(100vh - 10px);
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+    #component-governance-dashboard * {
+      box-sizing: border-box;
+    }
+    #component-governance-dashboard .page-view[hidden] {
+      display: none !important;
+    }
+    #component-governance-dashboard .view-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-top: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .view-tab {
+      appearance: none;
+      min-width: 104px;
+      padding: 9px 14px 8px;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      color: var(--muted-foreground);
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+    }
+    #component-governance-dashboard .view-tab:hover {
+      color: var(--foreground);
+    }
+    #component-governance-dashboard .view-tab[aria-selected=&quot;true&quot;] {
+      color: var(--viz-series-1);
+      border-bottom-color: var(--viz-series-1);
+      font-weight: 600;
+    }
+    #component-governance-dashboard .analysis-page {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      overflow: hidden;
+    }
+    #component-governance-dashboard .analysis-page-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .analysis-page-heading h2 {
+      margin: 0;
+    }
+    #component-governance-dashboard .topline,
+    #component-governance-dashboard .section-heading,
+    #component-governance-dashboard .component-head,
+    #component-governance-dashboard .issue-head,
+    #component-governance-dashboard .scope-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    #component-governance-dashboard .topline {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .title-block {
+      display: grid;
+      gap: 4px;
+    }
+    #component-governance-dashboard .title-block h2,
+    #component-governance-dashboard .section-heading h3,
+    #component-governance-dashboard .component-head h3 {
+      margin: 0;
+    }
+    #component-governance-dashboard .meta-line,
+    #component-governance-dashboard .legend,
+    #component-governance-dashboard .status-line,
+    #component-governance-dashboard .metric-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    #component-governance-dashboard .demo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    #component-governance-dashboard .viz-stat {
+      min-width: 0;
+    }
+    #component-governance-dashboard .stat-context {
+      margin-top: 4px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .overview {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+      padding: 16px 0 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .progress-summary {
+      display: grid;
+      gap: 12px;
+    }
+    #component-governance-dashboard .stacked-track {
+      display: flex;
+      height: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--muted);
+    }
+    #component-governance-dashboard .seg {
+      height: 100%;
+    }
+    #component-governance-dashboard .seg.done,
+    #component-governance-dashboard .dot.done,
+    #component-governance-dashboard .bar-fill.done {
+      background: var(--viz-series-1);
+    }
+    #component-governance-dashboard .seg.concluded,
+    #component-governance-dashboard .dot.concluded,
+    #component-governance-dashboard .bar-fill.concluded {
+      background: var(--viz-series-6);
+    }
+    #component-governance-dashboard .seg.watch,
+    #component-governance-dashboard .dot.watch,
+    #component-governance-dashboard .bar-fill.watch {
+      background: var(--viz-series-2);
+    }
+    #component-governance-dashboard .seg.doing,
+    #component-governance-dashboard .dot.doing,
+    #component-governance-dashboard .bar-fill.doing {
+      background: var(--viz-series-5);
+    }
+    #component-governance-dashboard .seg.decision,
+    #component-governance-dashboard .dot.decision,
+    #component-governance-dashboard .bar-fill.decision {
+      background: var(--viz-series-3);
+    }
+    #component-governance-dashboard .seg.deferred,
+    #component-governance-dashboard .dot.deferred,
+    #component-governance-dashboard .bar-fill.deferred {
+      background: var(--muted-foreground);
+    }
+    #component-governance-dashboard .seg.todo,
+    #component-governance-dashboard .dot.todo,
+    #component-governance-dashboard .bar-fill.todo {
+      background: var(--muted-foreground);
+      opacity: .45;
+    }
+    #component-governance-dashboard .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+    #component-governance-dashboard .workload-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px 16px;
+    }
+    #component-governance-dashboard .workload-item {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .workload-item strong {
+      display: block;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .workload-item span {
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .complexity-panel {
+      display: grid;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    #component-governance-dashboard .complexity-intro {
+      margin: 0;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .code-scale-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .code-scale-item {
+      min-width: 0;
+      padding: 12px 16px;
+    }
+    #component-governance-dashboard .code-scale-item + .code-scale-item {
+      border-left: 1px solid var(--border);
+    }
+    #component-governance-dashboard .code-scale-item strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .code-scale-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .complexity-table {
+      display: grid;
+      border-top: 1px solid var(--border);
+    }
+    #component-governance-dashboard .complexity-row {
+      display: grid;
+      grid-template-columns: 112px minmax(190px, .8fr) minmax(280px, 1.5fr) minmax(260px, 1.3fr);
+      gap: 16px;
+      padding: 11px 8px;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    #component-governance-dashboard .complexity-row.is-head {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .complexity-level {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .complexity-level::before {
+      content: &quot;&quot;;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--viz-series-5);
+      flex: 0 0 auto;
+    }
+    #component-governance-dashboard .complexity-level.highest::before {
+      background: var(--viz-series-3);
+    }
+    #component-governance-dashboard .complexity-level.high::before {
+      background: var(--viz-series-2);
+    }
+    #component-governance-dashboard .complexity-level.medium::before {
+      background: var(--viz-series-5);
+    }
+    #component-governance-dashboard .complexity-level.implementation::before {
+      background: var(--viz-series-1);
+    }
+    #component-governance-dashboard .complexity-level.dependency::before {
+      background: var(--viz-series-6);
+    }
+    #component-governance-dashboard .complexity-components {
+      font-weight: 500;
+    }
+    #component-governance-dashboard .code-evidence {
+      color: var(--foreground);
+      line-height: 1.65;
+    }
+    #component-governance-dashboard .code-evidence code {
+      white-space: nowrap;
+    }
+    #component-governance-dashboard .complexity-reason {
+      color: var(--muted-foreground);
+      line-height: 1.65;
+    }
+    #component-governance-dashboard .scan-note {
+      margin: 0;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .formula {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 28px;
+      min-width: 0;
+    }
+    #component-governance-dashboard .overview-workflow {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    #component-governance-dashboard .formula-intro {
+      margin: 3px 0 14px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .formula-node {
+      position: relative;
+      min-width: 0;
+      min-height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: left;
+      padding: 14px 16px;
+      background: color-mix(in srgb, var(--viz-series-1) 12%, transparent);
+      border-radius: 2px;
+    }
+    #component-governance-dashboard .formula-node:not(:last-child)::after {
+      content: &quot;→&quot;;
+      position: absolute;
+      top: 50%;
+      right: -19px;
+      color: var(--muted-foreground);
+      transform: translateY(-50%);
+    }
+    #component-governance-dashboard .formula-node strong {
+      display: block;
+      margin: 3px 0 6px;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .formula-step {
+      color: var(--viz-series-1);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    #component-governance-dashboard .formula-detail {
+      display: block;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid color-mix(in srgb, var(--viz-series-1) 20%, transparent);
+      color: var(--muted-foreground);
+      line-height: 1.55;
+    }
+    #component-governance-dashboard .formula-note {
+      margin-top: 12px;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .formula-line {
+      display: none;
+    }
+    #component-governance-dashboard .main-shell {
+      display: grid;
+      grid-template-columns: minmax(220px, 270px) minmax(0, 1fr);
+      gap: 22px;
+      padding-top: 18px;
+    }
+    #component-governance-dashboard .analysis-page .main-shell {
+      height: 100%;
+      min-height: 0;
+      padding-top: 0;
+      overflow: hidden;
+    }
+    #component-governance-dashboard .component-nav {
+      min-width: 0;
+      padding-right: 18px;
+      border-right: 1px solid var(--border);
+    }
+    #component-governance-dashboard .analysis-page .component-nav {
+      height: 100%;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      padding-top: 14px;
+      overflow: hidden;
+    }
+    #component-governance-dashboard .component-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+    }
+    #component-governance-dashboard .component-search svg {
+      position: absolute;
+      left: 9px;
+      width: 15px;
+      height: 15px;
+      color: var(--muted-foreground);
+      pointer-events: none;
+    }
+    #component-governance-dashboard .component-search input {
+      width: 100%;
+      height: 34px;
+      padding: 6px 10px 6px 31px;
+      border: 1px solid var(--input);
+      border-radius: 6px;
+      color: var(--foreground);
+      background: transparent;
+      font: inherit;
+      outline: none;
+    }
+    #component-governance-dashboard .component-search input::placeholder {
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .component-search input:focus {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--ring) 18%, transparent);
+    }
+    #component-governance-dashboard .component-search-empty {
+      padding: 18px 8px;
+      color: var(--muted-foreground);
+      text-align: center;
+    }
+    #component-governance-dashboard .nav-groups {
+      display: grid;
+      gap: 16px;
+      margin-top: 12px;
+      align-content: start;
+      grid-auto-rows: max-content;
+    }
+    #component-governance-dashboard .analysis-page .nav-groups {
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      padding-right: 8px;
+      padding-bottom: 24px;
+    }
+    #component-governance-dashboard .nav-group {
+      display: grid;
+      gap: 5px;
+      align-content: start;
+      grid-auto-rows: max-content;
+    }
+    #component-governance-dashboard .group-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted-foreground);
+      padding: 3px 2px;
+    }
+    #component-governance-dashboard .component-button {
+      width: 100%;
+      height: auto;
+      min-height: 34px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+    #component-governance-dashboard .component-button .name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    #component-governance-dashboard .component-button .percent {
+      color: var(--muted-foreground);
+      white-space: nowrap;
+    }
+    #component-governance-dashboard .component-button.has-explicit-status {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 5px;
+      min-height: 58px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      align-content: center;
+    }
+    #component-governance-dashboard .status-sample-main {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    #component-governance-dashboard .status-sample-main .name {
+      font-weight: 500;
+      color: var(--foreground);
+    }
+    #component-governance-dashboard .governance-status {
+      flex: 0 0 auto;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1.55;
+      white-space: nowrap;
+    }
+    #component-governance-dashboard .governance-status.status-done {
+      color: var(--viz-series-1);
+      background: color-mix(in srgb, var(--viz-series-1) 12%, transparent);
+    }
+    #component-governance-dashboard .governance-status.status-concluded {
+      color: var(--viz-series-6);
+      background: color-mix(in srgb, var(--viz-series-6) 12%, transparent);
+    }
+    #component-governance-dashboard .governance-status.status-watch {
+      color: var(--viz-series-2);
+      background: color-mix(in srgb, var(--viz-series-2) 13%, transparent);
+    }
+    #component-governance-dashboard .governance-status.status-doing {
+      color: var(--viz-series-5);
+      background: color-mix(in srgb, var(--viz-series-5) 12%, transparent);
+    }
+    #component-governance-dashboard .governance-status.status-decision,
+    #component-governance-dashboard .governance-status.status-deferred {
+      color: var(--viz-series-3);
+      background: color-mix(in srgb, var(--viz-series-3) 12%, transparent);
+    }
+    #component-governance-dashboard .importance-label {
+      display: block;
+      color: var(--muted-foreground);
+      line-height: 1.45;
+    }
+    #component-governance-dashboard .detail {
+      min-width: 0;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      align-self: start;
+    }
+    #component-governance-dashboard .analysis-page .detail {
+      height: 100%;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      padding: 14px 8px 28px 0;
+    }
+    #component-governance-dashboard .component-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    #component-governance-dashboard .component-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(110px, 1fr));
+      gap: 10px;
+    }
+    #component-governance-dashboard .mini-stat {
+      padding: 10px 0;
+      border-bottom: 2px solid var(--border);
+    }
+    #component-governance-dashboard .mini-stat strong {
+      display: block;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .mini-stat span {
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .stage-flow {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 10px;
+    }
+    #component-governance-dashboard .stage {
+      min-width: 0;
+      position: relative;
+      padding-top: 18px;
+      text-align: center;
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .stage::before {
+      content: &quot;&quot;;
+      position: absolute;
+      top: 5px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border);
+    }
+    #component-governance-dashboard .stage:first-child::before {
+      left: 50%;
+    }
+    #component-governance-dashboard .stage:last-child::before {
+      right: 50%;
+    }
+    #component-governance-dashboard .stage-dot {
+      position: absolute;
+      top: 0;
+      left: calc(50% - 6px);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--muted);
+      border: 2px solid var(--background);
+      z-index: 1;
+    }
+    #component-governance-dashboard .stage.is-done .stage-dot {
+      background: var(--viz-series-1);
+    }
+    #component-governance-dashboard .stage.is-doing .stage-dot {
+      background: var(--viz-series-2);
+    }
+    #component-governance-dashboard .stage.is-blocked .stage-dot {
+      background: var(--viz-series-3);
+    }
+    #component-governance-dashboard .stage strong {
+      display: block;
+      color: var(--foreground);
+      font-weight: 500;
+    }
+    #component-governance-dashboard .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 22px;
+    }
+    #component-governance-dashboard .dimension-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    #component-governance-dashboard .dimension-row {
+      display: grid;
+      gap: 5px;
+    }
+    #component-governance-dashboard .dimension-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    #component-governance-dashboard .evidence-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    #component-governance-dashboard .evidence-card {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: 154px auto;
+      padding: 0;
+      overflow: hidden;
+      text-align: left;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--background);
+      cursor: zoom-in;
+    }
+    #component-governance-dashboard .evidence-card:hover {
+      border-color: var(--ring);
+    }
+    #component-governance-dashboard .evidence-card:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+    #component-governance-dashboard .evidence-image {
+      width: 100%;
+      height: 154px;
+      display: block;
+      object-fit: contain;
+      background: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .evidence-caption {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+      padding: 9px 10px 10px;
+    }
+    #component-governance-dashboard .evidence-caption strong {
+      font-weight: 500;
+    }
+    #component-governance-dashboard .evidence-caption span {
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+    #component-governance-dashboard .evidence-empty {
+      padding: 18px 0;
+      color: var(--muted-foreground);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .evidence-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 36px;
+      background: rgba(0, 0, 0, .72);
+    }
+    #component-governance-dashboard .evidence-lightbox[hidden] {
+      display: none;
+    }
+    #component-governance-dashboard .lightbox-panel {
+      width: min(1180px, 94vw);
+      max-height: 90vh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 10px;
+      padding: 12px;
+      background: var(--background);
+      border-radius: 2px;
+    }
+    #component-governance-dashboard .lightbox-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    #component-governance-dashboard .lightbox-head strong {
+      font-weight: 500;
+    }
+    #component-governance-dashboard .lightbox-close {
+      min-width: 32px;
+      min-height: 32px;
+      padding: 4px 8px;
+    }
+    #component-governance-dashboard .lightbox-image {
+      width: 100%;
+      max-height: calc(90vh - 106px);
+      object-fit: contain;
+      background: var(--muted);
+    }
+    #component-governance-dashboard .lightbox-note {
+      color: var(--muted-foreground);
+    }
+    #component-governance-dashboard .bar-track {
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--muted);
+    }
+    #component-governance-dashboard .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      transition: width 220ms ease;
+    }
+    #component-governance-dashboard .issue-table-wrap {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+    #component-governance-dashboard table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+    #component-governance-dashboard th,
+    #component-governance-dashboard td {
+      text-align: left;
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    #component-governance-dashboard th {
+      color: var(--muted-foreground);
+      font-weight: 400;
+    }
+    #component-governance-dashboard td code {
+      overflow-wrap: anywhere;
+    }
+    #component-governance-dashboard .empty-row {
+      color: var(--muted-foreground);
+      text-align: center;
+      padding: 22px 8px;
+    }
+    @media (max-width: 640px) {
+      #component-governance-dashboard.analysis-mode {
+        height: auto;
+        min-height: 100vh;
+        display: block;
+        overflow: visible;
+      }
+      #component-governance-dashboard .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      #component-governance-dashboard .overview,
+      #component-governance-dashboard .detail-grid {
+        grid-template-columns: 1fr;
+      }
+      #component-governance-dashboard .code-scale-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      #component-governance-dashboard .code-scale-item:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+      }
+      #component-governance-dashboard .code-scale-item:nth-child(4) {
+        border-top: 1px solid var(--border);
+      }
+      #component-governance-dashboard .complexity-row {
+        grid-template-columns: 100px minmax(150px, .7fr) minmax(240px, 1.3fr);
+      }
+      #component-governance-dashboard .complexity-row > :last-child {
+        grid-column: 2 / -1;
+      }
+      #component-governance-dashboard .main-shell {
+        grid-template-columns: 1fr;
+      }
+      #component-governance-dashboard .analysis-page,
+      #component-governance-dashboard .analysis-page .main-shell,
+      #component-governance-dashboard .analysis-page .component-nav,
+      #component-governance-dashboard .analysis-page .detail {
+        height: auto;
+        display: block;
+        overflow: visible;
+      }
+      #component-governance-dashboard .component-nav {
+        padding-right: 0;
+        padding-bottom: 16px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+      #component-governance-dashboard .nav-groups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 520px) {
+      #component-governance-dashboard .kpi-grid,
+      #component-governance-dashboard .workload-grid,
+      #component-governance-dashboard .code-scale-grid,
+      #component-governance-dashboard .nav-groups,
+      #component-governance-dashboard .mini-stats {
+        grid-template-columns: 1fr;
+      }
+      #component-governance-dashboard .code-scale-item + .code-scale-item,
+      #component-governance-dashboard .code-scale-item:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+      }
+      #component-governance-dashboard .complexity-row,
+      #component-governance-dashboard .complexity-row.is-head {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      #component-governance-dashboard .complexity-row.is-head {
+        display: none;
+      }
+      #component-governance-dashboard .complexity-row > :last-child {
+        grid-column: auto;
+      }
+      #component-governance-dashboard .formula {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      #component-governance-dashboard .formula-node:not(:last-child)::after {
+        content: &quot;↓&quot;;
+        top: auto;
+        right: 50%;
+        bottom: -21px;
+        transform: translateX(50%);
+      }
+      #component-governance-dashboard .stage-flow {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 14px;
+      }
+      #component-governance-dashboard .stage:nth-child(3)::before,
+      #component-governance-dashboard .stage:nth-child(6)::before {
+        right: 50%;
+      }
+      #component-governance-dashboard .stage:nth-child(4)::before {
+        left: 50%;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #component-governance-dashboard .bar-fill {
+        transition: none;
+      }
+    }
+  &lt;/style&gt;
+
+  &lt;section class=&quot;topline&quot; aria-label=&quot;统计范围&quot;&gt;
+    &lt;div class=&quot;title-block&quot;&gt;
+      &lt;div class=&quot;meta-line&quot;&gt;
+        &lt;span class=&quot;viz-badge&quot;&gt;一级网 · 组件治理&lt;/span&gt;
+        &lt;span class=&quot;text-small text-muted&quot;&gt;2026 年 7 月 · 实时读取 BM01&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;demo-mark text-small&quot;&gt;
+        &lt;i data-lucide=&quot;info&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        &lt;span&gt;深度治理、复用结论、无需治理分别统计 · 数据来源 BM01 当前页面&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scope-line text-small&quot;&gt;
+      &lt;span class=&quot;text-muted&quot;&gt;范围：67 个基础治理页 + 4 个业务组件议题；标题、临时页、长输遗留页不计数&lt;/span&gt;
+      &lt;span class=&quot;viz-badge&quot;&gt;截至 07-23&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;nav class=&quot;view-switcher&quot; role=&quot;tablist&quot; aria-label=&quot;看板页面&quot;&gt;
+    &lt;button class=&quot;view-tab&quot; type=&quot;button&quot; role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;overview-page&quot; data-page-target=&quot;overview-page&quot;&gt;治理结论&lt;/button&gt;
+    &lt;button class=&quot;view-tab&quot; type=&quot;button&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;analysis-page&quot; data-page-target=&quot;analysis-page&quot;&gt;组件分析&lt;/button&gt;
+  &lt;/nav&gt;
+
+  &lt;div class=&quot;page-view overview-page&quot; id=&quot;overview-page&quot; role=&quot;tabpanel&quot;&gt;
+  &lt;section class=&quot;kpi-grid&quot; aria-label=&quot;治理关键指标&quot;&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;
+      &lt;span class=&quot;text-muted&quot;&gt;阶段结论覆盖&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-coverage&quot;&gt;34 / 67&lt;/span&gt;
+      &lt;div class=&quot;stat-context text-small&quot; id=&quot;kpi-coverage-note&quot;&gt;含深度治理、复用及无需治理结论&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;
+      &lt;span class=&quot;text-muted&quot;&gt;本月深度治理交付&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-deep&quot;&gt;12 个&lt;/span&gt;
+      &lt;div class=&quot;stat-context text-small&quot;&gt;已核验 10 个 · Steps、Timeline 本周收尾&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;
+      &lt;span class=&quot;text-muted&quot;&gt;已核验治理产出&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-output&quot;&gt;42 / 544&lt;/span&gt;
+      &lt;div class=&quot;stat-context text-small&quot;&gt;10 页产出：组件集 / 变体与组件&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;
+      &lt;span class=&quot;text-muted&quot;&gt;剩余工作预计工期&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-days&quot;&gt;约 1 个月&lt;/span&gt;
+      &lt;div class=&quot;stat-context text-small&quot;&gt;基础组件收尾 · 统一使用说明 · 开发整改与验收&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;overview&quot; aria-label=&quot;全局治理进度与难度量化&quot;&gt;
+    &lt;div class=&quot;progress-summary&quot;&gt;
+      &lt;div class=&quot;section-heading&quot;&gt;
+        &lt;h3&gt;BM01 基础治理范围&lt;/h3&gt;
+        &lt;strong id=&quot;overview-coverage&quot;&gt;完成阶段结论 34 / 67&lt;/strong&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;stacked-track&quot; id=&quot;overview-track&quot; role=&quot;img&quot; aria-label=&quot;基础治理状态分布&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;legend text-small&quot; id=&quot;overview-legend&quot; aria-label=&quot;状态图例&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;workload-grid&quot; aria-label=&quot;治理工作量构成&quot;&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-sets&quot;&gt;42&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;组件集&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-variants&quot;&gt;544&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;变体 / 组件&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-images&quot;&gt;276&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;图片证据节点&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-sections&quot;&gt;17&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;治理说明区&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong&gt;173&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;图表涉及页面&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;业务组件议题&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;complexity-panel&quot; aria-labelledby=&quot;complexity-title&quot;&gt;
+      &lt;div class=&quot;section-heading&quot;&gt;
+        &lt;h3 id=&quot;complexity-title&quot;&gt;治理难度与代码规模依据&lt;/h3&gt;
+        &lt;span class=&quot;text-small text-muted&quot;&gt;难度来自真实场景分散度、业务封装和开发整改范围，不按组件名称数量估算&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;complexity-intro text-small&quot;&gt;一级网并不是直接统一调用一套标准组件：同一语义散落在页面模板、业务组件和服务调用中，且存在自定义样式、固定尺寸、组合组件与无法从菜单直接复现的触发入口。治理需要完成“场景核验 → 组件边界判断 → 规范沉淀 → 代码定位 → 分模块整改与验收”的完整链路。&lt;/p&gt;
+      &lt;div class=&quot;code-scale-grid&quot; aria-label=&quot;一级网代码分散规模&quot;&gt;
+        &lt;div class=&quot;code-scale-item&quot;&gt;&lt;strong&gt;322&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;图表相关文件 · 横跨 15 个一级模块&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;code-scale-item&quot;&gt;&lt;strong&gt;231&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;Form / Input 相关文件 · 横跨 19 个一级模块&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;code-scale-item&quot;&gt;&lt;strong&gt;122&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;Table 相关文件 · 横跨 16 个一级模块&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;code-scale-item&quot;&gt;&lt;strong&gt;318&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;Modal 相关文件 · 226 个文件含尺寸或关闭策略配置&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;complexity-table&quot; role=&quot;table&quot; aria-label=&quot;组件治理难度分组&quot;&gt;
+        &lt;div class=&quot;complexity-row is-head text-small&quot; role=&quot;row&quot;&gt;
+          &lt;span role=&quot;columnheader&quot;&gt;治理难度&lt;/span&gt;
+          &lt;span role=&quot;columnheader&quot;&gt;组件范围&lt;/span&gt;
+          &lt;span role=&quot;columnheader&quot;&gt;代码与页面证据&lt;/span&gt;
+          &lt;span role=&quot;columnheader&quot;&gt;为什么工作量大&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;complexity-row&quot; role=&quot;row&quot;&gt;
+          &lt;span class=&quot;complexity-level highest&quot; role=&quot;cell&quot;&gt;最高难度&lt;/span&gt;
+          &lt;span class=&quot;complexity-components&quot; role=&quot;cell&quot;&gt;Table、图表、地图 / GIS&lt;/span&gt;
+          &lt;span class=&quot;code-evidence text-small&quot; role=&quot;cell&quot;&gt;Table 涉及 122 个文件 / 16 个模块；图表涉及 322 个文件 / 15 个模块，BM01 已盘点约 173 个图表页面；GIS / Map 关键词涉及 75 个文件 / 10 个模块。&lt;/span&gt;
+          &lt;span class=&quot;complexity-reason text-small&quot; role=&quot;cell&quot;&gt;承载业务数据、交互和页面结构，存在大量列配置、状态、图形语义及地图业务叠加；不能只换视觉样式，必须按场景和数据含义治理。&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;complexity-row&quot; role=&quot;row&quot;&gt;
+          &lt;span class=&quot;complexity-level high&quot; role=&quot;cell&quot;&gt;较高难度&lt;/span&gt;
+          &lt;span class=&quot;complexity-components&quot; role=&quot;cell&quot;&gt;Templates、Card、List、Form、Input、InputNumber、Tree、Upload&lt;/span&gt;
+          &lt;span class=&quot;code-evidence text-small&quot; role=&quot;cell&quot;&gt;Form / Input 涉及 231 个文件 / 19 个模块；Tree / TreeSelect 涉及 35 个文件 / 10 个模块；Upload 涉及 55 个文件 / 7 个模块。&lt;/span&gt;
+          &lt;span class=&quot;complexity-reason text-small&quot; role=&quot;cell&quot;&gt;组件经常被组合成业务表单和页面模板，同一字段、校验、上传流程或树选择存在多种实现；需要同时治理单组件规则与组合方式。&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;complexity-row&quot; role=&quot;row&quot;&gt;
+          &lt;span class=&quot;complexity-level medium&quot; role=&quot;cell&quot;&gt;中高难度&lt;/span&gt;
+          &lt;span class=&quot;complexity-components&quot; role=&quot;cell&quot;&gt;Collapse、Descriptions&lt;/span&gt;
+          &lt;span class=&quot;code-evidence text-small&quot; role=&quot;cell&quot;&gt;BM01 已归档多组真实页面截图，涉及详情、地图侧栏、弹窗和列表展开等不同承载容器。&lt;/span&gt;
+          &lt;span class=&quot;complexity-reason text-small&quot; role=&quot;cell&quot;&gt;表面结构简单，但需先区分“折叠信息”“对象属性”“页面布局”的边界，避免把页面结构误当成组件变体。&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;complexity-row&quot; role=&quot;row&quot;&gt;
+          &lt;span class=&quot;complexity-level implementation&quot; role=&quot;cell&quot;&gt;整改范围大&lt;/span&gt;
+          &lt;span class=&quot;complexity-components&quot; role=&quot;cell&quot;&gt;Modal&lt;/span&gt;
+          &lt;span class=&quot;code-evidence text-small&quot; role=&quot;cell&quot;&gt;Modal 相关代码涉及 318 个文件；其中 226 个文件出现宽度、Body、遮罩或关闭策略等配置，既有模板式调用，也有服务式动态创建。&lt;/span&gt;
+          &lt;span class=&quot;complexity-reason text-small&quot; role=&quot;cell&quot;&gt;治理规范已按确认提示、小表单、中型配置和复杂工作台沉淀，但落地要逐处映射尺寸、滚动、Footer、校验反馈和关闭策略，开发整改面远大于一个组件页面。&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;complexity-row&quot; role=&quot;row&quot;&gt;
+          &lt;span class=&quot;complexity-level dependency&quot; role=&quot;cell&quot;&gt;依赖后续&lt;/span&gt;
+          &lt;span class=&quot;complexity-components&quot; role=&quot;cell&quot;&gt;Colors / 业务颜色&lt;/span&gt;
+          &lt;span class=&quot;code-evidence text-small&quot; role=&quot;cell&quot;&gt;基础色、中性色和品牌色已完成；业务色实际依附图表序列、地图状态、告警等级和业务对象语义。&lt;/span&gt;
+          &lt;span class=&quot;complexity-reason text-small&quot; role=&quot;cell&quot;&gt;必须先完成图表与业务状态治理，才能确定可复用的颜色语义，提前定义会造成颜色与业务含义再次分裂。&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;scan-note text-small&quot;&gt;代码统计口径：扫描 &lt;code&gt;src/app/routes/civilian&lt;/code&gt; 下的 HTML / TypeScript 文件，按组件选择器、服务名和常见配置关键词统计；“涉及文件”用于说明分散范围，不等同于最终问题数量。&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;overview-workflow&quot;&gt;
+      &lt;div class=&quot;section-heading&quot;&gt;
+        &lt;h3&gt;为什么 1 个组件不等于 1 项工作&lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;formula-intro text-small&quot;&gt;每个组件都要从真实页面证据走到开发验收；组件只是治理对象，页面场景、代码分支、变体和跨组件边界才决定实际工作量。&lt;/p&gt;
+      &lt;div class=&quot;formula&quot; aria-label=&quot;组件治理工作量链路&quot;&gt;
+        &lt;div class=&quot;formula-node&quot;&gt;
+          &lt;span class=&quot;formula-step&quot;&gt;01 · 发现&lt;/span&gt;
+          &lt;strong&gt;定位真实场景&lt;/strong&gt;
+          &lt;span class=&quot;text-small text-muted&quot;&gt;先确认用户在哪里、因为什么操作看到该组件。&lt;/span&gt;
+          &lt;span class=&quot;formula-detail text-small&quot;&gt;菜单入口 · 触发动作 · 页面截图 · 使用数量&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;formula-node&quot;&gt;
+          &lt;span class=&quot;formula-step&quot;&gt;02 · 判断&lt;/span&gt;
+          &lt;strong&gt;核验代码边界&lt;/strong&gt;
+          &lt;span class=&quot;text-small text-muted&quot;&gt;判断实际调用、参数和状态是否符合组件语义。&lt;/span&gt;
+          &lt;span class=&quot;formula-detail text-small&quot;&gt;代码路径 · 组件来源 · 状态参数 · 相邻组件边界&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;formula-node&quot;&gt;
+          &lt;span class=&quot;formula-step&quot;&gt;03 · 沉淀&lt;/span&gt;
+          &lt;strong&gt;形成治理规范&lt;/strong&gt;
+          &lt;span class=&quot;text-small text-muted&quot;&gt;把分散问题归类，形成可复用、可讲清的统一结论。&lt;/span&gt;
+          &lt;span class=&quot;formula-detail text-small&quot;&gt;问题分类 · 使用边界 · Figma 组件 · Token 规则&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;formula-node&quot;&gt;
+          &lt;span class=&quot;formula-step&quot;&gt;04 · 闭环&lt;/span&gt;
+          &lt;strong&gt;推进开发落地&lt;/strong&gt;
+          &lt;span class=&quot;text-small text-muted&quot;&gt;规范沉淀不是终点，还要让开发能定位、修改并完成验收。&lt;/span&gt;
+          &lt;span class=&quot;formula-detail text-small&quot;&gt;统一使用说明 · 问题清单 · 代码整改 · 开发验收&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;formula-note text-small&quot;&gt;工作量主要受三项因素影响：真实使用页面越多、组件变体越杂、与其他组件的语义边界越模糊，治理周期越长。&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;page-view analysis-page&quot; id=&quot;analysis-page&quot; role=&quot;tabpanel&quot; hidden&gt;
+    &lt;div class=&quot;analysis-page-heading&quot;&gt;
+      &lt;div&gt;
+        &lt;h2&gt;组件分析&lt;/h2&gt;
+        &lt;span class=&quot;text-small text-muted&quot;&gt;按 BM01 目录选择组件，查看治理结论、工作量与开发定位&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;text-small text-muted&quot;&gt;左侧组件列表与右侧分析详情可分别滚动&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;section class=&quot;main-shell&quot; aria-label=&quot;组件治理明细&quot;&gt;
+    &lt;nav class=&quot;component-nav&quot; aria-label=&quot;BM01 组件列表&quot;&gt;
+      &lt;div class=&quot;section-heading&quot;&gt;
+        &lt;h3&gt;BM01 组件列表&lt;/h3&gt;
+        &lt;span class=&quot;text-small text-muted&quot;&gt;与 BM01 页面结构一致&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;label class=&quot;component-search&quot; for=&quot;component-search-input&quot;&gt;
+        &lt;i data-lucide=&quot;search&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        &lt;input id=&quot;component-search-input&quot; type=&quot;search&quot; placeholder=&quot;搜索组件名称&quot; autocomplete=&quot;off&quot; aria-controls=&quot;component-groups&quot;&gt;
+      &lt;/label&gt;
+      &lt;div class=&quot;nav-groups&quot; id=&quot;component-groups&quot;&gt;&lt;/div&gt;
+    &lt;/nav&gt;
+
+    &lt;article class=&quot;detail&quot; aria-live=&quot;polite&quot;&gt;
+      &lt;header class=&quot;component-head&quot;&gt;
+        &lt;div&gt;
+          &lt;div class=&quot;component-title&quot;&gt;
+            &lt;span class=&quot;dot doing&quot; id=&quot;selected-dot&quot;&gt;&lt;/span&gt;
+            &lt;h3 id=&quot;selected-name&quot;&gt;Tabs&lt;/h3&gt;
+            &lt;span class=&quot;viz-badge&quot; id=&quot;selected-state&quot;&gt;已完成&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;component-subtitle text-small&quot; id=&quot;selected-summary&quot;&gt;BM01 已标记绿色爱心，完成组件矩阵、使用边界、一级网页面证据与治理说明。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;metric-inline&quot;&gt;
+          &lt;strong id=&quot;selected-percent&quot;&gt;100%&lt;/strong&gt;
+          &lt;span class=&quot;text-small text-muted&quot;&gt;本阶段完成度&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;mini-stats&quot; aria-label=&quot;当前组件工作量&quot;&gt;
+        &lt;div class=&quot;mini-stat&quot;&gt;
+          &lt;span class=&quot;text-small&quot;&gt;完成口径&lt;/span&gt;
+          &lt;strong id=&quot;selected-kind&quot;&gt;深度治理&lt;/strong&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mini-stat&quot;&gt;
+          &lt;span class=&quot;text-small&quot;&gt;难度 / 复杂度&lt;/span&gt;
+          &lt;strong id=&quot;selected-effort&quot;&gt;已完成&lt;/strong&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mini-stat&quot;&gt;
+          &lt;span class=&quot;text-small&quot;&gt;预计工期&lt;/span&gt;
+          &lt;strong id=&quot;selected-estimate&quot;&gt;已完成&lt;/strong&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;section aria-label=&quot;治理阶段&quot;&gt;
+        &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;七阶段治理闭环&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;从盘点到使用说明与开发验收&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;stage-flow&quot; id=&quot;stage-flow&quot;&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;div class=&quot;detail-grid&quot;&gt;
+        &lt;section aria-label=&quot;分项完成量&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;已核验治理产出&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot; id=&quot;dimension-total&quot;&gt;按 BM01 节点统计&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;dimension-list&quot; id=&quot;dimension-list&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section aria-label=&quot;一级网真实页面证据&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;一级网真实页面证据&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot; id=&quot;evidence-image-count&quot;&gt;按菜单 / 场景归档&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;evidence-gallery&quot; id=&quot;evidence-gallery&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section aria-label=&quot;开发问题定位&quot;&gt;
+          &lt;div class=&quot;issue-head&quot;&gt;
+            &lt;h3&gt;开发问题定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;页面 → 问题 → 代码路径&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;issue-table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;
+                &lt;tr&gt;
+                  &lt;th scope=&quot;col&quot;&gt;页面 / 场景&lt;/th&gt;
+                  &lt;th scope=&quot;col&quot;&gt;治理判断&lt;/th&gt;
+                  &lt;th scope=&quot;col&quot;&gt;定位 / 证据&lt;/th&gt;
+                  &lt;th scope=&quot;col&quot;&gt;下一步&lt;/th&gt;
+                &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody id=&quot;issue-rows&quot;&gt;&lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+  &lt;div class=&quot;evidence-lightbox&quot; id=&quot;evidence-lightbox&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;lightbox-title&quot; hidden&gt;
+    &lt;div class=&quot;lightbox-panel&quot;&gt;
+      &lt;div class=&quot;lightbox-head&quot;&gt;
+        &lt;strong id=&quot;lightbox-title&quot;&gt;一级网真实页面证据&lt;/strong&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost lightbox-close&quot; id=&quot;lightbox-close&quot; aria-label=&quot;关闭大图&quot;&gt;关闭&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;img class=&quot;lightbox-image&quot; id=&quot;lightbox-image&quot; alt=&quot;&quot;&gt;
+      &lt;div class=&quot;lightbox-note text-small&quot; id=&quot;lightbox-note&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;component-governance-dashboard&#x27;);
+      return;
+      const stageNames = [&#x27;资产盘点&#x27;, &#x27;代码核验&#x27;, &#x27;场景梳理&#x27;, &#x27;Token 绑定&#x27;, &#x27;规范沉淀&#x27;, &#x27;统一使用说明&#x27;, &#x27;开发整改 / 验收&#x27;];
+      const dimensionNames = [&#x27;组件集&#x27;, &#x27;变体 / 组件&#x27;, &#x27;图片证据节点&#x27;, &#x27;治理说明区&#x27;];
+      const completed = {
+        &#x27;Pagination&#x27;: { pageId: &#x27;377:9704&#x27;, sets: 4, variants: 45, images: 8, sections: 1, summary: &#x27;独立 Pagination 与 Table 内建分页的使用边界、样式和参数口径已完成治理。&#x27; },
+        &#x27;Checkbox&#x27;: { pageId: &#x27;388:11036&#x27;, sets: 1, variants: 11, images: 5, sections: 1, summary: &#x27;Checkbox 的独立选择、批量选择和状态矩阵已完成治理。&#x27; },
+        &#x27;Statistic&#x27;: { pageId: &#x27;411:1&#x27;, sets: 5, variants: 31, images: 33, sections: 4, summary: &#x27;已完成 Statistic 与 Descriptions 等相邻组件的边界梳理、混乱现状和结论矩阵。&#x27; },
+        &#x27;Switch&#x27;: { pageId: &#x27;396:12305&#x27;, sets: 2, variants: 32, images: 11, sections: 1, summary: &#x27;即时提交、失败回滚、禁用与权限边界已完成治理。&#x27; },
+        &#x27;Badge&#x27;: { pageId: &#x27;399:0&#x27;, sets: 4, variants: 24, images: 24, sections: 1, summary: &#x27;Dot、Count、单位数、两位数和 99+ 封顶规则已完成治理。&#x27; },
+        &#x27;Tabs&#x27;: { pageId: &#x27;411:17&#x27;, sets: 13, variants: 150, images: 54, sections: 1, summary: &#x27;横向、纵向、数量提示和业务对象列表边界已完成治理，并归档一级网页面证据。&#x27; },
+        &#x27;Segmented&#x27;: { pageId: &#x27;506:31613&#x27;, sets: 2, variants: 81, images: 15, sections: 1, summary: &#x27;分段选择的尺寸、状态和组合变体已完成治理。&#x27; },
+        &#x27;Radio&#x27;: { pageId: &#x27;395:10973&#x27;, sets: 3, variants: 108, images: 30, sections: 1, summary: &#x27;普通单选、按钮式单选和卡片式选择的边界与矩阵已完成治理。&#x27; },
+        &#x27;Tag&#x27;: { pageId: &#x27;412:13377&#x27;, sets: 5, variants: 36, images: 13, sections: 1, summary: &#x27;状态、分类、可关闭与可选择 Tag 的使用边界已完成治理。&#x27; },
+        &#x27;Modal&#x27;: { pageId: &#x27;421:14565&#x27;, sets: 3, variants: 26, images: 83, sections: 5, summary: &#x27;基础弹框、信息弹框、复杂表单和二级弹框边界已完成治理。&#x27; }
+      };
+      const focusNames = new Set([&#x27;Button&#x27;, &#x27;Menu&#x27;, &#x27;Form&#x27;, &#x27;Input&#x27;, &#x27;InputNumber&#x27;, &#x27;Select&#x27;, &#x27;TreeSelect&#x27;, &#x27;Card&#x27;, &#x27;Table&#x27;]);
+      const newNames = new Set([&#x27;Slider&#x27;, &#x27;Avatar&#x27;, &#x27;Popover&#x27;, &#x27;Image&#x27;, &#x27;Popconfirm&#x27;, &#x27;Progress&#x27;]);
+      const excludedNames = new Set([&#x27;FloatButton&#x27;, &#x27;Breadcrumb&#x27;, &#x27;Splitter&#x27;, &#x27;Notification&#x27;]);
+      const evidenceByComponent = {
+        Tabs: [
+          issue(&#x27;基础设置&#x27;, &#x27;左侧固定设置分类属于垂直 Tabs&#x27;, &#x27;src/app/routes/civilian/dispatch-platform/dispatch-platform/split-calculate/splitCalcWin/splitCalcWin.component.html:3&#x27;, &#x27;已定位&#x27;),
+          issue(&#x27;补水点配置&#x27;, &#x27;左侧热网名称是动态对象列表；右侧补水点/热源/泵站/隔压站才是 Tabs&#x27;, &#x27;截图 codex-clipboard-336a004e…png · 代码待绑定&#x27;, &#x27;页面已识别&#x27;),
+          issue(&#x27;经济分析设置&#x27;, &#x27;成本构成/采暖收入/行业对标属于固定垂直 Tabs&#x27;, &#x27;截图 codex-clipboard-d0e2a36e…png · 代码待绑定&#x27;, &#x27;页面已识别&#x27;),
+          issue(&#x27;诊断设置&#x27;, &#x27;能耗/参数/设备诊断属于固定垂直 Tabs&#x27;, &#x27;src/app/routes/civilian/intellect-diagnose/run-diagnose/run-diagnose.component.html:609&#x27;, &#x27;已定位&#x27;)
+        ],
+        Tag: [
+          issue(&#x27;抢修单记录&#x27;, &#x27;“超过24h / 超过7天”属于状态 Tag，不是普通文字&#x27;, &#x27;src/app/routes/common/custom-form/custom-form-page.component.ts:225&#x27;, &#x27;已定位&#x27;)
+        ],
+        Modal: [
+          issue(&#x27;GIS 地图选择&#x27;, &#x27;地图选择是一级 Modal 内的局部任务&#x27;, &#x27;src/app/routes/civilian/civilian-shared/components/detail-fault-form-modal/detail-fault-form-modal.component.ts:573&#x27;, &#x27;已定位&#x27;),
+          issue(&#x27;二级弹框&#x27;, &#x27;弹框叠弹框需限制为二级并明确返回上下文&#x27;, &#x27;BM01 Modal 页面 421:14565 · 代码按截图继续绑定&#x27;, &#x27;页面已识别&#x27;)
+        ]
+      };
+
+      function issue(page, problem, path, state) {
+        return { page, problem, path, state };
+      }
+
+      function make(name) {
+        const fact = completed[name];
+        let status = &#x27;todo&#x27;;
+        let stateLabel = &#x27;待排期&#x27;;
+        let marker = &#x27;—&#x27;;
+        if (fact) {
+          status = &#x27;done&#x27;;
+          stateLabel = &#x27;已完成&#x27;;
+          marker = &#x27;💚&#x27;;
+        } else if (focusNames.has(name)) {
+          status = &#x27;doing&#x27;;
+          stateLabel = &#x27;重点治理&#x27;;
+          marker = &#x27;⚠️&#x27;;
+        } else if (newNames.has(name)) {
+          status = &#x27;blocked&#x27;;
+          stateLabel = &#x27;新组件待补&#x27;;
+          marker = &#x27;🔴&#x27;;
+        } else if (excludedNames.has(name)) {
+          stateLabel = &#x27;不纳入&#x27;;
+          marker = &#x27;范围外&#x27;;
+        }
+        const data = fact || { pageId: &#x27;&#x27;, sets: 0, variants: 0, images: 0, sections: 0 };
+        const stageValues = fact ? [100, 100, 100, 100, 100, 100]
+          : status === &#x27;doing&#x27; ? [100, 60, 40, 20, 10, 0]
+          : status === &#x27;blocked&#x27; ? [20, 0, 0, 0, 0, 0]
+          : [0, 0, 0, 0, 0, 0];
+        return {
+          name,
+          status,
+          stateLabel,
+          marker,
+          summary: fact ? fact.summary : `${stateLabel}；当前 BM01 页面尚未标记绿色爱心，完成量待治理过程中沉淀。`,
+          pageId: data.pageId,
+          sets: data.sets,
+          variants: data.variants,
+          images: data.images,
+          sections: data.sections,
+          stages: stageValues,
+          dimensions: [data.sets, data.variants, data.images, data.sections],
+          issues: evidenceByComponent[name] || []
+        };
+      }
+
+      const groups = [
+        { name: &#x27;General&#x27;, items: [&#x27;Button&#x27;, &#x27;FloatButton&#x27;, &#x27;Typography&#x27;, &#x27;Icon&#x27;].map(make) },
+        { name: &#x27;Layout&#x27;, items: [&#x27;Templates&#x27;, &#x27;Flex&#x27;, &#x27;Grid&#x27;, &#x27;Layout&#x27;, &#x27;Space&#x27;, &#x27;Splitter&#x27;].map(make) },
+        { name: &#x27;Navigation&#x27;, items: [&#x27;Breadcrumb&#x27;, &#x27;Anchor&#x27;, &#x27;Dropdown&#x27;, &#x27;Menu&#x27;, &#x27;Pagination&#x27;, &#x27;Steps&#x27;].map(make) },
+        { name: &#x27;Data Entry&#x27;, items: [&#x27;Form&#x27;, &#x27;AutoComplete&#x27;, &#x27;Cascader&#x27;, &#x27;Checkbox&#x27;, &#x27;DatePicker&#x27;, &#x27;Input&#x27;, &#x27;InputNumber&#x27;, &#x27;List&#x27;, &#x27;Statistic&#x27;, &#x27;Select&#x27;, &#x27;Slider&#x27;, &#x27;Switch&#x27;, &#x27;TimePicker&#x27;, &#x27;Transfer&#x27;, &#x27;TreeSelect&#x27;, &#x27;Tree&#x27;, &#x27;Upload&#x27;].map(make) },
+        { name: &#x27;Data Display&#x27;, items: [&#x27;Avatar&#x27;, &#x27;Badge&#x27;, &#x27;Tabs&#x27;, &#x27;Calendar&#x27;, &#x27;Card&#x27;, &#x27;Collapse&#x27;, &#x27;Descriptions&#x27;, &#x27;Empty&#x27;, &#x27;Popover&#x27;, &#x27;Image&#x27;, &#x27;Table&#x27;, &#x27;Segmented&#x27;, &#x27;Radio&#x27;, &#x27;Tag&#x27;, &#x27;Modal&#x27;, &#x27;Tooltip&#x27;, &#x27;Timeline&#x27;].map(make) },
+        { name: &#x27;Feedback&#x27;, items: [&#x27;Alert&#x27;, &#x27;Divider&#x27;, &#x27;Drawer&#x27;, &#x27;Message&#x27;, &#x27;Notification&#x27;, &#x27;Popconfirm&#x27;, &#x27;Result&#x27;, &#x27;Spin&#x27;].map(make) },
+        { name: &#x27;Other&#x27;, items: [&#x27;Affix&#x27;, &#x27;Assets&#x27;, &#x27;ConfigProvider&#x27;].map(make) }
+      ];
+
+      const allItems = groups.flatMap(group =&gt; group.items);
+      let selected = allItems.find(item =&gt; item.name === &#x27;Tabs&#x27;);
+
+      function renderNav() {
+        const host = root.querySelector(&#x27;#component-groups&#x27;);
+        host.innerHTML = groups.map(group =&gt; `
+          &lt;section class=&quot;nav-group&quot; aria-label=&quot;${group.name}&quot;&gt;
+            &lt;div class=&quot;group-label text-small&quot;&gt;
+              &lt;span&gt;${group.name}&lt;/span&gt;
+              &lt;span&gt;${group.items.length}&lt;/span&gt;
+            &lt;/div&gt;
+            ${group.items.map(item =&gt; `
+              &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost component-button&quot; data-name=&quot;${item.name}&quot; aria-pressed=&quot;${item.name === selected.name}&quot;&gt;
+                &lt;span class=&quot;dot ${item.status}&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;name&quot;&gt;${item.name}&lt;/span&gt;
+                &lt;span class=&quot;percent text-small&quot;&gt;${item.marker}&lt;/span&gt;
+              &lt;/button&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+        host.querySelectorAll(&#x27;button[data-name]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            selected = allItems.find(item =&gt; item.name === button.dataset.name);
+            renderNav();
+            renderDetail();
+          });
+        });
+      }
+
+      function stageClass(value, index) {
+        if (value &gt;= 100) return &#x27;is-done&#x27;;
+        if (selected.status === &#x27;blocked&#x27;) return &#x27;is-blocked&#x27;;
+        if (value &gt; 0) return &#x27;is-doing&#x27;;
+        return &#x27;&#x27;;
+      }
+
+      function renderDetail() {
+        root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.name;
+        root.querySelector(&#x27;#selected-state&#x27;).textContent = selected.stateLabel;
+        root.querySelector(&#x27;#selected-summary&#x27;).textContent = selected.summary;
+        root.querySelector(&#x27;#selected-percent&#x27;).textContent = selected.status === &#x27;done&#x27; ? selected.variants : &#x27;—&#x27;;
+        root.querySelector(&#x27;#selected-points&#x27;).textContent = selected.status === &#x27;done&#x27; ? selected.sets : &#x27;待统计&#x27;;
+        root.querySelector(&#x27;#selected-month&#x27;).textContent = selected.status === &#x27;done&#x27; ? selected.images : &#x27;待统计&#x27;;
+        root.querySelector(&#x27;#selected-issues&#x27;).textContent = selected.issues.length;
+        root.querySelector(&#x27;#dimension-total&#x27;).textContent = selected.status === &#x27;done&#x27; ? `${selected.sets} 个组件集` : &#x27;完成后写入&#x27;;
+        root.querySelector(&#x27;#selected-dot&#x27;).className = `dot ${selected.status}`;
+
+        root.querySelector(&#x27;#stage-flow&#x27;).innerHTML = stageNames.map((name, index) =&gt; {
+          const value = selected.stages[index];
+          const label = value &gt;= 100 ? &#x27;完成&#x27; : value &gt; 0 ? &#x27;进行中&#x27; : &#x27;待开始&#x27;;
+          return `
+            &lt;div class=&quot;stage ${stageClass(value, index)}&quot;&gt;
+              &lt;span class=&quot;stage-dot&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+              &lt;strong&gt;${name}&lt;/strong&gt;
+              &lt;span class=&quot;text-small&quot;&gt;${label}&lt;/span&gt;
+            &lt;/div&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        const maxValue = Math.max(...selected.dimensions, 1);
+        root.querySelector(&#x27;#dimension-list&#x27;).innerHTML = dimensionNames.map((name, index) =&gt; {
+          const value = selected.dimensions[index];
+          const width = value ? Math.max(8, Math.round(value / maxValue * 100)) : 0;
+          const fillStatus = selected.status === &#x27;done&#x27; ? &#x27;done&#x27; : selected.status === &#x27;blocked&#x27; ? &#x27;blocked&#x27; : &#x27;doing&#x27;;
+          return `
+            &lt;div class=&quot;dimension-row&quot;&gt;
+              &lt;div class=&quot;dimension-meta&quot;&gt;
+                &lt;span&gt;${name}&lt;/span&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${value || &#x27;待统计&#x27;}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;bar-track&quot; role=&quot;img&quot; aria-label=&quot;${name}：${value || &#x27;待统计&#x27;}&quot;&gt;
+                &lt;div class=&quot;bar-fill ${fillStatus}&quot; style=&quot;width:${width}%&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
+        if (!selected.issues.length) {
+          const trace = selected.pageId ? `BM01 页面 ${selected.pageId}` : &#x27;尚未形成可追溯定位&#x27;;
+          issueHost.innerHTML = `&lt;tr&gt;&lt;td&gt;${selected.name}&lt;/td&gt;&lt;td&gt;暂无已识别的一级网页面证据&lt;/td&gt;&lt;td&gt;&lt;code&gt;${trace}&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;待补证据&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;`;
+        } else {
+          issueHost.innerHTML = selected.issues.map(item =&gt; `
+            &lt;tr&gt;
+              &lt;td&gt;${item.page}&lt;/td&gt;
+              &lt;td&gt;${item.problem}&lt;/td&gt;
+              &lt;td&gt;&lt;code&gt;${item.path}&lt;/code&gt;&lt;/td&gt;
+              &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${item.state}&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+          `).join(&#x27;&#x27;);
+        }
+        if (window.lucide) {
+          window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+        }
+      }
+
+      renderNav();
+      renderDetail();
+    })();
+  &lt;/script&gt;
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;component-governance-dashboard&#x27;);
+      const pageTabs = [...root.querySelectorAll(&#x27;[data-page-target]&#x27;)];
+      const pageViews = [...root.querySelectorAll(&#x27;.page-view&#x27;)];
+
+      function showPage(pageId) {
+        const targetId = pageViews.some(view =&gt; view.id === pageId) ? pageId : &#x27;overview-page&#x27;;
+        pageViews.forEach(view =&gt; {
+          view.hidden = view.id !== targetId;
+        });
+        pageTabs.forEach(tab =&gt; {
+          const active = tab.dataset.pageTarget === targetId;
+          tab.setAttribute(&#x27;aria-selected&#x27;, String(active));
+          tab.tabIndex = active ? 0 : -1;
+        });
+        const analysisActive = targetId === &#x27;analysis-page&#x27;;
+        root.classList.toggle(&#x27;analysis-mode&#x27;, analysisActive);
+        document.body.classList.toggle(&#x27;analysis-page-active&#x27;, analysisActive);
+      }
+
+      pageTabs.forEach(tab =&gt; {
+        tab.addEventListener(&#x27;click&#x27;, () =&gt; showPage(tab.dataset.pageTarget));
+      });
+
+      showPage(&#x27;overview-page&#x27;);
+      const stageNames = [&#x27;资产盘点&#x27;, &#x27;代码核验&#x27;, &#x27;场景梳理&#x27;, &#x27;Token 绑定&#x27;, &#x27;规范沉淀&#x27;, &#x27;统一使用说明&#x27;, &#x27;开发整改 / 验收&#x27;];
+      const outputNames = [&#x27;组件集&#x27;, &#x27;变体 / 组件&#x27;, &#x27;图片证据节点&#x27;, &#x27;治理说明区&#x27;];
+
+      function issue(page, judgement, trace, next) {
+        return { page, judgement, trace, next };
+      }
+
+      const evidenceByKey = {
+        colors: [
+          issue(&#x27;Colors / Domain Colors&#x27;, &#x27;基础色、中性色、品牌色已完成；业务颜色尚未整理。&#x27;, &#x27;BM01 页面 3745:8277&#x27;, &#x27;随图表组件治理定义&#x27;)
+        ],
+        button: [
+          issue(&#x27;一级网第三方按钮&#x27;, &#x27;先归类到 Button，再判断描边或填充；当前暂保留描边按钮。&#x27;, &#x27;已收集“导出”等页面截图&#x27;, &#x27;等待最终风格评定&#x27;)
+        ],
+        templates: [
+          issue(&#x27;一级网页面模板&#x27;, &#x27;页面情况杂乱，需要用正确组件重新搭建并形成模板边界。&#x27;, &#x27;BM01 已汇总多类一级网页面截图&#x27;, &#x27;预计 3 人日&#x27;)
+        ],
+        dropdown: [
+          issue(&#x27;顶部与业务下拉场景&#x27;, &#x27;需要剔除不属于 Dropdown 的内容，并明确场景归属。&#x27;, &#x27;BM01 已有截图与代码证据&#x27;, &#x27;核实入口并治理，预计 1 人日&#x27;)
+        ],
+        menu: [
+          issue(&#x27;一级网菜单&#x27;, &#x27;交互正在重新整理，方案确定后才能纳入组件。&#x27;, &#x27;交互方案依赖&#x27;, &#x27;持续关注&#x27;)
+        ],
+        pagination: [
+          issue(&#x27;表格分页&#x27;, &#x27;独立 Pagination 与 Table 内建分页边界已完成治理。&#x27;, &#x27;BM01 页面 377:9704&#x27;, &#x27;已完成&#x27;)
+        ],
+        steps: [
+          issue(&#x27;流程步骤&#x27;, &#x27;已纳入本周交付，两天内完成最后整理。&#x27;, &#x27;BM01 页面 380:170&#x27;, &#x27;本周收尾&#x27;)
+        ],
+        form: [
+          issue(&#x27;一级网表单&#x27;, &#x27;已初步梳理 label、控件宽度和业务表单边界，仍需结合真实页面细化。&#x27;, &#x27;BM01 已汇总筛选区、弹框和复杂表单截图&#x27;, &#x27;继续核验一级网页面&#x27;)
+        ],
+        cascader: [
+          issue(&#x27;菜单级联选择&#x27;, &#x27;跟随整体菜单交互方案，不单独提前定型。&#x27;, &#x27;BM01 页面 448:67&#x27;, &#x27;持续关注&#x27;)
+        ],
+        checkbox: [
+          issue(&#x27;批量与独立选择&#x27;, &#x27;独立选择、批量选择和状态矩阵已完成治理。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;已完成&#x27;)
+        ],
+        datePicker: [
+          issue(&#x27;日期选择&#x27;, &#x27;需要补齐一级网页面证据，预计没有复杂分支。&#x27;, &#x27;真实页面待收集&#x27;, &#x27;低成本核验&#x27;)
+        ],
+        input: [
+          issue(&#x27;一级网输入控件&#x27;, &#x27;使用广且样式分散，需要投入时间梳理。&#x27;, &#x27;BM01 页面 388:11439&#x27;, &#x27;专项整理&#x27;)
+        ],
+        inputNumber: [
+          issue(&#x27;范围数值输入&#x27;, &#x27;现有库缺少一级网使用的范围输入形态，需要新建组件。&#x27;, &#x27;已找到温度范围、跨日时间范围截图&#x27;, &#x27;新建并核验组件&#x27;)
+        ],
+        statistic: [
+          issue(&#x27;源网监测 → 源网分析&#x27;, &#x27;“今日尖峰负荷、当前网口单耗、今日投放热量”收敛为三个 Statistic Metric；图标、卡片背景和整行布局仍由页面 Card 承载。&#x27;, &#x27;BM01 已归档真实页面；state-monitor/monitor-source-net/monitor-source-net.component.html:38-48 已核验同域指标字段，顶部卡片代码入口待开发定位&#x27;, &#x27;定位顶部卡片模板后替换内部指标&#x27;),
+          issue(&#x27;热源监测 → 概况总览&#x27;, &#x27;“供温均值、瞬时流量”使用 Statistic Metric，单位放右侧；趋势箭头走 Comparison / Status，装饰图标不并入数值内容。&#x27;, &#x27;BM01 已归档真实页面；state-monitor/monitor-source/monitor-source.component.ts:264-285 已核验流量、供温指标，概况卡片入口待定位&#x27;, &#x27;开发协助复现真实入口并替换&#x27;),
+          issue(&#x27;各对象详情 → 基本信息&#x27;, &#x27;“额定总流量、单价、供热能力”属于对象属性信息，整条归 Info Summary Bar / Descriptions；不能因为数值加粗就全部纳入 Statistic。&#x27;, &#x27;civilian-shared/components/single-heatsource-manage/single-heatsource-manage.component.ts:342,354 已核验供热能力与额定总流量&#x27;, &#x27;从 Statistic 清单移出，按字段信息治理&#x27;),
+          issue(&#x27;气温模型 → 选择供热气温&#x27;, &#x27;平均温度、风速、湿度、预测热指标分别复用 Statistic Metric；横向分隔、图标和容器间距保留为 Info Summary Bar 页面组合。&#x27;, &#x27;command-dispatch/temp-plan/temp-plan.component.html:247,449 · temp-plan.component.ts:93,735，菜单动作与弹窗标题均已核验&#x27;, &#x27;代码替换内层数值，保留外层组合&#x27;),
+          issue(&#x27;室温监测&#x27;, &#x27;达标数、未达标数、最高/最低/平均温度使用 Statistic Metric；颜色映射到 Status，查看历史、点击详情等动作留在父级业务卡。&#x27;, &#x27;civilian-shared/components/single-station-manage/station-monitor-roomt/monitor-roomt-overview/monitor-roomt-overview.component.html:13-81，标题、数值、状态色、Tooltip 与点击入口均已核验&#x27;, &#x27;逐项替换指标并保持原业务动作&#x27;),
+          issue(&#x27;首页概览 → 今日看板&#x27;, &#x27;供暖天数、计划供热量、供热面积、实时供热量使用 Statistic Metric；同比/环比使用 Comparison，不把“今日看板”整块沉淀为基础组件。&#x27;, &#x27;shouye-overview/smart-monitor-page/components/today-kan-ban/today-kan-ban.component.html:17-33，供热面积、计划量、实时量已核验&#x27;, &#x27;替换四个内部指标，保留今日看板 Card&#x27;),
+          issue(&#x27;GIS → 对象看板 → 客服工单&#x27;, &#x27;不热工单量、不热面积占比、单位面积不热单量按三个 Statistic Metric 组合；整条对象看板不新增组件。&#x27;, &#x27;BM01 已归档真实页面截图；代码未命中文字，真实 GIS 菜单入口暂未复现&#x27;, &#x27;待开发提供菜单路径或组件文件&#x27;),
+          issue(&#x27;对象详情 → 调控检测&#x27;, &#x27;实测/目标温度、实测/预测负荷属于成组对比场景：内部数值可复用 Metric，四格布局不作为 Statistic 变体沉淀。&#x27;, &#x27;command-dispatch/realtime-control/realtime-control.component.html:85-105，四项指标标题已核验&#x27;, &#x27;保留对比布局，只统一内层数值&#x27;),
+          issue(&#x27;对象详情 → 大温差机组&#x27;, &#x27;当前工况与一次供温、一次回温、二次回温属于页面专用组合；内部数值复用 Metric，整组不沉淀新组件。&#x27;, &#x27;civilian-shared/components/single-station-manage/single-station-manage.component.ts:212,231,456 已核验三个温度字段；真实详情入口待复现&#x27;, &#x27;开发协助确认入口后替换内层数值&#x27;),
+          issue(&#x27;自定义监测&#x27;, &#x27;累计流量、电流、瞬时流量、热量、温度、压力等多指标仅在自定义看板组合；每项复用 Metric，整组保持业务配置能力。&#x27;, &#x27;shouye-overview/smart-monitor-page/intelligent-monitor.component.html:34 已核验“自定义监测模块”；具体动态配置来自运行数据&#x27;, &#x27;从配置渲染层接入统一 Metric&#x27;),
+          issue(&#x27;协同分析&#x27;, &#x27;含凉桥/不含凉桥两个占比使用 Metric；两列背景与分组属于页面布局，不新增“协同分析指标”基础组件。&#x27;, &#x27;BM01 已归档真实页面截图；代码未命中文字，菜单入口待开发定位&#x27;, &#x27;确认组件文件后替换两个百分比指标&#x27;),
+          issue(&#x27;告警列表 → 告警看板&#x27;, &#x27;衡量值与异常值使用 Statistic Metric；异常值通过 Status=Error 显示红色，业务告警逻辑与列表结构不进入 Statistic。&#x27;, &#x27;warning-management/warning-management/warning-card/warning-card.component.html:21-23 · warning-management.component.ts:83-89，字段与展示均已核验&#x27;, &#x27;替换数值与状态色，保留告警卡结构&#x27;),
+          issue(&#x27;GIS → 对象看板 → 调控信息&#x27;, &#x27;调控效果与持续异常时长使用两个 Statistic Metric；百分比、分钟单位和异常红色分别由 Unit、Status 控制。&#x27;, &#x27;BM01 已归档真实页面；operating-center/aiMannual-operate/configData.ts:346,983 已核验“调控效果”，GIS 对象看板入口仍待定位&#x27;, &#x27;开发提供 GIS 入口后完成两项替换&#x27;),
+          issue(&#x27;数据管理考核 → 数据诊断&#x27;, &#x27;总计、一次测、二次测使用三个 Statistic Metric；“数据诊断概览/异常记录”标题与整块容器仍由业务页面负责。&#x27;, &#x27;BM01 已归档真实页面截图；代码未命中界面文字，真实菜单入口暂未复现&#x27;, &#x27;待开发提供菜单路径或组件文件&#x27;),
+          issue(&#x27;区域管理 → 切换单详情&#x27;, &#x27;增加、减少、变化三个结果值使用 Metric；正负号与状态色按 Comparison / Status 输出，切换单字段信息继续使用 Descriptions。&#x27;, &#x27;command-dispatch/heatdistrict-management/heatdistrict-switch-bills-modal/heatdistrict-switch-bills-modal.component.html:49 已核验切换单详情载体；结果值代码入口待定位&#x27;, &#x27;在详情载体中拆分字段信息与结果指标&#x27;)
+        ],
+        list: [
+          issue(&#x27;一级网列表&#x27;, &#x27;使用数量多、结构差异大，需要先归类再确定治理规则。&#x27;, &#x27;BM01 页面 29288:5361&#x27;, &#x27;专项整理&#x27;)
+        ],
+        select: [
+          issue(&#x27;多选与特殊 Select&#x27;, &#x27;已找到 checkbox-style Select 等特殊情况，需结合代码核验。&#x27;, &#x27;BM01 已归档页面截图&#x27;, &#x27;预计较快&#x27;)
+        ],
+        slider: [
+          issue(&#x27;Slider&#x27;, &#x27;代码存在但真实触发页面暂未找到；必要时直接从代码治理。&#x27;, &#x27;BM01 适配结论与代码证据已整理&#x27;, &#x27;低成本处理&#x27;)
+        ],
+        timePicker: [
+          issue(&#x27;TimePicker&#x27;, &#x27;一级网预计没有复杂变体。&#x27;, &#x27;页面证据待核实&#x27;, &#x27;低成本核验&#x27;)
+        ],
+        treeSelect: [
+          issue(&#x27;树选择&#x27;, &#x27;已找到多个业务示例，需核实搜索、多选和层级边界。&#x27;, &#x27;BM01 已归档 3 类截图&#x27;, &#x27;结合代码治理&#x27;)
+        ],
+        tree: [
+          issue(&#x27;Tree&#x27;, &#x27;一级网使用常见，需要系统性收集场景后确定治理规则。&#x27;, &#x27;真实页面待补齐&#x27;, &#x27;场景梳理&#x27;)
+        ],
+        upload: [
+          issue(&#x27;上传与导入&#x27;, &#x27;一级网样式较杂乱，需要核实导入弹框、文件列表和入口边界。&#x27;, &#x27;BM01 已收集多类截图&#x27;, &#x27;重点治理&#x27;)
+        ],
+        tabs: [
+          issue(&#x27;基础设置&#x27;, &#x27;左侧固定设置分类属于垂直 Tabs。&#x27;, &#x27;src/app/routes/civilian/dispatch-platform/dispatch-platform/split-calculate/splitCalcWin/splitCalcWin.component.html:3&#x27;, &#x27;已定位&#x27;),
+          issue(&#x27;补水点配置&#x27;, &#x27;左侧热网是对象列表；右侧补水点/热源/泵站/隔压站才是 Tabs。&#x27;, &#x27;BM01 页面截图&#x27;, &#x27;页面已识别&#x27;),
+          issue(&#x27;经济分析设置&#x27;, &#x27;成本构成/采暖收入/行业对标属于固定垂直 Tabs。&#x27;, &#x27;BM01 页面截图&#x27;, &#x27;页面已识别&#x27;),
+          issue(&#x27;诊断设置&#x27;, &#x27;能耗/参数/设备诊断属于固定垂直 Tabs。&#x27;, &#x27;src/app/routes/civilian/intellect-diagnose/run-diagnose/run-diagnose.component.html:609&#x27;, &#x27;已定位&#x27;)
+        ],
+        calendar: [
+          issue(&#x27;一级网日历&#x27;, &#x27;已找到 3 处使用，复杂度仍需核实，预计相对好治理。&#x27;, &#x27;BM01 已归档 3 类页面截图&#x27;, &#x27;核实并治理&#x27;)
+        ],
+        card: [
+          issue(&#x27;一级网卡片&#x27;, &#x27;系统内情况较多，需要跨页面收集并分类。&#x27;, &#x27;BM01 页面 403:0&#x27;, &#x27;重点治理&#x27;)
+        ],
+        collapse: [
+          issue(&#x27;折叠面板&#x27;, &#x27;已找到系统使用截图，需要确认哪些属于 Collapse 及其边界。&#x27;, &#x27;BM01 已归档多类截图&#x27;, &#x27;核实并治理&#x27;)
+        ],
+        descriptions: [
+          issue(&#x27;详情描述&#x27;, &#x27;已从发版记录找到证据，需要映射真实页面并核验。&#x27;, &#x27;发版记录截图已归档&#x27;, &#x27;核实并治理&#x27;)
+        ],
+        empty: [
+          issue(&#x27;空状态&#x27;, &#x27;需要继续收集系统截图，统一空状态表达。&#x27;, &#x27;真实页面待收集&#x27;, &#x27;重点治理&#x27;)
+        ],
+        popover: [
+          issue(&#x27;业务浮层&#x27;, &#x27;出现位置不多，预计治理简单。&#x27;, &#x27;BM01 已有智能调控截图&#x27;, &#x27;低成本核验&#x27;)
+        ],
+        image: [
+          issue(&#x27;图片预览&#x27;, &#x27;目前只识别到少量场景，预计治理简单。&#x27;, &#x27;已定位 1 个主要场景&#x27;, &#x27;低成本核验&#x27;)
+        ],
+        table: [
+          issue(&#x27;一级网表格专项&#x27;, &#x27;场景数量和差异最大，需要先竞品/组件调研，再做分类、组件和开发治理。&#x27;, &#x27;BM01 已汇总大量表格证据&#x27;, &#x27;约 1 周，仍需调研校准&#x27;)
+        ],
+        tag: [
+          issue(&#x27;抢修单记录&#x27;, &#x27;“超过24h / 超过7天”属于状态 Tag，不是普通文字。&#x27;, &#x27;src/app/routes/common/custom-form/custom-form-page.component.ts:225&#x27;, &#x27;已定位&#x27;)
+        ],
+        modal: [
+          issue(&#x27;确认提示 / Small 576&#x27;, &#x27;删除、清空、关闭等风险决策收敛为确认提示：标题使用“确认 + 动作 + 对象”，正文说明操作后果，主按钮直接写“删除 / 清空 / 确认关闭”等动作；只告知结果或状态时使用 Information，不使用 Confirm。&#x27;, &#x27;modal.confirm 30 处 / 20 文件；splitCalcWin.component.ts:719 · defect-management.component.ts:725&#x27;, &#x27;按 BM01 规则统一文案、后果说明与危险按钮&#x27;),
+          issue(&#x27;小表单与配置 / 576·896&#x27;, &#x27;信息少、结构简单的轻量操作使用 Small 576；普通表单、设置和状态调整使用 Medium 896。现有默认宽度及 600、700、800 等零散值需要按内容复杂度归档到两档规格。&#x27;, &#x27;nzWidth 492 处 / 199 文件；source-plan-scheme.component.html:131 · hotSourceRun.component.html:272&#x27;, &#x27;建立尺寸映射并逐弹窗替换&#x27;),
+          issue(&#x27;区域滚动与表单布局&#x27;, &#x27;内容超过视口时只允许 Body 滚动，Header 与 Footer 固定可见；表单优先 Vertical，短标签和稳定字段可用 Horizontal，Inline 仅用于局部强关联字段，不能破坏容器 Padding。&#x27;, &#x27;define-plan.component.ts:407 存在局部 85vh Body 高度；其余弹窗需按页面逐项核验&#x27;, &#x27;沉淀公共 Body 滚动与表单布局规格&#x27;),
+          issue(&#x27;表单校验与交互反馈&#x27;, &#x27;禁止“无响应确定”：前置条件不满足时禁用确定按钮；点击后立即校验，展示错误并定位首个错误项；校验通过后提交，并提供加载、成功或失败反馈。&#x27;, &#x27;hotSourceRun.component.ts:1502 点击后直接组参请求且缺少校验与失败反馈；source-plan-scheme.component.ts:280 仅用 Message 拦截重复值&#x27;, &#x27;补禁用条件、字段校验、首错定位和提交状态&#x27;),
+          issue(&#x27;Footer 动作分区&#x27;, &#x27;Footer 允许左右分区：左侧放上一步、恢复默认、导出、删除、查看日志等次级动作；右侧保留取消、确定及主流程动作。左侧动作不能抢占提交语义，危险操作仍需二次确认。&#x27;, &#x27;detail-fault-form-modal.component.html:516 等弹窗按钮区域需按动作语义复核&#x27;, &#x27;统一 Footer 槽位、顺序与按钮文案&#x27;),
+          issue(&#x27;复杂工作流 / 90vw·90vh&#x27;, &#x27;表格、地图、图表和复杂表单使用工作台型 Modal：最大 90vw / 90vh，Header 与 Footer 固定，Body 为滚动工作区；数据为空时仍保留稳定内容高度并展示空状态，按信息密度减少非必要按钮。&#x27;, &#x27;detail-fault-form-modal.component.html:3 使用 80vw；define-plan.component.ts:407 使用 85vh，现状尚未统一为工作台规格&#x27;, &#x27;按超大尺寸专项改造，禁止散落硬编码高度&#x27;),
+          issue(&#x27;关闭与危险操作&#x27;, &#x27;右上角 X 只关闭弹窗，不执行危险动作；高风险场景可隐藏 X。删除、清空、放弃修改等不可逆动作使用危险按钮并二次确认，普通确认使用主色按钮。&#x27;, &#x27;nzMaskClosable 170 处 / 88 文件；nzKeyboard 43 处 / 23 文件，关闭策略分散&#x27;, &#x27;代码已核验；真实菜单入口暂未复现，待开发协助定位&#x27;)
+        ],
+        alert: [
+          issue(&#x27;Alert 触发场景&#x27;, &#x27;代码可以检索到，但不知道从哪个菜单或按钮触发，无法与真实页面映射。&#x27;, &#x27;代码路径已有，业务入口缺失&#x27;, &#x27;先补“菜单 → 操作 → 状态”定位&#x27;)
+        ],
+        divider: [
+          issue(&#x27;分割线&#x27;, &#x27;先翻查系统页面核实，组件本身预计没有复杂花样。&#x27;, &#x27;BM01 页面 371:8959&#x27;, &#x27;低成本核验&#x27;)
+        ],
+        drawer: [
+          issue(&#x27;Drawer&#x27;, &#x27;已找到大量截图，需要复核哪些是真 Drawer、哪些是固定侧栏。&#x27;, &#x27;BM01 已归档多类页面截图&#x27;, &#x27;核实后预计较快&#x27;)
+        ],
+        message: [
+          issue(&#x27;Message 触发场景&#x27;, &#x27;不知道点击哪个入口会出现，代码路径暂时无法映射到真实菜单。&#x27;, &#x27;代码命中但缺少业务入口&#x27;, &#x27;补触发路径&#x27;)
+        ],
+        notification: [
+          issue(&#x27;Notification / Message&#x27;, &#x27;一级网没有规范 Notification，却存在用 Message 承载通知语义的情况。&#x27;, &#x27;BM01 页面 422:13542&#x27;, &#x27;改用正确组件并明确边界&#x27;)
+        ],
+        popconfirm: [
+          issue(&#x27;轻量二次确认&#x27;, &#x27;代码证据较多，但实际出现页面和触发按钮尚未定位。&#x27;, &#x27;BM01 已有适配结论&#x27;, &#x27;补真实入口&#x27;)
+        ],
+        result: [
+          issue(&#x27;结果页 / 结果状态&#x27;, &#x27;已找到 2 处截图，但具体入口仍需确认。&#x27;, &#x27;BM01 已归档 2 处证据&#x27;, &#x27;核实并治理&#x27;)
+        ],
+        charts: [
+          issue(&#x27;图表专项&#x27;, &#x27;覆盖约 173 个页面；目前只完成柱状图、折线图的初步分析。&#x27;, &#x27;一级网图表页面盘点&#x27;, &#x27;调研后单独评估工期&#x27;)
+        ],
+        map: [
+          issue(&#x27;GIS / 地图&#x27;, &#x27;属于庞大业务组件，不与基础组件同时治理。&#x27;, &#x27;一级网 GIS 组件群&#x27;, &#x27;基础组件完成后再梳理&#x27;)
+        ],
+        businessSidebar: [
+          issue(&#x27;业务管理列表、模块侧栏&#x27;, &#x27;目前作为基础组件分析中的复合模式，是否升级为业务组件待决策。&#x27;, &#x27;BM01 已归档管理列表与模块侧栏截图&#x27;, &#x27;等待治理范围决策&#x27;)
+        ],
+        progress: [
+          issue(&#x27;Progress&#x27;, &#x27;一级网场景不多，预计容易治理。&#x27;, &#x27;BM01 已找到进度弹框与环形进度截图&#x27;, &#x27;核实后快速治理&#x27;)
+        ]
+      };
+
+      const metrics = {
+        pagination: [4, 45, 8, 1],
+        checkbox: [1, 11, 5, 1],
+        statistic: [5, 31, 33, 4],
+        switch: [2, 32, 11, 1],
+        badge: [4, 24, 24, 1],
+        tabs: [13, 150, 54, 1],
+        segmented: [2, 81, 15, 1],
+        radio: [3, 108, 30, 1],
+        tag: [5, 36, 13, 1],
+        modal: [3, 26, 83, 5]
+      };
+
+      const imageEvidenceByKey = {
+        modal: [
+          { src: &#x27;evidence-assets/modal-01-confirm.png&#x27;, title: &#x27;确认类提示归类&#x27;, note: &#x27;收敛为 Small / 576px，统一危险动作、按钮层级与标题结构。&#x27; },
+          { src: &#x27;evidence-assets/modal-02-copy.png&#x27;, title: &#x27;确认文案与按钮规则&#x27;, note: &#x27;标题写清对象与动作；危险操作使用明确动词，不再统一写“确定”。&#x27; },
+          { src: &#x27;evidence-assets/modal-03-boundary.png&#x27;, title: &#x27;Confirm 与 Information 边界&#x27;, note: &#x27;需要用户作出决策时使用 Confirm；仅告知结果或状态时使用 Information。&#x27; },
+          { src: &#x27;evidence-assets/modal-04-sizes.png&#x27;, title: &#x27;小表单与配置尺寸&#x27;, note: &#x27;小表单统一收敛至 Small / Medium 两档，减少任意宽度。&#x27; },
+          { src: &#x27;evidence-assets/modal-05-feedback.png&#x27;, title: &#x27;区域滚动与交互反馈&#x27;, note: &#x27;Header / Footer 固定、Body 滚动；表单校验失败时禁止无响应确认。&#x27; },
+          { src: &#x27;evidence-assets/modal-06-workbench-rule.png&#x27;, title: &#x27;复杂工作流尺寸规则&#x27;, note: &#x27;复杂工作台按 90vw / 90vh 管理，避免散落固定像素高度。&#x27; },
+          { src: &#x27;evidence-assets/modal-07-workbench-page.png&#x27;, title: &#x27;复杂工作台真实页面&#x27;, note: &#x27;表格、地图和图表进入 Body 滚动工作区，空数据时仍保持稳定高度。&#x27; }
+        ],
+        statistic: [
+          { src: &#x27;evidence-assets/statistic-01-source-analysis.png&#x27;, title: &#x27;源网监测 → 源网分析&#x27;, note: &#x27;指标卡片包含图标、主值、单位和同比信息，应沉淀 Metric 而非整卡复制。&#x27; },
+          { src: &#x27;evidence-assets/statistic-02-heat-overview.png&#x27;, title: &#x27;热源监测 → 概况总览&#x27;, note: &#x27;纵向指标组合需要统一标题、数值、单位和状态变化表达。&#x27; },
+          { src: &#x27;evidence-assets/statistic-03-object-info.png&#x27;, title: &#x27;各对象详情 → 基本信息&#x27;, note: &#x27;额定流量、单价、供热能力属于指标；对象名称和所属关系应归入 Descriptions。&#x27; },
+          { src: &#x27;evidence-assets/statistic-04-temperature-model.png&#x27;, title: &#x27;气温模型 → 选择供热气温&#x27;, note: &#x27;横向指标条复用 Metric，外层背景与分隔由容器负责。&#x27; },
+          { src: &#x27;evidence-assets/statistic-05-room-monitor.png&#x27;, title: &#x27;室温监测&#x27;, note: &#x27;达标、最高、最低和平均温度共享同一指标结构，状态色不能替代文本含义。&#x27; },
+          { src: &#x27;evidence-assets/statistic-06-today-board.png&#x27;, title: &#x27;首页概览 → 今日看板&#x27;, note: &#x27;供暖面积与实时供热量带趋势比较，需统一增减方向和颜色语义。&#x27; },
+          { src: &#x27;evidence-assets/statistic-07-service-order.png&#x27;, title: &#x27;GIS → 对象看板 → 客服工单&#x27;, note: &#x27;三个重点数值可复用 Metric，整块仍属于业务看板组合。&#x27; },
+          { src: &#x27;evidence-assets/statistic-08-control-detection.png&#x27;, title: &#x27;对象详情 → 调控检测&#x27;, note: &#x27;2×2 指标矩阵需要统一无数据占位、单位和数值对齐。&#x27; },
+          { src: &#x27;evidence-assets/statistic-09-temperature-unit.png&#x27;, title: &#x27;对象详情 → 大温差机组&#x27;, note: &#x27;当前工况中的多项温度应按等宽指标组管理。&#x27; },
+          { src: &#x27;evidence-assets/statistic-10-custom-monitor.png&#x27;, title: &#x27;自定义监测&#x27;, note: &#x27;多列指标使用统一标题、主值和单位，不把整张业务面板沉淀为基础组件。&#x27; },
+          { src: &#x27;evidence-assets/statistic-11-collaboration.png&#x27;, title: &#x27;协同分析&#x27;, note: &#x27;同一口径的两个百分比指标应共享 Metric 并保持对齐。&#x27; },
+          { src: &#x27;evidence-assets/statistic-12-warning-board.png&#x27;, title: &#x27;告警列表 → 告警看板&#x27;, note: &#x27;异常值需同时使用语义颜色和明确状态，不只依赖红色。&#x27; },
+          { src: &#x27;evidence-assets/statistic-13-control-info.png&#x27;, title: &#x27;GIS → 对象看板 → 调控信息&#x27;, note: &#x27;调控效果与持续异常时长是并列指标，需统一字号和分隔。&#x27; },
+          { src: &#x27;evidence-assets/statistic-14-data-diagnosis.png&#x27;, title: &#x27;数据管理考核 → 数据诊断&#x27;, note: &#x27;总计、一次侧、二次侧构成指标组，选中态属于容器交互。&#x27; },
+          { src: &#x27;evidence-assets/statistic-15-switch-detail.png&#x27;, title: &#x27;区域管理 → 切换单详情&#x27;, note: &#x27;增加、减少、变化为对比型指标，正负号和单位格式需要统一。&#x27; }
+        ]
+      };
+
+      const facts = {
+        colors: { status: &#x27;watch&#x27;, marker: &#x27;3 / 4&#x27;, stateLabel: &#x27;部分完成&#x27;, kind: &#x27;基础规范&#x27;, progress: 75, difficulty: 2, estimate: &#x27;随图表治理确认&#x27;, summary: &#x27;基础色、中性色、品牌色已完成；业务颜色依赖图表治理，暂不做最终定义。&#x27; },
+        styleTypography: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;基础规范&#x27;, phaseComplete: true, summary: &#x27;Style Guide 字体规范已完成。&#x27; },
+        styleSize: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;基础规范&#x27;, phaseComplete: true, summary: &#x27;尺寸、间距与圆角规范已完成。&#x27; },
+        effects: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;基础规范&#x27;, phaseComplete: true, summary: &#x27;效果规范已完成。&#x27; },
+        editTheme: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;基础规范&#x27;, phaseComplete: true, summary: &#x27;主题编辑能力本阶段已完成。&#x27; },
+        figmaReact: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;基础规范&#x27;, phaseComplete: true, summary: &#x27;Figma 到 Ant Design React 的本阶段整理已完成。&#x27; },
+
+        button: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, summary: &#x27;尚未完成；需要把第三方按钮归类到 Button，并等待描边/填充最终风格评定。&#x27; },
+        floatButton: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网没有使用，但按领导要求保留，本阶段无需治理。&#x27; },
+        componentTypography: { status: &#x27;concluded&#x27;, stateLabel: &#x27;复用完成&#x27;, kind: &#x27;复用结论&#x27;, phaseComplete: true, summary: &#x27;复用长输系统已经整理的 Typography 组件，本阶段完成。&#x27; },
+        icon: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;Icon 本阶段按完成统计。&#x27; },
+
+        templates: { status: &#x27;doing&#x27;, difficulty: 3, progress: 20, knownDays: 3, estimate: &#x27;约 3 人日&#x27;, summary: &#x27;一级网页面情况复杂，需要使用正确组件重建模板；是明确的高工作量项目。&#x27; },
+        flex: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;Figma 原生 Auto Layout 已覆盖 Flex 能力，本阶段无需单独治理。&#x27; },
+        grid: { status: &#x27;concluded&#x27;, marker: &#x27;💛&#x27;, stateLabel: &#x27;阶段完成·后续验证&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;搭建真实页面时再验证复杂情况，当前阶段按完成统计。&#x27; },
+        layout: { status: &#x27;concluded&#x27;, stateLabel: &#x27;已归并&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;布局模板内容归入 Templates，不重复单独治理。&#x27; },
+        space: { status: &#x27;concluded&#x27;, marker: &#x27;💛&#x27;, stateLabel: &#x27;阶段完成·后续验证&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;与 Grid 相同，真实页面搭建时再验证，当前按完成统计。&#x27; },
+        splitter: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件可保留，本阶段无需治理。&#x27; },
+
+        breadcrumb: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网没有直接使用场景，保留即可。&#x27; },
+        anchor: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需专项治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网仅一处使用，没有形成专项治理问题。&#x27; },
+        dropdown: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, knownDays: 1, estimate: &#x27;约 1 人日&#x27;, summary: &#x27;截图和代码证据已找到，需梳理使用场景并移出不属于 Dropdown 的内容。&#x27; },
+        menu: { status: &#x27;watch&#x27;, stateLabel: &#x27;等待交互方案&#x27;, kind: &#x27;持续关注&#x27;, progress: 30, estimate: &#x27;依赖交互方案&#x27;, summary: &#x27;交互正在产出新的菜单设计，方案确定后再纳入组件。&#x27; },
+        pagination: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;独立 Pagination 与 Table 内建分页的边界、样式和参数口径已完成。&#x27; },
+        steps: { status: &#x27;done&#x27;, stateLabel: &#x27;本周收尾·按完成计&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;与 Timeline 一起在两天内收尾，按本月交付完成标记。&#x27; },
+
+        form: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, summary: &#x27;已做初步整理，仍需结合一级网的真实表单结构仔细治理。&#x27; },
+        autoComplete: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
+        cascader: { status: &#x27;watch&#x27;, stateLabel: &#x27;持续关注&#x27;, kind: &#x27;持续关注&#x27;, progress: 30, estimate: &#x27;依赖菜单方案&#x27;, summary: &#x27;随菜单整体交互方案持续关注，暂不单独定型。&#x27; },
+        checkbox: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;独立选择、批量选择和状态矩阵已完成治理。&#x27; },
+        datePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 20, estimate: &#x27;预计较快&#x27;, summary: &#x27;主要工作是补齐一级网页面证据，复杂度较低。&#x27; },
+        input: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网 Input 使用广、样式杂，需要投入时间做系统整理。&#x27; },
+        inputNumber: { status: &#x27;doing&#x27;, difficulty: 3, progress: 25, estimate: &#x27;待评估&#x27;, summary: &#x27;范围输入形态在现有组件中缺失，需要新建组件并覆盖特殊业务场景。&#x27; },
+        list: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网 List 数量众多，需要先分类，再决定治理方式。&#x27; },
+        statistic: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已新建 Statistic 基础 Metric，完成 15 个真实菜单场景归类并补入代码证据；一级网目前未直接使用 nz-statistic，需把页面自拼指标逐步替换为 Metric。Descriptions、Info Summary Bar、业务卡片与页面组合边界已明确；统一使用说明、开发落地与验收尚未完成。&#x27; },
+        select: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;已收集特殊页面证据，下一步进行代码核验与组件边界治理。&#x27; },
+        slider: { status: &#x27;doing&#x27;, difficulty: 1, progress: 45, estimate: &#x27;预计较快&#x27;, summary: &#x27;已有代码分析，但真实页面入口暂未找到；必要时直接从代码改。&#x27; },
+        switch: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;即时提交、失败回滚、禁用与权限边界已完成治理。&#x27; },
+        timePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 15, estimate: &#x27;预计较快&#x27;, summary: &#x27;一级网预计没有复杂变化，补证据后即可治理。&#x27; },
+        transfer: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
+        treeSelect: { status: &#x27;doing&#x27;, difficulty: 2, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;已找到复杂示例，需核实真实代码并完成治理。&#x27; },
+        tree: { status: &#x27;doing&#x27;, difficulty: 2, progress: 15, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网使用常见，需要继续收集系统情况并确定治理规则。&#x27; },
+        upload: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网上传样式较杂，需要核实已有证据并统一导入、上传、文件列表边界。&#x27; },
+
+        avatar: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;系统中仅一处使用，无需专项治理；后续开发阶段直接修改代码。&#x27; },
+        badge: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;Dot、Count、单位数、两位数和 99+ 封顶规则已完成治理。&#x27; },
+        tabs: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;横向、纵向、数量提示和业务对象列表边界已完成，并归档真实页面证据。&#x27; },
+        calendar: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待核实&#x27;, summary: &#x27;已找到 3 处使用，复杂度待确认，预计相对容易。&#x27; },
+        card: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;需要收集全系统卡片情况，复杂且费时。&#x27; },
+        collapse: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, estimate: &#x27;待评估&#x27;, summary: &#x27;已找到大量使用截图，下一步核实并决定治理方式。&#x27; },
+        descriptions: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待评估&#x27;, summary: &#x27;发版记录中的截图证据已收集，仍需映射真实页面和代码。&#x27; },
+        empty: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;需要继续寻找系统中的空状态证据并统一治理。&#x27; },
+        popover: { status: &#x27;doing&#x27;, difficulty: 1, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;出现位置不多，预计治理简单。&#x27; },
+        image: { status: &#x27;doing&#x27;, difficulty: 1, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;当前只识别到少量使用场景，预计治理简单。&#x27; },
+        table: { status: &#x27;doing&#x27;, difficulty: 6, progress: 20, knownDays: 5, estimate: &#x27;约 1 周&#x27;, summary: &#x27;所有组件中预计最耗时：需先做组件调研，再对大量一级网表格做专项治理。&#x27; },
+        segmented: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;分段选择的尺寸、状态和组合变体已完成治理。&#x27; },
+        radio: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;普通单选、按钮式单选和卡片式选择边界与矩阵已完成。&#x27; },
+        tag: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;状态、分类、可关闭与可选择 Tag 的使用边界已完成。&#x27; },
+        modal: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成确认提示、小/中尺寸表单配置和超大尺寸复杂工作流治理，并明确文案边界、区域滚动、Footer 与交互反馈；统一使用说明、开发整改与验收尚未完成。&#x27; },
+        tooltip: { status: &#x27;doing&#x27;, difficulty: 0, progress: 0, estimate: &#x27;待梳理&#x27;, summary: &#x27;BM01 中存在正式页面，但本轮尚未补充一级网治理说明。&#x27; },
+        timeline: { status: &#x27;done&#x27;, stateLabel: &#x27;本周收尾·按完成计&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;与 Steps 一起在两天内收尾，按本月交付完成标记。&#x27; },
+
+        alert: { status: &#x27;doing&#x27;, difficulty: 2, progress: 25, estimate: &#x27;入口待定位&#x27;, summary: &#x27;代码能够检索到，但缺少真实菜单和触发按钮映射。&#x27; },
+        divider: { status: &#x27;doing&#x27;, difficulty: 2, progress: 15, estimate: &#x27;预计较快&#x27;, summary: &#x27;需要翻查系统页面核实，组件本身预计不复杂。&#x27; },
+        drawer: { status: &#x27;doing&#x27;, difficulty: 2, progress: 35, estimate: &#x27;待核实&#x27;, summary: &#x27;已收集大量截图，需要先分清 Drawer 与固定模块侧栏。&#x27; },
+        message: { status: &#x27;doing&#x27;, difficulty: 2, progress: 20, estimate: &#x27;入口待定位&#x27;, summary: &#x27;不知道点击哪个入口能够触发，代码路径无法直接映射真实菜单。&#x27; },
+        notification: { status: &#x27;doing&#x27;, difficulty: 4, progress: 25, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网没有规范 Notification，却存在用 Message 承载通知语义的问题，需要改到正确组件。&#x27; },
+        popconfirm: { status: &#x27;doing&#x27;, difficulty: 2, progress: 40, estimate: &#x27;入口待定位&#x27;, summary: &#x27;治理结论已有，但真实页面和触发按钮仍未找到。&#x27; },
+        result: { status: &#x27;doing&#x27;, difficulty: 2, progress: 35, estimate: &#x27;待核实&#x27;, summary: &#x27;已找到 2 处截图，仍需确认真实入口并治理。&#x27; },
+        spin: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;BM01 已标记完成，本阶段结论已形成。&#x27; },
+
+        affix: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;BM01 已标记完成，本阶段结论已形成。&#x27; },
+        assets: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;BM01 已标记完成，本阶段结论已形成。&#x27; },
+        configProvider: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;阶段结论&#x27;, phaseComplete: true, summary: &#x27;BM01 已标记完成，本阶段结论已形成。&#x27; },
+
+        charts: { status: &#x27;doing&#x27;, difficulty: 12, progress: 15, estimate: &#x27;调研后评估&#x27;, summary: &#x27;表格之后最大的专项：约 173 个页面，目前只覆盖柱状图、折线图的初步分析。&#x27; },
+        map: { status: &#x27;deferred&#x27;, marker: &#x27;后置&#x27;, stateLabel: &#x27;基础组件后治理&#x27;, kind: &#x27;业务组件&#x27;, progress: 0, estimate: &#x27;后续专项&#x27;, summary: &#x27;GIS 业务组件非常庞大，基础组件治理完成后再单独梳理。&#x27; },
+        businessSidebar: { status: &#x27;decision&#x27;, marker: &#x27;!&#x27;, stateLabel: &#x27;待决策&#x27;, kind: &#x27;业务组件&#x27;, progress: 20, difficulty: 4, estimate: &#x27;待决策&#x27;, summary: &#x27;管理列表、模块侧栏是否作为业务组件专项，需要先确认治理范围。&#x27; },
+        progress: { status: &#x27;doing&#x27;, difficulty: 2, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;一级网使用场景不多，核实后预计容易治理。&#x27; }
+      };
+
+      const groups = [
+        { name: &#x27;Style Guide&#x27;, items: [
+          [&#x27;colors&#x27;, &#x27;Colors&#x27;, &#x27;3745:8277&#x27;],
+          [&#x27;styleTypography&#x27;, &#x27;Typography&#x27;, &#x27;3745:8164&#x27;],
+          [&#x27;styleSize&#x27;, &#x27;Size, Space &amp; Radius&#x27;, &#x27;3745:14275&#x27;],
+          [&#x27;effects&#x27;, &#x27;Effects&#x27;, &#x27;3745:15868&#x27;],
+          [&#x27;editTheme&#x27;, &#x27;Edit Theme&#x27;, &#x27;3751:39059&#x27;],
+          [&#x27;figmaReact&#x27;, &#x27;Figma to Ant Design React&#x27;, &#x27;15249:88756&#x27;]
+        ] },
+        { name: &#x27;General&#x27;, items: [
+          [&#x27;button&#x27;, &#x27;Button&#x27;, &#x27;368:430&#x27;],
+          [&#x27;floatButton&#x27;, &#x27;FloatButton&#x27;, &#x27;1233:44368&#x27;],
+          [&#x27;componentTypography&#x27;, &#x27;Typography&#x27;, &#x27;1233:44523&#x27;],
+          [&#x27;icon&#x27;, &#x27;Icon&#x27;, &#x27;323:0&#x27;]
+        ] },
+        { name: &#x27;Layout&#x27;, items: [
+          [&#x27;templates&#x27;, &#x27;Templates&#x27;, &#x27;27216:37803&#x27;],
+          [&#x27;flex&#x27;, &#x27;Flex&#x27;, &#x27;7120:4618&#x27;],
+          [&#x27;grid&#x27;, &#x27;Grid&#x27;, &#x27;1233:45025&#x27;],
+          [&#x27;layout&#x27;, &#x27;Layout&#x27;, &#x27;448:65&#x27;],
+          [&#x27;space&#x27;, &#x27;Space&#x27;, &#x27;1233:52810&#x27;],
+          [&#x27;splitter&#x27;, &#x27;Splitter&#x27;, &#x27;19089:1347&#x27;]
+        ] },
+        { name: &#x27;Navigation&#x27;, items: [
+          [&#x27;breadcrumb&#x27;, &#x27;Breadcrumb&#x27;, &#x27;371:10122&#x27;],
+          [&#x27;anchor&#x27;, &#x27;Anchor&#x27;, &#x27;29858:10254&#x27;],
+          [&#x27;dropdown&#x27;, &#x27;Dropdown&#x27;, &#x27;371:10124&#x27;],
+          [&#x27;menu&#x27;, &#x27;Menu&#x27;, &#x27;371:11372&#x27;],
+          [&#x27;pagination&#x27;, &#x27;Pagination&#x27;, &#x27;377:9704&#x27;],
+          [&#x27;steps&#x27;, &#x27;Steps&#x27;, &#x27;380:170&#x27;]
+        ] },
+        { name: &#x27;Data Entry&#x27;, items: [
+          [&#x27;form&#x27;, &#x27;Form&#x27;, &#x27;388:11438&#x27;],
+          [&#x27;autoComplete&#x27;, &#x27;AutoComplete&#x27;, &#x27;388:11035&#x27;],
+          [&#x27;cascader&#x27;, &#x27;Cascader&#x27;, &#x27;448:67&#x27;],
+          [&#x27;checkbox&#x27;, &#x27;Checkbox&#x27;, &#x27;388:11036&#x27;],
+          [&#x27;datePicker&#x27;, &#x27;DatePicker&#x27;, &#x27;388:11437&#x27;],
+          [&#x27;input&#x27;, &#x27;Input&#x27;, &#x27;388:11439&#x27;],
+          [&#x27;inputNumber&#x27;, &#x27;InputNumber&#x27;, &#x27;388:14632&#x27;],
+          [&#x27;list&#x27;, &#x27;List&#x27;, &#x27;29288:5361&#x27;],
+          [&#x27;statistic&#x27;, &#x27;Statistic&#x27;, &#x27;411:1&#x27;],
+          [&#x27;select&#x27;, &#x27;Select&#x27;, &#x27;396:11543&#x27;],
+          [&#x27;slider&#x27;, &#x27;Slider（新）&#x27;, &#x27;29263:7959&#x27;],
+          [&#x27;switch&#x27;, &#x27;Switch&#x27;, &#x27;396:12305&#x27;],
+          [&#x27;timePicker&#x27;, &#x27;TimePicker&#x27;, &#x27;396:13353&#x27;],
+          [&#x27;transfer&#x27;, &#x27;Transfer&#x27;, &#x27;396:13799&#x27;],
+          [&#x27;treeSelect&#x27;, &#x27;TreeSelect&#x27;, &#x27;396:13800&#x27;],
+          [&#x27;tree&#x27;, &#x27;Tree&#x27;, &#x27;413:13163&#x27;],
+          [&#x27;upload&#x27;, &#x27;Upload&#x27;, &#x27;396:13801&#x27;]
+        ] },
+        { name: &#x27;Data Display&#x27;, items: [
+          [&#x27;avatar&#x27;, &#x27;Avatar&#x27;, &#x27;29288:3522&#x27;],
+          [&#x27;badge&#x27;, &#x27;Badge&#x27;, &#x27;399:0&#x27;],
+          [&#x27;tabs&#x27;, &#x27;Tabs&#x27;, &#x27;411:17&#x27;],
+          [&#x27;calendar&#x27;, &#x27;Calendar&#x27;, &#x27;399:68&#x27;],
+          [&#x27;card&#x27;, &#x27;Card&#x27;, &#x27;403:0&#x27;],
+          [&#x27;collapse&#x27;, &#x27;Collapse（折叠面板）&#x27;, &#x27;406:109&#x27;],
+          [&#x27;descriptions&#x27;, &#x27;Descriptions&#x27;, &#x27;29620:65912&#x27;],
+          [&#x27;empty&#x27;, &#x27;Empty&#x27;, &#x27;29313:50160&#x27;],
+          [&#x27;popover&#x27;, &#x27;Popover&#x27;, &#x27;29288:6308&#x27;],
+          [&#x27;image&#x27;, &#x27;Image&#x27;, &#x27;29288:4397&#x27;],
+          [&#x27;table&#x27;, &#x27;Table（专项治理）&#x27;, &#x27;411:16&#x27;],
+          [&#x27;segmented&#x27;, &#x27;Segmented&#x27;, &#x27;506:31613&#x27;],
+          [&#x27;radio&#x27;, &#x27;Radio&#x27;, &#x27;395:10973&#x27;],
+          [&#x27;tag&#x27;, &#x27;Tag&#x27;, &#x27;412:13377&#x27;],
+          [&#x27;modal&#x27;, &#x27;Modal&#x27;, &#x27;421:14565&#x27;],
+          [&#x27;tooltip&#x27;, &#x27;Tooltip&#x27;, &#x27;413:12782&#x27;],
+          [&#x27;timeline&#x27;, &#x27;Timeline&#x27;, &#x27;412:13530&#x27;]
+        ] },
+        { name: &#x27;Feedback&#x27;, items: [
+          [&#x27;alert&#x27;, &#x27;Alert&#x27;, &#x27;413:15306&#x27;],
+          [&#x27;divider&#x27;, &#x27;Divider&#x27;, &#x27;371:8959&#x27;],
+          [&#x27;drawer&#x27;, &#x27;Drawer&#x27;, &#x27;421:14499&#x27;],
+          [&#x27;message&#x27;, &#x27;Message&#x27;, &#x27;421:14512&#x27;],
+          [&#x27;notification&#x27;, &#x27;Notification&#x27;, &#x27;422:13542&#x27;],
+          [&#x27;popconfirm&#x27;, &#x27;Popconfirm（新）&#x27;, &#x27;29288:7649&#x27;],
+          [&#x27;result&#x27;, &#x27;Result&#x27;, &#x27;423:32&#x27;],
+          [&#x27;spin&#x27;, &#x27;Spin&#x27;, &#x27;516:40776&#x27;]
+        ] },
+        { name: &#x27;Other&#x27;, items: [
+          [&#x27;affix&#x27;, &#x27;Affix&#x27;, &#x27;1233:57574&#x27;],
+          [&#x27;assets&#x27;, &#x27;Assets&#x27;, &#x27;15247:67&#x27;],
+          [&#x27;configProvider&#x27;, &#x27;ConfigProvider&#x27;, &#x27;7120:252&#x27;]
+        ] },
+        { name: &#x27;Business Components&#x27;, business: true, items: [
+          [&#x27;charts&#x27;, &#x27;图表&#x27;, &#x27;24473:7565&#x27;],
+          [&#x27;map&#x27;, &#x27;地图 / GIS&#x27;, &#x27;24473:7564&#x27;],
+          [&#x27;businessSidebar&#x27;, &#x27;业务管理列表、模块侧栏&#x27;, &#x27;30342:29437&#x27;],
+          [&#x27;progress&#x27;, &#x27;Progress（新）&#x27;, &#x27;29288:12893&#x27;]
+        ] }
+      ];
+
+      const importantKeys = new Set([
+        &#x27;button&#x27;, &#x27;templates&#x27;, &#x27;steps&#x27;, &#x27;form&#x27;, &#x27;checkbox&#x27;,
+        &#x27;input&#x27;, &#x27;inputNumber&#x27;, &#x27;statistic&#x27;, &#x27;list&#x27;, &#x27;select&#x27;,
+        &#x27;switch&#x27;, &#x27;treeSelect&#x27;, &#x27;tree&#x27;, &#x27;upload&#x27;, &#x27;badge&#x27;,
+        &#x27;tabs&#x27;, &#x27;card&#x27;, &#x27;collapse&#x27;, &#x27;descriptions&#x27;, &#x27;table&#x27;,
+        &#x27;segmented&#x27;, &#x27;radio&#x27;, &#x27;tag&#x27;, &#x27;modal&#x27;, &#x27;charts&#x27;
+      ]);
+
+      function governanceLabel(status, progress) {
+        if (status === &#x27;done&#x27;) return &#x27;规范已沉淀&#x27;;
+        if (status === &#x27;concluded&#x27;) return &#x27;结论已形成&#x27;;
+        if (status === &#x27;watch&#x27;) return &#x27;持续关注&#x27;;
+        if (status === &#x27;decision&#x27;) return &#x27;待决策&#x27;;
+        if (status === &#x27;deferred&#x27;) return &#x27;暂缓治理&#x27;;
+        if (status === &#x27;doing&#x27; &amp;&amp; progress &gt; 0) return &#x27;治理中&#x27;;
+        return &#x27;待治理&#x27;;
+      }
+
+      function make([key, label, pageId], group) {
+        const fact = facts[key] || {};
+        const status = fact.status || &#x27;doing&#x27;;
+        const difficulty = fact.difficulty || 0;
+        const marker = fact.marker || (status === &#x27;done&#x27; || status === &#x27;concluded&#x27; ? &#x27;💚&#x27; : status === &#x27;watch&#x27; ? &#x27;💛&#x27; : difficulty ? `⚠ ×${difficulty}` : &#x27;—&#x27;);
+        const output = metrics[key] || [0, 0, 0, 0];
+        const progress = fact.progress ?? (fact.phaseComplete ? 71 : 0);
+        const evidence = evidenceByKey[key] || [];
+        return {
+          key,
+          label,
+          pageId,
+          group: group.name,
+          business: Boolean(group.business),
+          status,
+          marker,
+          governanceLabel: governanceLabel(status, progress),
+          importance: importantKeys.has(key) ? &#x27;重要&#x27; : &#x27;一般&#x27;,
+          stateLabel: fact.stateLabel || &#x27;待治理&#x27;,
+          kind: fact.kind || (group.business ? &#x27;业务组件&#x27; : &#x27;基础组件治理&#x27;),
+          summary: fact.summary || &#x27;BM01 中存在正式页面，本轮尚未补充一级网治理说明。&#x27;,
+          phaseComplete: Boolean(fact.phaseComplete),
+          deep: Boolean(fact.deep),
+          difficulty,
+          estimate: fact.estimate || &#x27;待评估&#x27;,
+          knownDays: fact.knownDays || 0,
+          progress,
+          output,
+          evidence,
+          stages: fact.stages || deriveStages(status, progress, evidence.length)
+        };
+      }
+
+      function deriveStages(status, progress, evidenceCount) {
+        if (status === &#x27;done&#x27; || status === &#x27;concluded&#x27;) return [100, 100, 100, 100, 100, 0, 0];
+        if (status === &#x27;watch&#x27;) return [100, 60, 40, 0, 0, 0, 0];
+        if (status === &#x27;decision&#x27; || status === &#x27;deferred&#x27;) return [20, 0, 0, 0, 0, 0, 0];
+        if (progress &gt;= 40) return [100, 80, 60, 20, 0, 0, 0];
+        if (progress &gt;= 25) return [100, evidenceCount ? 60 : 30, 30, 0, 0, 0, 0];
+        if (progress &gt; 0) return [evidenceCount ? 80 : 30, 20, 0, 0, 0, 0, 0];
+        return [0, 0, 0, 0, 0, 0, 0];
+      }
+
+      groups.forEach(group =&gt; {
+        group.items = group.items.map(item =&gt; make(item, group));
+      });
+      const allItems = groups.flatMap(group =&gt; group.items);
+      const foundationItems = allItems.filter(item =&gt; !item.business);
+      let selected = allItems.find(item =&gt; item.key === &#x27;tabs&#x27;);
+      let searchTerm = &#x27;&#x27;;
+
+      function renderGlobal() {
+        const phaseComplete = foundationItems.filter(item =&gt; item.phaseComplete).length;
+        const deepCount = foundationItems.filter(item =&gt; item.deep).length;
+        const conclusionCount = phaseComplete - deepCount;
+        const watchCount = foundationItems.filter(item =&gt; !item.phaseComplete &amp;&amp; item.status === &#x27;watch&#x27;).length;
+        const pendingCount = foundationItems.length - phaseComplete - watchCount;
+        const verified = foundationItems.filter(item =&gt; item.output[1] &gt; 0);
+        const sums = verified.reduce((acc, item) =&gt; acc.map((value, index) =&gt; value + item.output[index]), [0, 0, 0, 0]);
+        const knownDays = allItems.reduce((sum, item) =&gt; sum + item.knownDays, 0);
+        const coverage = (phaseComplete / foundationItems.length * 100).toFixed(1);
+
+        root.querySelector(&#x27;#kpi-coverage&#x27;).textContent = `${phaseComplete} / ${foundationItems.length}`;
+        root.querySelector(&#x27;#kpi-coverage-note&#x27;).textContent = `完成率 ${coverage}% · 含深度治理、复用及无需治理结论`;
+        root.querySelector(&#x27;#kpi-deep&#x27;).textContent = `${deepCount} 个`;
+        root.querySelector(&#x27;#kpi-output&#x27;).textContent = `${sums[0]} / ${sums[1]}`;
+        root.querySelector(&#x27;#kpi-days&#x27;).textContent = &#x27;约 1 个月&#x27;;
+        root.querySelector(&#x27;#overview-coverage&#x27;).textContent = `完成阶段结论 ${phaseComplete} / ${foundationItems.length}`;
+        root.querySelector(&#x27;#work-sets&#x27;).textContent = sums[0];
+        root.querySelector(&#x27;#work-variants&#x27;).textContent = sums[1];
+        root.querySelector(&#x27;#work-images&#x27;).textContent = sums[2];
+        root.querySelector(&#x27;#work-sections&#x27;).textContent = sums[3];
+
+        const segments = [
+          [&#x27;done&#x27;, deepCount, &#x27;深度治理交付&#x27;],
+          [&#x27;concluded&#x27;, conclusionCount, &#x27;复用 / 无需治理结论&#x27;],
+          [&#x27;watch&#x27;, watchCount, &#x27;持续关注&#x27;],
+          [&#x27;doing&#x27;, pendingCount, &#x27;待治理&#x27;]
+        ];
+        root.querySelector(&#x27;#overview-track&#x27;).innerHTML = segments.map(([status, count]) =&gt;
+          `&lt;span class=&quot;seg ${status}&quot; style=&quot;width:${count / foundationItems.length * 100}%&quot;&gt;&lt;/span&gt;`
+        ).join(&#x27;&#x27;);
+        root.querySelector(&#x27;#overview-track&#x27;).setAttribute(&#x27;aria-label&#x27;, segments.map(([, count, label]) =&gt; `${label}${count}个`).join(&#x27;，&#x27;));
+        root.querySelector(&#x27;#overview-legend&#x27;).innerHTML = segments.map(([status, count, label]) =&gt;
+          `&lt;span class=&quot;legend-item&quot;&gt;&lt;span class=&quot;dot ${status}&quot;&gt;&lt;/span&gt;${label} ${count}&lt;/span&gt;`
+        ).join(&#x27;&#x27;);
+      }
+
+      function renderNav() {
+        const host = root.querySelector(&#x27;#component-groups&#x27;);
+        const visibleGroups = groups.map(group =&gt; ({
+          ...group,
+          visibleItems: group.items.filter(item =&gt; {
+            const searchable = `${item.label} ${item.key} ${item.group} ${item.stateLabel} ${item.governanceLabel} ${item.importance} ${item.summary}`.toLowerCase();
+            return searchable.includes(searchTerm);
+          })
+        })).filter(group =&gt; group.visibleItems.length);
+        if (!visibleGroups.length) {
+          host.innerHTML = `&lt;div class=&quot;component-search-empty text-small&quot;&gt;未找到匹配组件&lt;/div&gt;`;
+          return;
+        }
+        host.innerHTML = visibleGroups.map(group =&gt; `
+          &lt;section class=&quot;nav-group&quot; aria-label=&quot;${group.name}&quot;&gt;
+            &lt;div class=&quot;group-label text-small&quot;&gt;
+              &lt;span&gt;${group.name}&lt;/span&gt;
+              &lt;span&gt;${group.visibleItems.length}&lt;/span&gt;
+            &lt;/div&gt;
+            ${group.visibleItems.map(item =&gt; `
+              &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost component-button has-explicit-status&quot; data-key=&quot;${item.key}&quot; aria-pressed=&quot;${item.key === selected.key}&quot; aria-label=&quot;${item.label}，治理状态：${item.governanceLabel}，重要程度：${item.importance}&quot;&gt;
+                &lt;span class=&quot;status-sample-main&quot;&gt;
+                  &lt;span class=&quot;name&quot; title=&quot;${item.label}&quot;&gt;${item.label}&lt;/span&gt;
+                  &lt;span class=&quot;governance-status status-${item.status}&quot;&gt;${item.governanceLabel}&lt;/span&gt;
+                &lt;/span&gt;
+                &lt;span class=&quot;importance-label text-small&quot;&gt;重要程度：${item.importance}&lt;/span&gt;
+              &lt;/button&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+        host.querySelectorAll(&#x27;button[data-key]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            selected = allItems.find(item =&gt; item.key === button.dataset.key);
+            renderNav();
+            renderDetail();
+          });
+        });
+      }
+
+      root.querySelector(&#x27;#component-search-input&#x27;).addEventListener(&#x27;input&#x27;, event =&gt; {
+        searchTerm = event.currentTarget.value.trim().toLowerCase();
+        renderNav();
+      });
+
+      function stageClass(value) {
+        if (value &gt;= 100) return &#x27;is-done&#x27;;
+        if (selected.status === &#x27;decision&#x27; || selected.status === &#x27;deferred&#x27;) return &#x27;is-blocked&#x27;;
+        if (value &gt; 0) return &#x27;is-doing&#x27;;
+        return &#x27;&#x27;;
+      }
+
+      function renderOutput() {
+        const host = root.querySelector(&#x27;#dimension-list&#x27;);
+        const hasOutput = selected.output.some(Boolean);
+        root.querySelector(&#x27;#dimension-total&#x27;).textContent = hasOutput ? &#x27;按 BM01 节点统计&#x27; : &#x27;尚未形成节点级产出&#x27;;
+        if (!hasOutput) {
+          host.innerHTML = `
+            &lt;div class=&quot;dimension-row&quot;&gt;
+              &lt;div class=&quot;dimension-meta&quot;&gt;&lt;span&gt;本阶段完成度&lt;/span&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;${selected.progress}%&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;bar-track&quot; role=&quot;img&quot; aria-label=&quot;本阶段完成度 ${selected.progress}%&quot;&gt;
+                &lt;div class=&quot;bar-fill ${selected.status}&quot; style=&quot;width:${selected.progress}%&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;dimension-row&quot;&gt;
+              &lt;div class=&quot;dimension-meta&quot;&gt;&lt;span&gt;BM01 页面&lt;/span&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;${selected.pageId}&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;dimension-row&quot;&gt;
+              &lt;div class=&quot;dimension-meta&quot;&gt;&lt;span&gt;已记录证据&lt;/span&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;${selected.evidence.length} 条&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          `;
+          return;
+        }
+        const maxValue = Math.max(...selected.output, 1);
+        host.innerHTML = outputNames.map((name, index) =&gt; {
+          const value = selected.output[index];
+          const width = value ? Math.max(8, Math.round(value / maxValue * 100)) : 0;
+          return `
+            &lt;div class=&quot;dimension-row&quot;&gt;
+              &lt;div class=&quot;dimension-meta&quot;&gt;
+                &lt;span&gt;${name}&lt;/span&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${value}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;bar-track&quot; role=&quot;img&quot; aria-label=&quot;${name}：${value}&quot;&gt;
+                &lt;div class=&quot;bar-fill done&quot; style=&quot;width:${width}%&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          `;
+        }).join(&#x27;&#x27;);
+      }
+
+      function closeEvidenceLightbox() {
+        const lightbox = root.querySelector(&#x27;#evidence-lightbox&#x27;);
+        lightbox.hidden = true;
+        root.querySelector(&#x27;#lightbox-image&#x27;).removeAttribute(&#x27;src&#x27;);
+      }
+
+      function openEvidenceLightbox(item) {
+        const lightbox = root.querySelector(&#x27;#evidence-lightbox&#x27;);
+        root.querySelector(&#x27;#lightbox-title&#x27;).textContent = item.title;
+        root.querySelector(&#x27;#lightbox-image&#x27;).src = item.src;
+        root.querySelector(&#x27;#lightbox-image&#x27;).alt = `${item.title} 一级网真实页面证据`;
+        root.querySelector(&#x27;#lightbox-note&#x27;).textContent = item.note;
+        lightbox.hidden = false;
+        root.querySelector(&#x27;#lightbox-close&#x27;).focus();
+      }
+
+      function renderImageEvidence() {
+        const host = root.querySelector(&#x27;#evidence-gallery&#x27;);
+        const count = root.querySelector(&#x27;#evidence-image-count&#x27;);
+        const items = imageEvidenceByKey[selected.key] || [];
+        count.textContent = items.length ? `已归档 ${items.length} 张 · 点击查看大图` : &#x27;尚未补入图片证据&#x27;;
+        if (!items.length) {
+          host.innerHTML = `&lt;div class=&quot;evidence-empty text-small&quot;&gt;该组件的治理结论已保留，一级网真实页面截图待后续补入。&lt;/div&gt;`;
+          return;
+        }
+        host.innerHTML = items.map((item, index) =&gt; `
+          &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-evidence-index=&quot;${index}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+            &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+            &lt;span class=&quot;evidence-caption&quot;&gt;
+              &lt;strong&gt;${item.title}&lt;/strong&gt;
+              &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/button&gt;
+        `).join(&#x27;&#x27;);
+        host.querySelectorAll(&#x27;[data-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.evidenceIndex)]);
+          });
+        });
+      }
+
+      function renderDetail() {
+        root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
+        root.querySelector(&#x27;#selected-state&#x27;).textContent = selected.stateLabel;
+        root.querySelector(&#x27;#selected-summary&#x27;).textContent = selected.summary;
+        root.querySelector(&#x27;#selected-percent&#x27;).textContent = `${selected.progress}%`;
+        root.querySelector(&#x27;#selected-kind&#x27;).textContent = selected.kind;
+        root.querySelector(&#x27;#selected-effort&#x27;).textContent = selected.difficulty ? `⚠ ×${selected.difficulty}` : selected.phaseComplete ? &#x27;已形成结论&#x27; : &#x27;待评估&#x27;;
+        root.querySelector(&#x27;#selected-estimate&#x27;).textContent = selected.estimate;
+        root.querySelector(&#x27;#selected-dot&#x27;).className = `dot ${selected.status}`;
+
+        root.querySelector(&#x27;#stage-flow&#x27;).innerHTML = stageNames.map((name, index) =&gt; {
+          const value = selected.stages[index];
+          let label = value &gt;= 100 ? &#x27;完成&#x27; : value &gt; 0 ? &#x27;进行中&#x27; : &#x27;待开始&#x27;;
+          if (selected.status === &#x27;deferred&#x27; &amp;&amp; index &gt; 0) label = &#x27;后置&#x27;;
+          if (selected.status === &#x27;decision&#x27; &amp;&amp; index &gt; 0) label = &#x27;待决策&#x27;;
+          return `
+            &lt;div class=&quot;stage ${stageClass(value)}&quot;&gt;
+              &lt;span class=&quot;stage-dot&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+              &lt;strong&gt;${name}&lt;/strong&gt;
+              &lt;span class=&quot;text-small&quot;&gt;${label}&lt;/span&gt;
+            &lt;/div&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        renderOutput();
+        renderImageEvidence();
+
+        const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
+        if (!selected.evidence.length) {
+          issueHost.innerHTML = `
+            &lt;tr&gt;
+              &lt;td&gt;${selected.label}&lt;/td&gt;
+              &lt;td&gt;${selected.summary}&lt;/td&gt;
+              &lt;td&gt;&lt;code&gt;BM01 页面 ${selected.pageId}&lt;/code&gt;&lt;/td&gt;
+              &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+          `;
+        } else {
+          issueHost.innerHTML = selected.evidence.map(item =&gt; `
+            &lt;tr&gt;
+              &lt;td&gt;${item.page}&lt;/td&gt;
+              &lt;td&gt;${item.judgement}&lt;/td&gt;
+              &lt;td&gt;&lt;code&gt;${item.trace}&lt;/code&gt;&lt;/td&gt;
+              &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${item.next}&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+          `).join(&#x27;&#x27;);
+        }
+        if (window.lucide) {
+          window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+        }
+      }
+
+      root.querySelector(&#x27;#lightbox-close&#x27;).addEventListener(&#x27;click&#x27;, closeEvidenceLightbox);
+      root.querySelector(&#x27;#evidence-lightbox&#x27;).addEventListener(&#x27;click&#x27;, event =&gt; {
+        if (event.target.id === &#x27;evidence-lightbox&#x27;) closeEvidenceLightbox();
+      });
+      document.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        if (event.key === &#x27;Escape&#x27; &amp;&amp; !root.querySelector(&#x27;#evidence-lightbox&#x27;).hidden) {
+          closeEvidenceLightbox();
+        }
+      });
+
+      renderGlobal();
+      renderNav();
+      renderDetail();
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
