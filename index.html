@@ -1226,6 +1226,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       padding-bottom: 8px;
       align-content: center;
     }
+    #component-governance-dashboard .component-button.has-explicit-status.is-style-guide {
+      min-height: 42px;
+    }
+    #component-governance-dashboard .component-button.has-explicit-status.is-important:not([aria-pressed=&quot;true&quot;]) {
+      border-left: 3px solid #fa8c16;
+      background: #fff7e6;
+      padding-left: 9px;
+    }
     #component-governance-dashboard .status-sample-main {
       min-width: 0;
       display: flex;
@@ -1270,6 +1278,27 @@ html&gt;body{padding:0}&lt;/style&gt;
       display: block;
       color: var(--muted-foreground);
       line-height: 1.45;
+    }
+    #component-governance-dashboard .importance-label.is-important {
+      width: fit-content;
+      padding: 1px 7px;
+      border-radius: 999px;
+      color: #ad4e00;
+      background: #fff1b8;
+      font-weight: 600;
+    }
+    #component-governance-dashboard .component-button.has-explicit-status[aria-pressed=&quot;true&quot;] .status-sample-main .name,
+    #component-governance-dashboard .component-button.has-explicit-status[aria-pressed=&quot;true&quot;] .importance-label,
+    #component-governance-dashboard .component-button.has-explicit-status[aria-pressed=&quot;true&quot;] .governance-status {
+      color: var(--primary-foreground);
+    }
+    #component-governance-dashboard .component-button.has-explicit-status[aria-pressed=&quot;true&quot;] .governance-status,
+    #component-governance-dashboard .component-button.has-explicit-status[aria-pressed=&quot;true&quot;] .importance-label.is-important {
+      background: color-mix(in srgb, var(--primary-foreground) 16%, transparent);
+    }
+    #component-governance-dashboard .component-button.has-explicit-status.is-important[aria-pressed=&quot;true&quot;] {
+      border-left: 3px solid #ffd666;
+      padding-left: 9px;
     }
     #component-governance-dashboard .detail {
       min-width: 0;
@@ -2525,6 +2554,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           marker,
           governanceLabel: governanceLabel(status, progress),
           importance: importantKeys.has(key) ? &#x27;重要&#x27; : &#x27;一般&#x27;,
+          important: importantKeys.has(key),
+          showImportance: group.name !== &#x27;Style Guide&#x27;,
           stateLabel: fact.stateLabel || &#x27;待治理&#x27;,
           kind: fact.kind || (group.business ? &#x27;业务组件&#x27; : &#x27;基础组件治理&#x27;),
           summary: fact.summary || &#x27;BM01 中存在正式页面，本轮尚未补充一级网治理说明。&#x27;,
@@ -2615,12 +2646,12 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;span&gt;${group.visibleItems.length}&lt;/span&gt;
             &lt;/div&gt;
             ${group.visibleItems.map(item =&gt; `
-              &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost component-button has-explicit-status&quot; data-key=&quot;${item.key}&quot; aria-pressed=&quot;${item.key === selected.key}&quot; aria-label=&quot;${item.label}，治理状态：${item.governanceLabel}，重要程度：${item.importance}&quot;&gt;
+              &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost component-button has-explicit-status ${item.important ? &#x27;is-important&#x27; : &#x27;&#x27;} ${item.showImportance ? &#x27;&#x27; : &#x27;is-style-guide&#x27;}&quot; data-key=&quot;${item.key}&quot; aria-pressed=&quot;${item.key === selected.key}&quot; aria-label=&quot;${item.label}，治理状态：${item.governanceLabel}${item.showImportance ? `，重要程度：${item.importance}` : &#x27;&#x27;}&quot;&gt;
                 &lt;span class=&quot;status-sample-main&quot;&gt;
                   &lt;span class=&quot;name&quot; title=&quot;${item.label}&quot;&gt;${item.label}&lt;/span&gt;
                   &lt;span class=&quot;governance-status status-${item.status}&quot;&gt;${item.governanceLabel}&lt;/span&gt;
                 &lt;/span&gt;
-                &lt;span class=&quot;importance-label text-small&quot;&gt;重要程度：${item.importance}&lt;/span&gt;
+                ${item.showImportance ? `&lt;span class=&quot;importance-label text-small ${item.important ? &#x27;is-important&#x27; : &#x27;&#x27;}&quot;&gt;重要程度：${item.importance}&lt;/span&gt;` : &#x27;&#x27;}
               &lt;/button&gt;
             `).join(&#x27;&#x27;)}
           &lt;/section&gt;
