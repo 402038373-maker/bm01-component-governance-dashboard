@@ -2025,7 +2025,7 @@ html&gt;body{padding:0}&lt;/style&gt;
                   &lt;td&gt;页面重复补能力&lt;/td&gt;
                   &lt;td&gt;&lt;code&gt;nzDropdownRender 7 处 / 7 文件；“全选”118 处 / 33 文件；“取消全选”16 处 / 7 文件&lt;/code&gt;&lt;/td&gt;
                   &lt;td&gt;全选、搜索和空状态散落在页面模板中，文字、位置与状态逻辑互相不一致。&lt;/td&gt;
-                  &lt;td&gt;把 Select All、Search Position、Empty State 收敛到统一业务封装，并固定菜单内布局。&lt;/td&gt;
+                  &lt;td&gt;把 Select All、Search Position、Menu State 收敛到统一业务封装，并固定菜单内布局。&lt;/td&gt;
                   &lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;组件扩展已定义&lt;/span&gt;&lt;/td&gt;
                 &lt;/tr&gt;
                 &lt;tr&gt;
@@ -2057,11 +2057,11 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;thead&gt;&lt;tr&gt;&lt;th&gt;专题&lt;/th&gt;&lt;th&gt;真实场景&lt;/th&gt;&lt;th&gt;治理结论&lt;/th&gt;&lt;th&gt;开发验收点&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
               &lt;tbody&gt;
                 &lt;tr&gt;&lt;td&gt;01 组件边界&lt;/td&gt;&lt;td&gt;热力站监测 → 标签分组筛选&lt;/td&gt;&lt;td&gt;checkbox-style Select 统一为标准 Select Multiple；无树层级不使用 TreeSelect。&lt;/td&gt;&lt;td&gt;选中态、键盘操作、清空与搜索行为一致。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;02 已选项与折叠&lt;/td&gt;&lt;td&gt;热源资产、热源出口线、月统计表、热力站历史记录&lt;/td&gt;&lt;td&gt;筛选区单行 +N；表单可换行 3–4 行并内部滚动；保留 Collapsed Count，删除 Max Count。&lt;/td&gt;&lt;td&gt;+N 只表示隐藏数量；标签不拆分；全文可悬浮或聚焦查看。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;02 Tag Overflow&lt;/td&gt;&lt;td&gt;热源资产、热源出口线、月统计表、热力站历史记录&lt;/td&gt;&lt;td&gt;筛选区使用 Collapse 单行 +N；表单使用 Wrap，可换行 3–4 行并内部滚动；不开放 Selection Limit。&lt;/td&gt;&lt;td&gt;+N 只表示隐藏数量；标签不拆分；全文可悬浮或聚焦查看。&lt;/td&gt;&lt;/tr&gt;
                 &lt;tr&gt;&lt;td&gt;03 Select All&lt;/td&gt;&lt;td&gt;热力站监测 → 站点名称；区域管理 → 阀门列表&lt;/td&gt;&lt;td&gt;全选固定在下拉底部，文案不切换成“取消全选”；外置开关移回组件。&lt;/td&gt;&lt;td&gt;未选 / 部分 / 全选三态准确，异步数据变化后状态可恢复。&lt;/td&gt;&lt;/tr&gt;
                 &lt;tr&gt;&lt;td&gt;04 Search Position&lt;/td&gt;&lt;td&gt;GIS 对象、所属热网、泵站监测、下位诊断标签&lt;/td&gt;&lt;td&gt;增加 None / Trigger / Dropdown 三档；Trigger 搜索激活时尾部统一显示搜索图标。&lt;/td&gt;&lt;td&gt;焦点、清空、无结果和再次打开后的查询状态一致。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;05 Show Tag&lt;/td&gt;&lt;td&gt;负荷预测 → 区域；消息配置 → 消息模板&lt;/td&gt;&lt;td&gt;选项允许展示辅助标签；行内“添加 / 移除”特殊业务不纳入通用 Select。&lt;/td&gt;&lt;td&gt;辅助标签只补充语义，不抢占主选项；长文本仍可读。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;06 Empty State&lt;/td&gt;&lt;td&gt;Select Menu 无结果场景&lt;/td&gt;&lt;td&gt;统一图标与 No Data 文案；Empty State 与 Search、Select All 独立组合。&lt;/td&gt;&lt;td&gt;无数据、搜索无结果、加载失败不得混为同一状态。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;05 Option Tag&lt;/td&gt;&lt;td&gt;负荷预测 → 区域；消息配置 → 消息模板&lt;/td&gt;&lt;td&gt;选项允许展示辅助标签；行内“添加 / 移除”特殊业务不纳入通用 Select。&lt;/td&gt;&lt;td&gt;辅助标签只补充语义，不抢占主选项；长文本仍可读。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;06 Menu State&lt;/td&gt;&lt;td&gt;Select Menu 无结果场景&lt;/td&gt;&lt;td&gt;使用 Options / Empty 表达菜单内容状态；统一图标与 No Data 文案。&lt;/td&gt;&lt;td&gt;无数据、搜索无结果、加载失败不得混为同一状态。&lt;/td&gt;&lt;/tr&gt;
               &lt;/tbody&gt;
             &lt;/table&gt;
           &lt;/div&gt;
@@ -2069,21 +2069,20 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         &lt;section class=&quot;dossier-section&quot; aria-label=&quot;Figma 与 Angular API 映射&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
-            &lt;h4&gt;Figma ↔ Angular / ng-zorro 11 映射&lt;/h4&gt;
-            &lt;span class=&quot;text-small text-muted&quot;&gt;用于后续 1:1 发布清单&lt;/span&gt;
+            &lt;h4&gt;统一语义属性 ↔ Figma ↔ Angular / ng-zorro 11 映射&lt;/h4&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;设计属性与建议业务 API 统一词根，底层保留官方 API 名称&lt;/span&gt;
           &lt;/div&gt;
           &lt;div class=&quot;dossier-table-wrap&quot;&gt;
             &lt;table class=&quot;dossier-table&quot;&gt;
-              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Figma 属性&lt;/th&gt;&lt;th&gt;代码映射&lt;/th&gt;&lt;th&gt;类型&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;统一语义属性 / Figma 配置&lt;/th&gt;&lt;th&gt;建议业务 API&lt;/th&gt;&lt;th&gt;ng-zorro 11 实现&lt;/th&gt;&lt;th&gt;映射类型&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
               &lt;tbody&gt;
-                &lt;tr&gt;&lt;td&gt;Type = Multiple&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMode=&quot;multiple&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;标准多选，不再用 checkbox-style TreeSelect 代替。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Collapsed Count&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMaxTagCount + nzMaxTagPlaceholder&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;+N 为无边框纯文本，N 只代表隐藏项数量。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Max Count&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMaxMultipleCount&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge exclusion&quot;&gt;本期不采用&lt;/span&gt;&lt;/td&gt;&lt;td&gt;一级网当前没有限制最大可选数量的真实场景，已从 Figma 组件删除。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Search Position = Trigger&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzShowSearch + nzSuffixIcon&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生组合&lt;/span&gt;&lt;/td&gt;&lt;td&gt;搜索发生在触发器，激活后尾部箭头切换为放大镜。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Search Position = Dropdown&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzDropdownRender&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;组合实现&lt;/span&gt;&lt;/td&gt;&lt;td&gt;搜索框固定在下拉顶部；不是 ng-zorro 11 的单一枚举 API。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Select All&lt;/td&gt;&lt;td&gt;&lt;code&gt;业务 Select 封装 + nzDropdownRender&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;业务扩展&lt;/span&gt;&lt;/td&gt;&lt;td&gt;ng-zorro 11 无原生 Select All 输入属性，统一在封装层实现三态。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Show Tag&lt;/td&gt;&lt;td&gt;&lt;code&gt;nz-option[nzCustomContent]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;在选项右侧展示类别或字段语义标签。&lt;/td&gt;&lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;Empty State&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzNotFoundContent&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;统一空状态内容，并与加载失败状态分开。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Mode = Multiple&lt;/td&gt;&lt;td&gt;&lt;code&gt;[mode]=&quot;&#x27;multiple&#x27;&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMode=&quot;multiple&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生直连&lt;/span&gt;&lt;/td&gt;&lt;td&gt;标准多选，不再用 checkbox-style TreeSelect 代替。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Tag Overflow = Collapse | Wrap&lt;/td&gt;&lt;td&gt;&lt;code&gt;[tagOverflow]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMaxTagCount + nzMaxTagPlaceholder&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生组合&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Collapse 使用无边框 +N；Wrap 用于表单多行标签。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Selection Limit（Figma 不开放）&lt;/td&gt;&lt;td&gt;&lt;code&gt;[selectionLimit]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMaxMultipleCount&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge exclusion&quot;&gt;本期不采用&lt;/span&gt;&lt;/td&gt;&lt;td&gt;一级网没有限制最大可选数量的真实场景，不进入当前组件属性。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Search Position = None | Trigger | Dropdown&lt;/td&gt;&lt;td&gt;&lt;code&gt;[searchPosition]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzShowSearch + nzSuffixIcon + nzDropdownRender&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;封装组合&lt;/span&gt;&lt;/td&gt;&lt;td&gt;合并原 Search 开关；Trigger 激活后显示放大镜，Dropdown 搜索框固定在菜单顶部。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Select All = False | True&lt;/td&gt;&lt;td&gt;&lt;code&gt;[selectAll]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;业务 Select 封装 + nzDropdownRender&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;业务扩展&lt;/span&gt;&lt;/td&gt;&lt;td&gt;ng-zorro 11 无原生输入属性，封装层统一实现未选、部分、全选三态。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Option Tag = False | True&lt;/td&gt;&lt;td&gt;&lt;code&gt;[optionTag]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;nz-option[nzCustomContent]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生组合&lt;/span&gt;&lt;/td&gt;&lt;td&gt;明确为选项内辅助标签，避免与触发器中的已选标签混淆。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Menu State = Options | Empty&lt;/td&gt;&lt;td&gt;&lt;code&gt;由 options / loading 状态派生&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzNotFoundContent&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;运行态映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Figma 展示菜单状态；代码由数据运行态决定，不额外制造布尔输入。&lt;/td&gt;&lt;/tr&gt;
               &lt;/tbody&gt;
             &lt;/table&gt;
           &lt;/div&gt;
@@ -2103,7 +2102,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;li&gt;全选必须在下拉内，不得在组件外再放一套开关。&lt;/li&gt;
             &lt;li&gt;全选文案固定为“全选”，选中状态通过复选框三态表达，不改成“取消全选”。&lt;/li&gt;
             &lt;li&gt;搜索位置只能是 None、Trigger 或 Dropdown；同一页面同类任务不得混用。&lt;/li&gt;
-            &lt;li&gt;Show Tag 只用于辅助分类，不把“添加 / 移除”等行内业务动作塞进通用 Select。&lt;/li&gt;
+            &lt;li&gt;Option Tag 只用于辅助分类，不把“添加 / 移除”等行内业务动作塞进通用 Select。&lt;/li&gt;
             &lt;li&gt;无数据、搜索无结果、加载中和加载失败必须分别表达，不得共用一个空白下拉。&lt;/li&gt;
           &lt;/ol&gt;
         &lt;/section&gt;
@@ -2471,9 +2470,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;热源资产 / 热源出口线 / 月统计表 / 热力站历史记录&#x27;, &#x27;筛选区统一为单行标签 +N；表单允许 3–4 行并内部滚动；单标签不拆分，超长文本可查看全文。&#x27;, &#x27;nzMaxTagCount 160 处 / 75 文件；nzMaxTagPlaceholder 109 处 / 47 文件&#x27;, &#x27;按菜单替换并回归溢出状态&#x27;),
           issue(&#x27;热力站监测 → 站点名称；区域管理 → 阀门列表&#x27;, &#x27;全选固定在下拉底部，文案始终为“全选”；不得把全选开关放在 Select 外部。&#x27;, &#x27;station-filter.component.ts:145；nzDropdownRender 7 处 / 7 文件；同类全选逻辑多处复制&#x27;, &#x27;统一业务 Select 封装&#x27;),
           issue(&#x27;GIS 对象 / 所属热网 / 泵站监测 / 下位诊断标签&#x27;, &#x27;搜索统一为 None、Trigger、Dropdown 三种位置；Trigger 搜索激活时尾部箭头变为放大镜。&#x27;, &#x27;nzShowSearch 125 处 / 41 文件；tree-select-search 28 处 / 13 文件&#x27;, &#x27;统一搜索位置与焦点行为&#x27;),
-          issue(&#x27;负荷预测 → 区域；消息配置 → 消息模板&#x27;, &#x27;允许在选项右侧展示辅助标签；“添加 / 移除”等行内业务动作属于特殊组件，不纳入通用 Select。&#x27;, &#x27;NzOptionComponent.nzCustomContent 已核验&#x27;, &#x27;按 Show Tag 属性实现&#x27;),
-          issue(&#x27;Select Menu 空数据&#x27;, &#x27;补齐统一 Empty State，并区分无数据、搜索无结果、加载中和加载失败。&#x27;, &#x27;nzNotFoundContent 21 处 / 19 文件&#x27;, &#x27;补齐空状态并进行状态验收&#x27;),
-          issue(&#x27;Figma ↔ Angular API 发布清单&#x27;, &#x27;Collapsed Count、Search、Select All、Show Tag、Empty State 均已明确原生映射、组合实现或业务扩展；Max Count 本期不采用。&#x27;, &#x27;package.json：Angular 11.2 / ng-zorro 11.4.1；API 源码已核验&#x27;, &#x27;统一使用说明待输出&#x27;)
+          issue(&#x27;负荷预测 → 区域；消息配置 → 消息模板&#x27;, &#x27;允许在选项右侧展示辅助标签；“添加 / 移除”等行内业务动作属于特殊组件，不纳入通用 Select。&#x27;, &#x27;NzOptionComponent.nzCustomContent 已核验&#x27;, &#x27;按 Option Tag 属性实现&#x27;),
+          issue(&#x27;Select Menu 空数据&#x27;, &#x27;使用 Menu State = Options | Empty 表达菜单内容状态，并区分无数据、搜索无结果、加载中和加载失败。&#x27;, &#x27;nzNotFoundContent 21 处 / 19 文件&#x27;, &#x27;补齐空状态并进行状态验收&#x27;),
+          issue(&#x27;Figma ↔ Angular API 发布清单&#x27;, &#x27;Mode、Tag Overflow、Search Position、Select All、Option Tag、Menu State 已采用统一语义命名，并明确原生映射、封装组合或业务扩展；Selection Limit 本期不采用。&#x27;, &#x27;package.json：Angular 11.2 / ng-zorro 11.4.1；API 源码已核验&#x27;, &#x27;统一使用说明待输出&#x27;)
         ],
         slider: [
           issue(&#x27;Slider&#x27;, &#x27;代码存在但真实触发页面暂未找到；必要时直接从代码治理。&#x27;, &#x27;BM01 适配结论与代码证据已整理&#x27;, &#x27;低成本处理&#x27;)
@@ -2614,7 +2613,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           { src: &#x27;evidence-assets/select-02-collapse-current-a.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 A&#x27;, note: &#x27;真实页面同时出现 +5、17+ 等不同隐藏数量写法。&#x27; },
           { src: &#x27;evidence-assets/select-02-collapse-current-b.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 B&#x27;, note: &#x27;同类筛选中出现带边框的“+ 2 ...”，占用空间且语义不清。&#x27; },
           { src: &#x27;evidence-assets/select-02-collapse-current-c.png&#x27;, title: &#x27;02 当前问题：省略号替代数量&#x27;, note: &#x27;省略号无法告诉用户隐藏了多少已选项。&#x27; },
-          { src: &#x27;evidence-assets/select-02-collapse-standard.png&#x27;, title: &#x27;02 标准效果：Collapsed Count&#x27;, note: &#x27;+N 采用无边框纯文本，只表达被隐藏的已选项数量。&#x27; },
+          { src: &#x27;evidence-assets/select-02-collapse-standard.png&#x27;, title: &#x27;02 标准效果：Tag Overflow = Collapse&#x27;, note: &#x27;+N 采用无边框纯文本，只表达被隐藏的已选项数量。&#x27; },
           { src: &#x27;evidence-assets/select-02-form-current.png&#x27;, title: &#x27;02 真实表单：多行已选项&#x27;, note: &#x27;推送人选择存在大量标签，需要独立于筛选区定义多行展示规则。&#x27; },
           { src: &#x27;evidence-assets/select-02-form-standard.png&#x27;, title: &#x27;02 标准效果：标签换行与省略&#x27;, note: &#x27;完整标签自动换行、单标签不拆分；超长省略，表单最多 3–4 行并内部滚动。&#x27; },
           { src: &#x27;evidence-assets/select-03-all-current.png&#x27;, title: &#x27;03 当前问题：全选文案切换&#x27;, note: &#x27;全选后文案变为“取消全选”，把状态和动作混在文字中。&#x27; },
@@ -2627,8 +2626,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           { src: &#x27;evidence-assets/select-04-search-dropdown.png&#x27;, title: &#x27;04 标准效果：Search Dropdown&#x27;, note: &#x27;搜索框固定在下拉顶部，触发器继续保留标准箭头。&#x27; },
           { src: &#x27;evidence-assets/select-05-tag-current-area.png&#x27;, title: &#x27;05 真实页面：负荷预测区域标签&#x27;, note: &#x27;选项包含管理分组、片区分组等辅助分类信息。&#x27; },
           { src: &#x27;evidence-assets/select-05-tag-current-message.png&#x27;, title: &#x27;05 真实页面：消息模板字段标签&#x27;, note: &#x27;消息模板选项通过辅助文本说明变量含义。&#x27; },
-          { src: &#x27;evidence-assets/select-05-tag-standard.png&#x27;, title: &#x27;05 标准效果：Show Tag&#x27;, note: &#x27;辅助标签位于选项右侧，只补充语义，不替代主选项。&#x27; },
-          { src: &#x27;evidence-assets/select-06-empty-standard.png&#x27;, title: &#x27;06 标准效果：Empty State&#x27;, note: &#x27;Select Menu 无数据时显示统一图标和 No Data，并与搜索无结果、加载失败区分。&#x27; }
+          { src: &#x27;evidence-assets/select-05-tag-standard.png&#x27;, title: &#x27;05 标准效果：Option Tag&#x27;, note: &#x27;辅助标签位于选项右侧，只补充语义，不替代主选项。&#x27; },
+          { src: &#x27;evidence-assets/select-06-empty-standard.png&#x27;, title: &#x27;06 标准效果：Menu State = Empty&#x27;, note: &#x27;Select Menu 无数据时显示统一图标和 No Data，并与搜索无结果、加载失败区分。&#x27; }
         ]
       };
 
@@ -2668,7 +2667,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         inputNumber: { status: &#x27;doing&#x27;, difficulty: 3, progress: 25, estimate: &#x27;待评估&#x27;, summary: &#x27;范围输入形态在现有组件中缺失，需要新建组件并覆盖特殊业务场景。&#x27; },
         list: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网 List 数量众多，需要先分类，再决定治理方式。&#x27; },
         statistic: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已新建 Statistic 基础 Metric，完成 15 个真实菜单场景归类并补入代码证据；一级网目前未直接使用 nz-statistic，需把页面自拼指标逐步替换为 Metric。Descriptions、Info Summary Bar、业务卡片与页面组合边界已明确；统一使用说明、开发落地与验收尚未完成。&#x27; },
-        select: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;标准治理档案&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成 6 类真实场景治理、20 张问题与标准效果证据归档，并核验 Angular 11.2 / ng-zorro 11.4.1 的 Select API 与代码规模。组件边界、已选项折叠、Select All、Search Position、Show Tag、Empty State 均已形成规则；统一使用说明、开发整改与验收尚未完成。&#x27; },
+        select: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;标准治理档案&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成 6 类真实场景治理、20 张问题与标准效果证据归档，并核验 Angular 11.2 / ng-zorro 11.4.1 的 Select API 与代码规模。组件边界、Tag Overflow、Select All、Search Position、Option Tag、Menu State 均已形成规则；统一使用说明、开发整改与验收尚未完成。&#x27; },
         slider: { status: &#x27;doing&#x27;, difficulty: 1, progress: 45, estimate: &#x27;预计较快&#x27;, summary: &#x27;已有代码分析，但真实页面入口暂未找到；必要时直接从代码改。&#x27; },
         switch: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;即时提交、失败回滚、禁用与权限边界已完成治理。&#x27; },
         timePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 15, estimate: &#x27;预计较快&#x27;, summary: &#x27;一级网预计没有复杂变化，补证据后即可治理。&#x27; },
