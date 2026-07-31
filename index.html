@@ -1399,6 +1399,107 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-template-columns: minmax(0, 1fr);
       gap: 22px;
     }
+    #component-governance-dashboard .standard-dossier[hidden] {
+      display: none;
+    }
+    #component-governance-dashboard .standard-dossier {
+      display: grid;
+      gap: 24px;
+      padding: 18px;
+      border: 1px solid #bae0ff;
+      border-radius: 6px;
+      background: #f7fbff;
+    }
+    #component-governance-dashboard .dossier-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+    }
+    #component-governance-dashboard .dossier-intro h3 {
+      margin-bottom: 6px;
+    }
+    #component-governance-dashboard .dossier-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+    #component-governance-dashboard .dossier-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    #component-governance-dashboard .dossier-kpi {
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background: var(--background);
+    }
+    #component-governance-dashboard .dossier-kpi strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .dossier-section {
+      display: grid;
+      gap: 10px;
+    }
+    #component-governance-dashboard .dossier-section h4 {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .dossier-table-wrap {
+      overflow-x: auto;
+      background: var(--background);
+      border: 1px solid var(--border);
+    }
+    #component-governance-dashboard .dossier-table {
+      min-width: 860px;
+    }
+    #component-governance-dashboard .dossier-table td:first-child {
+      width: 150px;
+      font-weight: 500;
+    }
+    #component-governance-dashboard .dossier-table code {
+      white-space: normal;
+    }
+    #component-governance-dashboard .mapping-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 999px;
+      color: #0958d9;
+      background: #e6f4ff;
+      white-space: nowrap;
+    }
+    #component-governance-dashboard .mapping-badge.extension {
+      color: #531dab;
+      background: #f9f0ff;
+    }
+    #component-governance-dashboard .mapping-badge.exclusion {
+      color: #ad4e00;
+      background: #fff7e6;
+    }
+    #component-governance-dashboard .hard-rule-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 24px;
+      margin: 0;
+      padding-left: 22px;
+      background: var(--background);
+      border: 1px solid var(--border);
+    }
+    #component-governance-dashboard .hard-rule-list li {
+      padding: 9px 10px 9px 2px;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .dossier-note {
+      padding: 10px 12px;
+      border-left: 3px solid var(--viz-series-1);
+      background: #e6f4ff;
+      line-height: 1.6;
+    }
     #component-governance-dashboard .dimension-list {
       display: grid;
       gap: 12px;
@@ -1551,6 +1652,16 @@ html&gt;body{padding:0}&lt;/style&gt;
       padding: 22px 8px;
     }
     @media (max-width: 640px) {
+      #component-governance-dashboard .dossier-intro {
+        grid-template-columns: 1fr;
+      }
+      #component-governance-dashboard .dossier-status {
+        justify-content: flex-start;
+      }
+      #component-governance-dashboard .dossier-kpis,
+      #component-governance-dashboard .hard-rule-list {
+        grid-template-columns: 1fr;
+      }
       #component-governance-dashboard.analysis-mode {
         height: auto;
         min-height: 100vh;
@@ -1869,6 +1980,154 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;div class=&quot;stage-flow&quot; id=&quot;stage-flow&quot;&gt;&lt;/div&gt;
       &lt;/section&gt;
 
+      &lt;section class=&quot;standard-dossier&quot; id=&quot;standard-governance-dossier&quot; aria-label=&quot;Select 标准治理档案&quot; hidden&gt;
+        &lt;div class=&quot;dossier-intro&quot;&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Select 标准治理档案&lt;/h3&gt;
+            &lt;p class=&quot;text-small text-muted&quot;&gt;以“问题模式—代码证据—影响页面 / 风险—整改规则—验证结果”为统一模板，覆盖真实页面、Figma 组件属性与 Angular / ng-zorro 代码映射。&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;dossier-status&quot; aria-label=&quot;档案状态&quot;&gt;
+            &lt;span class=&quot;viz-badge&quot;&gt;规范已沉淀&lt;/span&gt;
+            &lt;span class=&quot;viz-badge&quot;&gt;代码已核验&lt;/span&gt;
+            &lt;span class=&quot;mapping-badge exclusion&quot;&gt;开发整改待开始&lt;/span&gt;
+            &lt;span class=&quot;mapping-badge exclusion&quot;&gt;验收待开始&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;dossier-kpis&quot; aria-label=&quot;Select 治理规模&quot;&gt;
+          &lt;div class=&quot;dossier-kpi&quot;&gt;&lt;strong&gt;171&lt;/strong&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;相关代码文件&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;dossier-kpi&quot;&gt;&lt;strong&gt;1,618&lt;/strong&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;Select / TreeSelect 相关引用&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;dossier-kpi&quot;&gt;&lt;strong&gt;6 类&lt;/strong&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;已形成治理专题&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;dossier-kpi&quot;&gt;&lt;strong&gt;20 张&lt;/strong&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;当前问题与标准效果证据&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;dossier-note text-small&quot;&gt;
+          当前完成的是设计规范沉淀与代码核验，不等于开发整改完成。后续需按页面逐项替换、回归交互状态，并补齐开发验收结果。
+        &lt;/div&gt;
+
+        &lt;section class=&quot;dossier-section&quot; aria-label=&quot;可复用问题模式&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h4&gt;四类可复用“坏习惯”&lt;/h4&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;可直接反向指导开发整改&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;dossier-table-wrap&quot;&gt;
+            &lt;table class=&quot;dossier-table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;问题模式&lt;/th&gt;&lt;th&gt;代码证据&lt;/th&gt;&lt;th&gt;影响 / 风险&lt;/th&gt;&lt;th&gt;整改规则&lt;/th&gt;&lt;th&gt;验证状态&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;组件边界混用&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;station-filter.component.html：tree-select-search、nz-tree-select、nz-select 并存&lt;/code&gt;&lt;/td&gt;
+                  &lt;td&gt;相同多选任务出现 checkbox-style Select、树选择和自封装交互，用户认知与维护成本不一致。&lt;/td&gt;
+                  &lt;td&gt;无层级关系的标签分组统一使用 Select Multiple；只有真实树层级才使用 TreeSelect。&lt;/td&gt;
+                  &lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;规范已形成&lt;/span&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;页面重复补能力&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;nzDropdownRender 7 处 / 7 文件；“全选”118 处 / 33 文件；“取消全选”16 处 / 7 文件&lt;/code&gt;&lt;/td&gt;
+                  &lt;td&gt;全选、搜索和空状态散落在页面模板中，文字、位置与状态逻辑互相不一致。&lt;/td&gt;
+                  &lt;td&gt;把 Select All、Search Position、Empty State 收敛到统一业务封装，并固定菜单内布局。&lt;/td&gt;
+                  &lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;组件扩展已定义&lt;/span&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;溢出与状态规则碎片化&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;nzMaxTagCount 160 处 / 75 文件；nzMaxTagPlaceholder 109 处 / 47 文件&lt;/code&gt;&lt;/td&gt;
+                  &lt;td&gt;+N、N+、省略号、换行与最大高度并存，筛选区和表单的展示策略没有边界。&lt;/td&gt;
+                  &lt;td&gt;筛选单行优先 +N；表单允许 3–4 行并内部滚动；单标签不拆分，超长时省略并可查看全文。&lt;/td&gt;
+                  &lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;规则已形成&lt;/span&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;设计属性与代码 API 脱节&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;项目为 Angular 11.2 / ng-zorro 11.4.1；部分 Ant 5 属性不能直接照搬&lt;/code&gt;&lt;/td&gt;
+                  &lt;td&gt;Figma 属性如果没有明确代码映射，开发仍会各自实现，无法形成 1:1 发布清单。&lt;/td&gt;
+                  &lt;td&gt;每个 Figma 属性必须标注“原生映射 / 组合实现 / 业务扩展 / 不采用”。&lt;/td&gt;
+                  &lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;API 已核验&lt;/span&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;dossier-section&quot; aria-label=&quot;六类治理专题&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h4&gt;六类治理专题&lt;/h4&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;真实菜单与标准效果见下方证据图库&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;dossier-table-wrap&quot;&gt;
+            &lt;table class=&quot;dossier-table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;专题&lt;/th&gt;&lt;th&gt;真实场景&lt;/th&gt;&lt;th&gt;治理结论&lt;/th&gt;&lt;th&gt;开发验收点&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;01 组件边界&lt;/td&gt;&lt;td&gt;热力站监测 → 标签分组筛选&lt;/td&gt;&lt;td&gt;checkbox-style Select 统一为标准 Select Multiple；无树层级不使用 TreeSelect。&lt;/td&gt;&lt;td&gt;选中态、键盘操作、清空与搜索行为一致。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;02 已选项与折叠&lt;/td&gt;&lt;td&gt;热源资产、热源出口线、月统计表、热力站历史记录&lt;/td&gt;&lt;td&gt;筛选区单行 +N；表单可换行 3–4 行并内部滚动；保留 Collapsed Count，删除 Max Count。&lt;/td&gt;&lt;td&gt;+N 只表示隐藏数量；标签不拆分；全文可悬浮或聚焦查看。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;03 Select All&lt;/td&gt;&lt;td&gt;热力站监测 → 站点名称；区域管理 → 阀门列表&lt;/td&gt;&lt;td&gt;全选固定在下拉底部，文案不切换成“取消全选”；外置开关移回组件。&lt;/td&gt;&lt;td&gt;未选 / 部分 / 全选三态准确，异步数据变化后状态可恢复。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;04 Search Position&lt;/td&gt;&lt;td&gt;GIS 对象、所属热网、泵站监测、下位诊断标签&lt;/td&gt;&lt;td&gt;增加 None / Trigger / Dropdown 三档；Trigger 搜索激活时尾部统一显示搜索图标。&lt;/td&gt;&lt;td&gt;焦点、清空、无结果和再次打开后的查询状态一致。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;05 Show Tag&lt;/td&gt;&lt;td&gt;负荷预测 → 区域；消息配置 → 消息模板&lt;/td&gt;&lt;td&gt;选项允许展示辅助标签；行内“添加 / 移除”特殊业务不纳入通用 Select。&lt;/td&gt;&lt;td&gt;辅助标签只补充语义，不抢占主选项；长文本仍可读。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;06 Empty State&lt;/td&gt;&lt;td&gt;Select Menu 无结果场景&lt;/td&gt;&lt;td&gt;统一图标与 No Data 文案；Empty State 与 Search、Select All 独立组合。&lt;/td&gt;&lt;td&gt;无数据、搜索无结果、加载失败不得混为同一状态。&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;dossier-section&quot; aria-label=&quot;Figma 与 Angular API 映射&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h4&gt;Figma ↔ Angular / ng-zorro 11 映射&lt;/h4&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;用于后续 1:1 发布清单&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;dossier-table-wrap&quot;&gt;
+            &lt;table class=&quot;dossier-table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Figma 属性&lt;/th&gt;&lt;th&gt;代码映射&lt;/th&gt;&lt;th&gt;类型&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;Type = Multiple&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMode=&quot;multiple&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;标准多选，不再用 checkbox-style TreeSelect 代替。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Collapsed Count&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMaxTagCount + nzMaxTagPlaceholder&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;+N 为无边框纯文本，N 只代表隐藏项数量。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Max Count&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzMaxMultipleCount&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge exclusion&quot;&gt;本期不采用&lt;/span&gt;&lt;/td&gt;&lt;td&gt;一级网当前没有限制最大可选数量的真实场景，已从 Figma 组件删除。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Search Position = Trigger&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzShowSearch + nzSuffixIcon&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生组合&lt;/span&gt;&lt;/td&gt;&lt;td&gt;搜索发生在触发器，激活后尾部箭头切换为放大镜。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Search Position = Dropdown&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzDropdownRender&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;组合实现&lt;/span&gt;&lt;/td&gt;&lt;td&gt;搜索框固定在下拉顶部；不是 ng-zorro 11 的单一枚举 API。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Select All&lt;/td&gt;&lt;td&gt;&lt;code&gt;业务 Select 封装 + nzDropdownRender&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge extension&quot;&gt;业务扩展&lt;/span&gt;&lt;/td&gt;&lt;td&gt;ng-zorro 11 无原生 Select All 输入属性，统一在封装层实现三态。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Show Tag&lt;/td&gt;&lt;td&gt;&lt;code&gt;nz-option[nzCustomContent]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;在选项右侧展示类别或字段语义标签。&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Empty State&lt;/td&gt;&lt;td&gt;&lt;code&gt;nzNotFoundContent&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;原生映射&lt;/span&gt;&lt;/td&gt;&lt;td&gt;统一空状态内容，并与加载失败状态分开。&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;dossier-section&quot; aria-label=&quot;硬性防错规则&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h4&gt;十条硬性防错规则&lt;/h4&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;后续统一使用说明与整改 SOP 的核心条款&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;ol class=&quot;hard-rule-list text-small&quot;&gt;
+            &lt;li&gt;没有树层级的多选，不得使用 TreeSelect 或 checkbox-style Select。&lt;/li&gt;
+            &lt;li&gt;+N 只表示被隐藏的已选项数量，不加边框，不写 N+，不以省略号代替。&lt;/li&gt;
+            &lt;li&gt;筛选区默认单行展示；空间不足时按可用宽度折叠为 +N。&lt;/li&gt;
+            &lt;li&gt;表单允许完整标签换行，最多 3–4 行，超出后内部滚动。&lt;/li&gt;
+            &lt;li&gt;单个标签不得拆行；超长文本省略，并支持鼠标悬浮和键盘聚焦查看全文。&lt;/li&gt;
+            &lt;li&gt;全选必须在下拉内，不得在组件外再放一套开关。&lt;/li&gt;
+            &lt;li&gt;全选文案固定为“全选”，选中状态通过复选框三态表达，不改成“取消全选”。&lt;/li&gt;
+            &lt;li&gt;搜索位置只能是 None、Trigger 或 Dropdown；同一页面同类任务不得混用。&lt;/li&gt;
+            &lt;li&gt;Show Tag 只用于辅助分类，不把“添加 / 移除”等行内业务动作塞进通用 Select。&lt;/li&gt;
+            &lt;li&gt;无数据、搜索无结果、加载中和加载失败必须分别表达，不得共用一个空白下拉。&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;dossier-section&quot; aria-label=&quot;整改与验收计划&quot;&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h4&gt;整改与验收计划&lt;/h4&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;规范沉淀之后的真实闭环&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;dossier-table-wrap&quot;&gt;
+            &lt;table class=&quot;dossier-table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;阶段&lt;/th&gt;&lt;th&gt;交付物&lt;/th&gt;&lt;th&gt;验收口径&lt;/th&gt;&lt;th&gt;当前状态&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;规范沉淀&lt;/td&gt;&lt;td&gt;6 类治理专题、20 张证据、Figma 属性与硬性规则&lt;/td&gt;&lt;td&gt;主管评审确认边界、命名和规则&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;已完成&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;代码核验&lt;/td&gt;&lt;td&gt;171 文件 / 1,618 引用规模、API 与重复模式证据&lt;/td&gt;&lt;td&gt;每类问题均能定位到组件、模板或封装入口&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge&quot;&gt;已完成&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;统一使用说明&lt;/td&gt;&lt;td&gt;Angular 示例、正误对比、属性/API 发布清单&lt;/td&gt;&lt;td&gt;设计稿属性可直接映射到代码配置&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge exclusion&quot;&gt;待输出&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;开发整改&lt;/td&gt;&lt;td&gt;按菜单拆分的代码任务与 MR&lt;/td&gt;&lt;td&gt;旧自封装和重复页面逻辑被统一组件替代&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge exclusion&quot;&gt;待排期&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;开发验收&lt;/td&gt;&lt;td&gt;真实页面回归截图、键盘与边界状态测试结果&lt;/td&gt;&lt;td&gt;六类专题全部通过，无回归问题&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mapping-badge exclusion&quot;&gt;待开始&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/section&gt;
+
       &lt;div class=&quot;detail-grid&quot;&gt;
         &lt;section aria-label=&quot;分项完成量&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
@@ -1880,7 +2139,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         &lt;section aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
-            &lt;h3&gt;一级网真实页面证据&lt;/h3&gt;
+            &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
             &lt;span class=&quot;text-small text-muted&quot; id=&quot;evidence-image-count&quot;&gt;按菜单 / 场景归档&lt;/span&gt;
           &lt;/div&gt;
           &lt;div class=&quot;evidence-gallery&quot; id=&quot;evidence-gallery&quot;&gt;&lt;/div&gt;
@@ -2208,7 +2467,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;一级网列表&#x27;, &#x27;使用数量多、结构差异大，需要先归类再确定治理规则。&#x27;, &#x27;BM01 页面 29288:5361&#x27;, &#x27;专项整理&#x27;)
         ],
         select: [
-          issue(&#x27;多选与特殊 Select&#x27;, &#x27;已找到 checkbox-style Select 等特殊情况，需结合代码核验。&#x27;, &#x27;BM01 已归档页面截图&#x27;, &#x27;预计较快&#x27;)
+          issue(&#x27;热力站监测 → 标签分组筛选&#x27;, &#x27;当前 checkbox-style Select 与 tree-select-search / nz-tree-select 混用；无层级关系的标签分组统一为标准 Select Multiple。&#x27;, &#x27;station-filter.component.html：tree-select-search、nz-tree-select、nz-select 并存&#x27;, &#x27;规范已沉淀·待开发整改&#x27;),
+          issue(&#x27;热源资产 / 热源出口线 / 月统计表 / 热力站历史记录&#x27;, &#x27;筛选区统一为单行标签 +N；表单允许 3–4 行并内部滚动；单标签不拆分，超长文本可查看全文。&#x27;, &#x27;nzMaxTagCount 160 处 / 75 文件；nzMaxTagPlaceholder 109 处 / 47 文件&#x27;, &#x27;按菜单替换并回归溢出状态&#x27;),
+          issue(&#x27;热力站监测 → 站点名称；区域管理 → 阀门列表&#x27;, &#x27;全选固定在下拉底部，文案始终为“全选”；不得把全选开关放在 Select 外部。&#x27;, &#x27;station-filter.component.ts:145；nzDropdownRender 7 处 / 7 文件；同类全选逻辑多处复制&#x27;, &#x27;统一业务 Select 封装&#x27;),
+          issue(&#x27;GIS 对象 / 所属热网 / 泵站监测 / 下位诊断标签&#x27;, &#x27;搜索统一为 None、Trigger、Dropdown 三种位置；Trigger 搜索激活时尾部箭头变为放大镜。&#x27;, &#x27;nzShowSearch 125 处 / 41 文件；tree-select-search 28 处 / 13 文件&#x27;, &#x27;统一搜索位置与焦点行为&#x27;),
+          issue(&#x27;负荷预测 → 区域；消息配置 → 消息模板&#x27;, &#x27;允许在选项右侧展示辅助标签；“添加 / 移除”等行内业务动作属于特殊组件，不纳入通用 Select。&#x27;, &#x27;NzOptionComponent.nzCustomContent 已核验&#x27;, &#x27;按 Show Tag 属性实现&#x27;),
+          issue(&#x27;Select Menu 空数据&#x27;, &#x27;补齐统一 Empty State，并区分无数据、搜索无结果、加载中和加载失败。&#x27;, &#x27;nzNotFoundContent 21 处 / 19 文件&#x27;, &#x27;补齐空状态并进行状态验收&#x27;),
+          issue(&#x27;Figma ↔ Angular API 发布清单&#x27;, &#x27;Collapsed Count、Search、Select All、Show Tag、Empty State 均已明确原生映射、组合实现或业务扩展；Max Count 本期不采用。&#x27;, &#x27;package.json：Angular 11.2 / ng-zorro 11.4.1；API 源码已核验&#x27;, &#x27;统一使用说明待输出&#x27;)
         ],
         slider: [
           issue(&#x27;Slider&#x27;, &#x27;代码存在但真实触发页面暂未找到；必要时直接从代码治理。&#x27;, &#x27;BM01 适配结论与代码证据已整理&#x27;, &#x27;低成本处理&#x27;)
@@ -2306,6 +2571,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         pagination: [4, 45, 8, 1],
         checkbox: [1, 11, 5, 1],
         statistic: [5, 31, 33, 4],
+        select: [6, 8, 20, 5],
         switch: [2, 32, 11, 1],
         badge: [4, 24, 24, 1],
         tabs: [13, 150, 54, 1],
@@ -2341,6 +2607,28 @@ html&gt;body{padding:0}&lt;/style&gt;
           { src: &#x27;evidence-assets/statistic-13-control-info.png&#x27;, title: &#x27;GIS → 对象看板 → 调控信息&#x27;, note: &#x27;调控效果与持续异常时长是并列指标，需统一字号和分隔。&#x27; },
           { src: &#x27;evidence-assets/statistic-14-data-diagnosis.png&#x27;, title: &#x27;数据管理考核 → 数据诊断&#x27;, note: &#x27;总计、一次侧、二次侧构成指标组，选中态属于容器交互。&#x27; },
           { src: &#x27;evidence-assets/statistic-15-switch-detail.png&#x27;, title: &#x27;区域管理 → 切换单详情&#x27;, note: &#x27;增加、减少、变化为对比型指标，正负号和单位格式需要统一。&#x27; }
+        ],
+        select: [
+          { src: &#x27;evidence-assets/select-01-checkbox-current.png&#x27;, title: &#x27;01 当前问题：checkbox-style Select&#x27;, note: &#x27;热力站监测标签分组筛选混用了复选框式交互，组件边界与标准 Select 不一致。&#x27; },
+          { src: &#x27;evidence-assets/select-01-checkbox-standard.png&#x27;, title: &#x27;01 标准效果：Select Multiple&#x27;, note: &#x27;无层级关系的多选统一为标准选项高亮与勾选反馈。&#x27; },
+          { src: &#x27;evidence-assets/select-02-collapse-current-a.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 A&#x27;, note: &#x27;真实页面同时出现 +5、17+ 等不同隐藏数量写法。&#x27; },
+          { src: &#x27;evidence-assets/select-02-collapse-current-b.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 B&#x27;, note: &#x27;同类筛选中出现带边框的“+ 2 ...”，占用空间且语义不清。&#x27; },
+          { src: &#x27;evidence-assets/select-02-collapse-current-c.png&#x27;, title: &#x27;02 当前问题：省略号替代数量&#x27;, note: &#x27;省略号无法告诉用户隐藏了多少已选项。&#x27; },
+          { src: &#x27;evidence-assets/select-02-collapse-standard.png&#x27;, title: &#x27;02 标准效果：Collapsed Count&#x27;, note: &#x27;+N 采用无边框纯文本，只表达被隐藏的已选项数量。&#x27; },
+          { src: &#x27;evidence-assets/select-02-form-current.png&#x27;, title: &#x27;02 真实表单：多行已选项&#x27;, note: &#x27;推送人选择存在大量标签，需要独立于筛选区定义多行展示规则。&#x27; },
+          { src: &#x27;evidence-assets/select-02-form-standard.png&#x27;, title: &#x27;02 标准效果：标签换行与省略&#x27;, note: &#x27;完整标签自动换行、单标签不拆分；超长省略，表单最多 3–4 行并内部滚动。&#x27; },
+          { src: &#x27;evidence-assets/select-03-all-current.png&#x27;, title: &#x27;03 当前问题：全选文案切换&#x27;, note: &#x27;全选后文案变为“取消全选”，把状态和动作混在文字中。&#x27; },
+          { src: &#x27;evidence-assets/select-03-all-external.png&#x27;, title: &#x27;03 当前问题：全选开关外置&#x27;, note: &#x27;阀门列表把全选做成 Select 外部开关，形成第二套状态源。&#x27; },
+          { src: &#x27;evidence-assets/select-03-all-standard-off.png&#x27;, title: &#x27;03 标准效果：未全选&#x27;, note: &#x27;全选固定在下拉底部，未选状态使用未勾选复选框。&#x27; },
+          { src: &#x27;evidence-assets/select-03-all-standard-on.png&#x27;, title: &#x27;03 标准效果：已全选&#x27;, note: &#x27;文案保持“全选”，选中状态由复选框表达。&#x27; },
+          { src: &#x27;evidence-assets/select-04-search-current.png&#x27;, title: &#x27;04 当前问题：搜索位置与图标不一致&#x27;, note: &#x27;一级网同时存在触发器搜索和下拉顶部搜索，箭头与放大镜切换规则不统一。&#x27; },
+          { src: &#x27;evidence-assets/select-04-search-none.png&#x27;, title: &#x27;04 标准效果：Search None&#x27;, note: &#x27;无搜索需求时保持标准下拉触发器。&#x27; },
+          { src: &#x27;evidence-assets/select-04-search-trigger.png&#x27;, title: &#x27;04 标准效果：Search Trigger&#x27;, note: &#x27;在触发器内输入搜索时，尾部统一显示放大镜。&#x27; },
+          { src: &#x27;evidence-assets/select-04-search-dropdown.png&#x27;, title: &#x27;04 标准效果：Search Dropdown&#x27;, note: &#x27;搜索框固定在下拉顶部，触发器继续保留标准箭头。&#x27; },
+          { src: &#x27;evidence-assets/select-05-tag-current-area.png&#x27;, title: &#x27;05 真实页面：负荷预测区域标签&#x27;, note: &#x27;选项包含管理分组、片区分组等辅助分类信息。&#x27; },
+          { src: &#x27;evidence-assets/select-05-tag-current-message.png&#x27;, title: &#x27;05 真实页面：消息模板字段标签&#x27;, note: &#x27;消息模板选项通过辅助文本说明变量含义。&#x27; },
+          { src: &#x27;evidence-assets/select-05-tag-standard.png&#x27;, title: &#x27;05 标准效果：Show Tag&#x27;, note: &#x27;辅助标签位于选项右侧，只补充语义，不替代主选项。&#x27; },
+          { src: &#x27;evidence-assets/select-06-empty-standard.png&#x27;, title: &#x27;06 标准效果：Empty State&#x27;, note: &#x27;Select Menu 无数据时显示统一图标和 No Data，并与搜索无结果、加载失败区分。&#x27; }
         ]
       };
 
@@ -2380,7 +2668,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         inputNumber: { status: &#x27;doing&#x27;, difficulty: 3, progress: 25, estimate: &#x27;待评估&#x27;, summary: &#x27;范围输入形态在现有组件中缺失，需要新建组件并覆盖特殊业务场景。&#x27; },
         list: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网 List 数量众多，需要先分类，再决定治理方式。&#x27; },
         statistic: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已新建 Statistic 基础 Metric，完成 15 个真实菜单场景归类并补入代码证据；一级网目前未直接使用 nz-statistic，需把页面自拼指标逐步替换为 Metric。Descriptions、Info Summary Bar、业务卡片与页面组合边界已明确；统一使用说明、开发落地与验收尚未完成。&#x27; },
-        select: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;已收集特殊页面证据，下一步进行代码核验与组件边界治理。&#x27; },
+        select: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;标准治理档案&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成 6 类真实场景治理、20 张问题与标准效果证据归档，并核验 Angular 11.2 / ng-zorro 11.4.1 的 Select API 与代码规模。组件边界、已选项折叠、Select All、Search Position、Show Tag、Empty State 均已形成规则；统一使用说明、开发整改与验收尚未完成。&#x27; },
         slider: { status: &#x27;doing&#x27;, difficulty: 1, progress: 45, estimate: &#x27;预计较快&#x27;, summary: &#x27;已有代码分析，但真实页面入口暂未找到；必要时直接从代码改。&#x27; },
         switch: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;即时提交、失败回滚、禁用与权限边界已完成治理。&#x27; },
         timePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 15, estimate: &#x27;预计较快&#x27;, summary: &#x27;一级网预计没有复杂变化，补证据后即可治理。&#x27; },
@@ -2588,6 +2876,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       const foundationItems = allItems.filter(item =&gt; !item.business);
       let selected = allItems.find(item =&gt; item.key === &#x27;tabs&#x27;);
       let searchTerm = &#x27;&#x27;;
+      let initialPage = &#x27;overview-page&#x27;;
+      try {
+        const params = new URLSearchParams(window.parent.location.search);
+        const requested = allItems.find(item =&gt; item.key === params.get(&#x27;component&#x27;));
+        if (requested) selected = requested;
+        if (params.get(&#x27;page&#x27;) === &#x27;analysis&#x27;) initialPage = &#x27;analysis-page&#x27;;
+      } catch (error) {
+        initialPage = &#x27;overview-page&#x27;;
+      }
 
       function renderGlobal() {
         const phaseComplete = foundationItems.filter(item =&gt; item.phaseComplete).length;
@@ -2735,7 +3032,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       function renderImageEvidence() {
         const host = root.querySelector(&#x27;#evidence-gallery&#x27;);
         const count = root.querySelector(&#x27;#evidence-image-count&#x27;);
+        const heading = root.querySelector(&#x27;#evidence-heading&#x27;);
         const items = imageEvidenceByKey[selected.key] || [];
+        heading.textContent = selected.key === &#x27;select&#x27; ? &#x27;真实页面与标准效果证据&#x27; : &#x27;一级网真实页面证据&#x27;;
         count.textContent = items.length ? `已归档 ${items.length} 张 · 点击查看大图` : &#x27;尚未补入图片证据&#x27;;
         if (!items.length) {
           host.innerHTML = `&lt;div class=&quot;evidence-empty text-small&quot;&gt;该组件的治理结论已保留，一级网真实页面截图待后续补入。&lt;/div&gt;`;
@@ -2758,6 +3057,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
 
       function renderDetail() {
+        root.querySelector(&#x27;#standard-governance-dossier&#x27;).hidden = selected.key !== &#x27;select&#x27;;
         root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
         root.querySelector(&#x27;#selected-state&#x27;).textContent = selected.stateLabel;
         root.querySelector(&#x27;#selected-summary&#x27;).textContent = selected.summary;
@@ -2822,6 +3122,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       renderGlobal();
       renderNav();
       renderDetail();
+      showPage(initialPage);
     })();
   &lt;/script&gt;
 &lt;/div&gt;
