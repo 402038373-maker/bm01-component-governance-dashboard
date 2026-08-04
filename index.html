@@ -1567,6 +1567,78 @@ html&gt;body{padding:0}&lt;/style&gt;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
+    #component-governance-dashboard .select-topic-board {
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    #component-governance-dashboard .select-topic-group {
+      padding: 20px 0 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .select-topic-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    #component-governance-dashboard .select-topic-title {
+      min-width: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    #component-governance-dashboard .select-topic-index {
+      flex: 0 0 auto;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-size: var(--font-size-small);
+      font-weight: 600;
+    }
+    #component-governance-dashboard .select-topic-title h4 {
+      margin: 0;
+      font-size: var(--font-size-h3);
+      font-weight: 500;
+    }
+    #component-governance-dashboard .select-topic-evidence {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    #component-governance-dashboard .select-topic-evidence.is-pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    #component-governance-dashboard .select-topic-trace {
+      display: grid;
+      grid-template-columns: minmax(160px, .9fr) minmax(260px, 1.6fr) minmax(220px, 1.2fr) minmax(150px, .8fr);
+      margin-top: 12px;
+      background: color-mix(in srgb, var(--foreground) 3%, transparent);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    #component-governance-dashboard .select-topic-field {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 5px;
+      padding: 10px 12px;
+    }
+    #component-governance-dashboard .select-topic-field + .select-topic-field {
+      border-left: 1px solid var(--border);
+    }
+    #component-governance-dashboard .select-topic-label {
+      color: var(--muted-foreground);
+      font-size: var(--font-size-small);
+    }
+    #component-governance-dashboard .select-topic-value {
+      min-width: 0;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+    #component-governance-dashboard .select-topic-value code {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
     #component-governance-dashboard .evidence-lightbox {
       position: fixed;
       inset: 0;
@@ -1651,12 +1723,41 @@ html&gt;body{padding:0}&lt;/style&gt;
       text-align: center;
       padding: 22px 8px;
     }
+    @media (max-width: 1100px) {
+      #component-governance-dashboard .select-topic-evidence,
+      #component-governance-dashboard .select-topic-evidence.is-pair,
+      #component-governance-dashboard .select-topic-trace {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      #component-governance-dashboard .select-topic-field:nth-child(3) {
+        border-left: 0;
+      }
+      #component-governance-dashboard .select-topic-field:nth-child(n + 3) {
+        border-top: 1px solid var(--border);
+      }
+    }
     @media (max-width: 640px) {
       #component-governance-dashboard .dossier-intro {
         grid-template-columns: 1fr;
       }
       #component-governance-dashboard .dossier-status {
         justify-content: flex-start;
+      }
+      #component-governance-dashboard .select-topic-header,
+      #component-governance-dashboard .select-topic-title {
+        align-items: flex-start;
+      }
+      #component-governance-dashboard .select-topic-header {
+        display: grid;
+      }
+      #component-governance-dashboard .select-topic-evidence,
+      #component-governance-dashboard .select-topic-evidence.is-pair,
+      #component-governance-dashboard .select-topic-trace {
+        grid-template-columns: 1fr;
+      }
+      #component-governance-dashboard .select-topic-field + .select-topic-field {
+        border-left: 0;
+        border-top: 1px solid var(--border);
       }
       #component-governance-dashboard .dossier-kpis,
       #component-governance-dashboard .hard-rule-list {
@@ -2136,7 +2237,15 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;dimension-list&quot; id=&quot;dimension-list&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
-        &lt;section aria-label=&quot;一级网真实页面证据&quot;&gt;
+        &lt;section id=&quot;select-topic-section&quot; aria-label=&quot;Select 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Select 治理专题与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题连续查看问题、标准效果与代码路径&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;select-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;evidence-section&quot; aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
             &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
             &lt;span class=&quot;text-small text-muted&quot; id=&quot;evidence-image-count&quot;&gt;按菜单 / 场景归档&lt;/span&gt;
@@ -2144,7 +2253,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;evidence-gallery&quot; id=&quot;evidence-gallery&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
-        &lt;section aria-label=&quot;开发问题定位&quot;&gt;
+        &lt;section id=&quot;issue-section&quot; aria-label=&quot;开发问题定位&quot;&gt;
           &lt;div class=&quot;issue-head&quot;&gt;
             &lt;h3&gt;开发问题定位&lt;/h3&gt;
             &lt;span class=&quot;text-small text-muted&quot;&gt;页面 → 问题 → 代码路径&lt;/span&gt;
@@ -3055,6 +3164,82 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
       }
 
+      const selectTopicNames = [
+        &#x27;组件边界&#x27;,
+        &#x27;Tag Overflow&#x27;,
+        &#x27;Select All&#x27;,
+        &#x27;Search Position&#x27;,
+        &#x27;Option Tag&#x27;,
+        &#x27;Menu State&#x27;,
+        &#x27;Figma ↔ Angular API&#x27;
+      ];
+
+      function renderSelectTopics() {
+        const host = root.querySelector(&#x27;#select-topic-board&#x27;);
+        const items = imageEvidenceByKey.select || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          const match = item.title.match(/^(\d{2})\s/);
+          const topicId = match ? match[1] : String(index + 1).padStart(2, &#x27;0&#x27;);
+          (groups[topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const evidenceClass = topicItems.length &lt;= 2 ? &#x27;select-topic-evidence is-pair&#x27; : &#x27;select-topic-evidence&#x27;;
+          const evidenceMarkup = topicItems.length ? topicItems.map(item =&gt; {
+            const displayTitle = item.title.replace(/^\d{2}\s*/, &#x27;&#x27;);
+            return `
+              &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-topic-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                &lt;span class=&quot;evidence-caption&quot;&gt;
+                  &lt;strong&gt;${displayTitle}&lt;/strong&gt;
+                  &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                &lt;/span&gt;
+              &lt;/button&gt;
+            `;
+          }).join(&#x27;&#x27;) : `&lt;div class=&quot;evidence-empty text-small&quot;&gt;该专题暂无图片证据，开发定位与治理结论已保留。&lt;/div&gt;`;
+
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;select-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;select-topic-${topicId}&quot;&gt;${selectTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${topicItems.length ? `${topicItems.length} 张证据` : &#x27;图片待补&#x27;}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;${evidenceClass}&quot;&gt;${evidenceMarkup}&lt;/div&gt;
+              &lt;div class=&quot;select-topic-trace&quot;&gt;
+                &lt;div class=&quot;select-topic-field&quot;&gt;
+                  &lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;
+                  &lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;select-topic-field&quot;&gt;
+                  &lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;
+                  &lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;select-topic-field&quot;&gt;
+                  &lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;
+                  &lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;select-topic-field&quot;&gt;
+                  &lt;span class=&quot;select-topic-label&quot;&gt;下一步&lt;/span&gt;
+                  &lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-topic-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.topicEvidenceIndex)]);
+          });
+        });
+      }
+
       function renderDetail() {
         root.querySelector(&#x27;#standard-governance-dossier&#x27;).hidden = selected.key !== &#x27;select&#x27;;
         root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
@@ -3081,10 +3266,18 @@ html&gt;body{padding:0}&lt;/style&gt;
         }).join(&#x27;&#x27;);
 
         renderOutput();
-        renderImageEvidence();
+        const isSelect = selected.key === &#x27;select&#x27;;
+        root.querySelector(&#x27;#select-topic-section&#x27;).hidden = !isSelect;
+        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect;
+        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect;
+        if (isSelect) {
+          renderSelectTopics();
+        } else {
+          renderImageEvidence();
+        }
 
         const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
-        if (!selected.evidence.length) {
+        if (!isSelect &amp;&amp; !selected.evidence.length) {
           issueHost.innerHTML = `
             &lt;tr&gt;
               &lt;td&gt;${selected.label}&lt;/td&gt;
@@ -3093,7 +3286,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
             &lt;/tr&gt;
           `;
-        } else {
+        } else if (!isSelect) {
           issueHost.innerHTML = selected.evidence.map(item =&gt; `
             &lt;tr&gt;
               &lt;td&gt;${item.page}&lt;/td&gt;
