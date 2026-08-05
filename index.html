@@ -1179,6 +1179,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       align-content: start;
       grid-auto-rows: max-content;
     }
+    #component-governance-dashboard .nav-groups.has-flat-order {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
     #component-governance-dashboard .analysis-page .nav-groups {
       min-height: 0;
       overflow-y: auto;
@@ -1192,6 +1196,66 @@ html&gt;body{padding:0}&lt;/style&gt;
       gap: 5px;
       align-content: start;
       grid-auto-rows: max-content;
+    }
+    #component-governance-dashboard .component-sort-row {
+      position: relative;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      align-items: stretch;
+      gap: 4px;
+      border-radius: 2px;
+    }
+    #component-governance-dashboard .component-drag-handle {
+      width: 24px;
+      min-height: 34px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 2px;
+      color: var(--muted-foreground);
+      background: transparent;
+      cursor: grab;
+      font: inherit;
+      touch-action: none;
+    }
+    #component-governance-dashboard .component-drag-handle:hover,
+    #component-governance-dashboard .component-drag-handle:focus-visible {
+      color: var(--foreground);
+      background: var(--muted);
+      outline: none;
+    }
+    #component-governance-dashboard .component-drag-handle:active {
+      cursor: grabbing;
+    }
+    #component-governance-dashboard .component-sort-row.is-drag-disabled .component-drag-handle {
+      opacity: .28;
+      cursor: not-allowed;
+    }
+    #component-governance-dashboard .component-sort-row.is-dragging {
+      opacity: .42;
+    }
+    #component-governance-dashboard .component-sort-row.is-drop-before::before,
+    #component-governance-dashboard .component-sort-row.is-drop-after::after {
+      content: &quot;&quot;;
+      position: absolute;
+      z-index: 2;
+      left: 28px;
+      right: 0;
+      height: 2px;
+      background: var(--primary);
+      pointer-events: none;
+    }
+    #component-governance-dashboard .component-sort-row.is-drop-before::before {
+      top: -3px;
+    }
+    #component-governance-dashboard .component-sort-row.is-drop-after::after {
+      bottom: -3px;
+    }
+    #component-governance-dashboard .fixed-style-guide {
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
     }
     #component-governance-dashboard .group-label {
       display: flex;
@@ -1812,6 +1876,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       #component-governance-dashboard .nav-groups {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      #component-governance-dashboard .nav-groups.has-flat-order {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
     @media (max-width: 520px) {
       #component-governance-dashboard .kpi-grid,
@@ -2040,6 +2107,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;input id=&quot;component-search-input&quot; type=&quot;search&quot; placeholder=&quot;搜索组件名称&quot; autocomplete=&quot;off&quot; aria-controls=&quot;component-groups&quot;&gt;
       &lt;/label&gt;
       &lt;div class=&quot;nav-groups&quot; id=&quot;component-groups&quot;&gt;&lt;/div&gt;
+      &lt;span class=&quot;sr-only&quot; id=&quot;component-order-status&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
     &lt;/nav&gt;
 
     &lt;article class=&quot;detail&quot; aria-live=&quot;polite&quot;&gt;
@@ -2981,6 +3049,37 @@ html&gt;body{padding:0}&lt;/style&gt;
         group.items = group.items.map(item =&gt; make(item, group));
       });
       const allItems = groups.flatMap(group =&gt; group.items);
+      const styleGuideItems = groups.find(group =&gt; group.name === &#x27;Style Guide&#x27;).items;
+      const reorderableItems = groups
+        .filter(group =&gt; group.name !== &#x27;Style Guide&#x27;)
+        .flatMap(group =&gt; group.items);
+      const reorderableByKey = new Map(reorderableItems.map(item =&gt; [item.key, item]));
+      const componentOrderStorageKey = &#x27;bm01-component-nav-order-v1&#x27;;
+
+      function loadComponentOrder() {
+        const defaultOrder = reorderableItems.map(item =&gt; item.key);
+        try {
+          const storedOrder = JSON.parse(window.localStorage.getItem(componentOrderStorageKey));
+          if (!Array.isArray(storedOrder)) return defaultOrder;
+          const knownStoredKeys = storedOrder.filter((key, index) =&gt;
+            reorderableByKey.has(key) &amp;&amp; storedOrder.indexOf(key) === index
+          );
+          const storedKeySet = new Set(knownStoredKeys);
+          return [...knownStoredKeys, ...defaultOrder.filter(key =&gt; !storedKeySet.has(key))];
+        } catch (error) {
+          return defaultOrder;
+        }
+      }
+
+      function saveComponentOrder() {
+        try {
+          window.localStorage.setItem(componentOrderStorageKey, JSON.stringify(componentOrder));
+        } catch (error) {
+          // Keep the in-memory order when browser storage is unavailable.
+        }
+      }
+
+      let componentOrder = loadComponentOrder();
       const foundationItems = allItems.filter(item =&gt; !item.business);
       let selected = allItems.find(item =&gt; item.key === &#x27;tabs&#x27;);
       let searchTerm = &#x27;&#x27;;
@@ -3033,34 +3132,56 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       function renderNav() {
         const host = root.querySelector(&#x27;#component-groups&#x27;);
-        const visibleGroups = groups.map(group =&gt; ({
-          ...group,
-          visibleItems: group.items.filter(item =&gt; {
-            const searchable = `${item.label} ${item.key} ${item.group} ${item.stateLabel} ${item.governanceLabel} ${item.importance} ${item.summary}`.toLowerCase();
-            return searchable.includes(searchTerm);
-          })
-        })).filter(group =&gt; group.visibleItems.length);
-        if (!visibleGroups.length) {
+        const draggingEnabled = !searchTerm;
+        const matchesSearch = item =&gt; {
+          const searchable = `${item.label} ${item.key} ${item.group} ${item.stateLabel} ${item.governanceLabel} ${item.importance} ${item.summary}`.toLowerCase();
+          return searchable.includes(searchTerm);
+        };
+        const visibleReorderableItems = componentOrder
+          .map(key =&gt; reorderableByKey.get(key))
+          .filter(item =&gt; item &amp;&amp; matchesSearch(item));
+        const visibleStyleGuideItems = styleGuideItems.filter(matchesSearch);
+        host.classList.add(&#x27;has-flat-order&#x27;);
+
+        if (!visibleReorderableItems.length &amp;&amp; !visibleStyleGuideItems.length) {
           host.innerHTML = `&lt;div class=&quot;component-search-empty text-small&quot;&gt;未找到匹配组件&lt;/div&gt;`;
           return;
         }
-        host.innerHTML = visibleGroups.map(group =&gt; `
-          &lt;section class=&quot;nav-group&quot; aria-label=&quot;${group.name}&quot;&gt;
-            &lt;div class=&quot;group-label text-small&quot;&gt;
-              &lt;span&gt;${group.name}&lt;/span&gt;
-              &lt;span&gt;${group.visibleItems.length}&lt;/span&gt;
-            &lt;/div&gt;
-            ${group.visibleItems.map(item =&gt; `
-              &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost component-button has-explicit-status ${item.important ? &#x27;is-important&#x27; : &#x27;&#x27;} ${item.showImportance ? &#x27;&#x27; : &#x27;is-style-guide&#x27;}&quot; data-key=&quot;${item.key}&quot; aria-pressed=&quot;${item.key === selected.key}&quot; aria-label=&quot;${item.label}，治理状态：${item.governanceLabel}${item.showImportance ? `，重要程度：${item.importance}` : &#x27;&#x27;}&quot;&gt;
-                &lt;span class=&quot;status-sample-main&quot;&gt;
-                  &lt;span class=&quot;name&quot; title=&quot;${item.label}&quot;&gt;${item.label}&lt;/span&gt;
-                  &lt;span class=&quot;governance-status status-${item.status}&quot;&gt;${item.governanceLabel}&lt;/span&gt;
-                &lt;/span&gt;
-                ${item.showImportance ? `&lt;span class=&quot;importance-label text-small ${item.important ? &#x27;is-important&#x27; : &#x27;&#x27;}&quot;&gt;重要程度：${item.importance}&lt;/span&gt;` : &#x27;&#x27;}
-              &lt;/button&gt;
+
+        const componentButton = item =&gt; `
+          &lt;button type=&quot;button&quot; class=&quot;btn btn-ghost component-button has-explicit-status ${item.important ? &#x27;is-important&#x27; : &#x27;&#x27;} ${item.showImportance ? &#x27;&#x27; : &#x27;is-style-guide&#x27;}&quot; data-key=&quot;${item.key}&quot; aria-pressed=&quot;${item.key === selected.key}&quot; aria-label=&quot;${item.label}，治理状态：${item.governanceLabel}${item.showImportance ? `，重要程度：${item.importance}` : &#x27;&#x27;}&quot;&gt;
+            &lt;span class=&quot;status-sample-main&quot;&gt;
+              &lt;span class=&quot;name&quot; title=&quot;${item.label}&quot;&gt;${item.label}&lt;/span&gt;
+              &lt;span class=&quot;governance-status status-${item.status}&quot;&gt;${item.governanceLabel}&lt;/span&gt;
+            &lt;/span&gt;
+            ${item.showImportance ? `&lt;span class=&quot;importance-label text-small ${item.important ? &#x27;is-important&#x27; : &#x27;&#x27;}&quot;&gt;重要程度：${item.importance}&lt;/span&gt;` : &#x27;&#x27;}
+          &lt;/button&gt;
+        `;
+
+        const reorderableMarkup = visibleReorderableItems.length ? `
+          &lt;section class=&quot;nav-group sortable-component-list&quot; aria-label=&quot;可排序组件&quot;&gt;
+            ${visibleReorderableItems.map(item =&gt; `
+              &lt;div class=&quot;component-sort-row ${draggingEnabled ? &#x27;&#x27; : &#x27;is-drag-disabled&#x27;}&quot; data-sort-key=&quot;${item.key}&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;component-drag-handle&quot; data-drag-key=&quot;${item.key}&quot; draggable=&quot;${draggingEnabled}&quot; aria-label=&quot;调整 ${item.label} 的顺序&quot; aria-keyshortcuts=&quot;ArrowUp ArrowDown&quot; title=&quot;${draggingEnabled ? &#x27;拖拽调整顺序；也可使用上下方向键&#x27; : &#x27;清空搜索后可调整顺序&#x27;}&quot;&gt;
+                  &lt;span aria-hidden=&quot;true&quot;&gt;⠿&lt;/span&gt;
+                &lt;/button&gt;
+                ${componentButton(item)}
+              &lt;/div&gt;
             `).join(&#x27;&#x27;)}
           &lt;/section&gt;
-        `).join(&#x27;&#x27;);
+        ` : &#x27;&#x27;;
+
+        const styleGuideMarkup = visibleStyleGuideItems.length ? `
+          &lt;section class=&quot;nav-group fixed-style-guide&quot; aria-label=&quot;Style Guide&quot;&gt;
+            &lt;div class=&quot;group-label text-small&quot;&gt;
+              &lt;span&gt;Style Guide&lt;/span&gt;
+              &lt;span&gt;${visibleStyleGuideItems.length}&lt;/span&gt;
+            &lt;/div&gt;
+            ${visibleStyleGuideItems.map(componentButton).join(&#x27;&#x27;)}
+          &lt;/section&gt;
+        ` : &#x27;&#x27;;
+
+        host.innerHTML = reorderableMarkup + styleGuideMarkup;
         host.querySelectorAll(&#x27;button[data-key]&#x27;).forEach(button =&gt; {
           button.addEventListener(&#x27;click&#x27;, () =&gt; {
             selected = allItems.find(item =&gt; item.key === button.dataset.key);
@@ -3069,6 +3190,82 @@ html&gt;body{padding:0}&lt;/style&gt;
           });
         });
       }
+
+      function clearDropIndicators() {
+        root.querySelectorAll(&#x27;.component-sort-row&#x27;).forEach(row =&gt; {
+          row.classList.remove(&#x27;is-dragging&#x27;, &#x27;is-drop-before&#x27;, &#x27;is-drop-after&#x27;);
+        });
+      }
+
+      function moveComponent(draggedKey, targetKey, placeAfter) {
+        const currentIndex = componentOrder.indexOf(draggedKey);
+        const targetIndex = componentOrder.indexOf(targetKey);
+        if (currentIndex === -1 || targetIndex === -1 || draggedKey === targetKey) return false;
+        componentOrder.splice(currentIndex, 1);
+        const updatedTargetIndex = componentOrder.indexOf(targetKey);
+        componentOrder.splice(updatedTargetIndex + (placeAfter ? 1 : 0), 0, draggedKey);
+        saveComponentOrder();
+        return true;
+      }
+
+      let draggedComponentKey = &#x27;&#x27;;
+      const componentGroupsHost = root.querySelector(&#x27;#component-groups&#x27;);
+      componentGroupsHost.addEventListener(&#x27;dragstart&#x27;, event =&gt; {
+        const handle = event.target.closest(&#x27;[data-drag-key]&#x27;);
+        if (!handle || searchTerm) {
+          event.preventDefault();
+          return;
+        }
+        draggedComponentKey = handle.dataset.dragKey;
+        handle.closest(&#x27;.component-sort-row&#x27;).classList.add(&#x27;is-dragging&#x27;);
+        event.dataTransfer.effectAllowed = &#x27;move&#x27;;
+        event.dataTransfer.setData(&#x27;text/plain&#x27;, draggedComponentKey);
+      });
+      componentGroupsHost.addEventListener(&#x27;dragover&#x27;, event =&gt; {
+        const targetRow = event.target.closest(&#x27;.component-sort-row&#x27;);
+        if (!targetRow || !draggedComponentKey || targetRow.dataset.sortKey === draggedComponentKey || searchTerm) return;
+        event.preventDefault();
+        clearDropIndicators();
+        root.querySelector(`[data-sort-key=&quot;${draggedComponentKey}&quot;]`)?.classList.add(&#x27;is-dragging&#x27;);
+        const bounds = targetRow.getBoundingClientRect();
+        const placeAfter = event.clientY &gt; bounds.top + bounds.height / 2;
+        targetRow.classList.add(placeAfter ? &#x27;is-drop-after&#x27; : &#x27;is-drop-before&#x27;);
+        event.dataTransfer.dropEffect = &#x27;move&#x27;;
+      });
+      componentGroupsHost.addEventListener(&#x27;drop&#x27;, event =&gt; {
+        const targetRow = event.target.closest(&#x27;.component-sort-row&#x27;);
+        if (!targetRow || !draggedComponentKey || searchTerm) return;
+        event.preventDefault();
+        const bounds = targetRow.getBoundingClientRect();
+        const placeAfter = event.clientY &gt; bounds.top + bounds.height / 2;
+        const movedItem = reorderableByKey.get(draggedComponentKey);
+        if (moveComponent(draggedComponentKey, targetRow.dataset.sortKey, placeAfter)) {
+          root.querySelector(&#x27;#component-order-status&#x27;).textContent = `${movedItem.label} 的顺序已保存`;
+          renderNav();
+        }
+        draggedComponentKey = &#x27;&#x27;;
+        clearDropIndicators();
+      });
+      componentGroupsHost.addEventListener(&#x27;dragend&#x27;, () =&gt; {
+        draggedComponentKey = &#x27;&#x27;;
+        clearDropIndicators();
+      });
+      componentGroupsHost.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        const handle = event.target.closest(&#x27;[data-drag-key]&#x27;);
+        if (!handle || searchTerm || ![&#x27;ArrowUp&#x27;, &#x27;ArrowDown&#x27;].includes(event.key)) return;
+        event.preventDefault();
+        const draggedKey = handle.dataset.dragKey;
+        const currentIndex = componentOrder.indexOf(draggedKey);
+        const nextIndex = event.key === &#x27;ArrowUp&#x27; ? currentIndex - 1 : currentIndex + 1;
+        if (nextIndex &lt; 0 || nextIndex &gt;= componentOrder.length) return;
+        const targetKey = componentOrder[nextIndex];
+        const movedItem = reorderableByKey.get(draggedKey);
+        if (moveComponent(draggedKey, targetKey, event.key === &#x27;ArrowDown&#x27;)) {
+          root.querySelector(&#x27;#component-order-status&#x27;).textContent = `${movedItem.label} 的顺序已保存`;
+          renderNav();
+          root.querySelector(`[data-drag-key=&quot;${draggedKey}&quot;]`)?.focus();
+        }
+      });
 
       root.querySelector(&#x27;#component-search-input&#x27;).addEventListener(&#x27;input&#x27;, event =&gt; {
         searchTerm = event.currentTarget.value.trim().toLowerCase();
