@@ -1711,6 +1711,24 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard .evidence-caption strong {
       font-weight: 500;
     }
+    #component-governance-dashboard .evidence-caption strong.is-problem {
+      color: #d97706;
+    }
+    #component-governance-dashboard .evidence-caption strong.is-problem::before {
+      content: &#x27;\26A0 &#x27;;
+    }
+    #component-governance-dashboard .evidence-caption strong.is-standard {
+      color: #16a34a;
+    }
+    #component-governance-dashboard .evidence-caption strong.is-standard::before {
+      content: &#x27;\2713 &#x27;;
+    }
+    #component-governance-dashboard .evidence-caption strong.is-conclusion {
+      color: var(--primary);
+    }
+    #component-governance-dashboard .evidence-caption strong.is-conclusion::before {
+      content: &#x27;结论 · &#x27;;
+    }
     #component-governance-dashboard .evidence-caption span {
       color: var(--muted-foreground);
       line-height: 1.5;
@@ -1725,6 +1743,32 @@ html&gt;body{padding:0}&lt;/style&gt;
       margin-top: 10px;
       border-top: 1px solid var(--border);
     }
+    #component-governance-dashboard .segmented-conclusion {
+      margin: 0 0 20px;
+    }
+    #component-governance-dashboard .segmented-conclusion .evidence-card {
+      width: 100%;
+      grid-template-rows: auto auto;
+    }
+    #component-governance-dashboard .segmented-conclusion .evidence-image {
+      height: auto;
+      max-height: 720px;
+      object-fit: contain;
+    }
+    #component-governance-dashboard .badge-conclusion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0 0 20px;
+    }
+    #component-governance-dashboard .badge-conclusion-grid .evidence-card {
+      grid-template-rows: 420px auto;
+      min-width: 0;
+    }
+    #component-governance-dashboard .badge-conclusion-grid .evidence-image {
+      height: 420px;
+      object-fit: contain;
+    }
     #component-governance-dashboard .select-topic-group {
       padding: 20px 0 24px;
       border-bottom: 1px solid var(--border);
@@ -1732,7 +1776,13 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #modal-topic-board .select-topic-group,
     #component-governance-dashboard #select-topic-board .select-topic-group,
     #component-governance-dashboard #statistic-topic-board .select-topic-group,
-    #component-governance-dashboard #tabs-topic-board .select-topic-group {
+    #component-governance-dashboard #tabs-topic-board .select-topic-group,
+    #component-governance-dashboard #radio-topic-board .select-topic-group,
+    #component-governance-dashboard #segmented-topic-board .select-topic-group,
+    #component-governance-dashboard #switch-topic-board .select-topic-group,
+    #component-governance-dashboard #badge-topic-board .select-topic-group,
+    #component-governance-dashboard #tag-topic-board .select-topic-group,
+    #component-governance-dashboard #checkbox-topic-board .select-topic-group {
       padding-top: 26px;
     }
     #component-governance-dashboard .select-topic-header {
@@ -1745,7 +1795,13 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #modal-topic-board .select-topic-header,
     #component-governance-dashboard #select-topic-board .select-topic-header,
     #component-governance-dashboard #statistic-topic-board .select-topic-header,
-    #component-governance-dashboard #tabs-topic-board .select-topic-header {
+    #component-governance-dashboard #tabs-topic-board .select-topic-header,
+    #component-governance-dashboard #radio-topic-board .select-topic-header,
+    #component-governance-dashboard #segmented-topic-board .select-topic-header,
+    #component-governance-dashboard #switch-topic-board .select-topic-header,
+    #component-governance-dashboard #badge-topic-board .select-topic-header,
+    #component-governance-dashboard #tag-topic-board .select-topic-header,
+    #component-governance-dashboard #checkbox-topic-board .select-topic-header {
       align-items: center;
       margin-bottom: 18px;
       padding: 12px 14px;
@@ -1773,14 +1829,26 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #modal-topic-board .select-topic-title h4,
     #component-governance-dashboard #select-topic-board .select-topic-title h4,
     #component-governance-dashboard #statistic-topic-board .select-topic-title h4,
-    #component-governance-dashboard #tabs-topic-board .select-topic-title h4 {
+    #component-governance-dashboard #tabs-topic-board .select-topic-title h4,
+    #component-governance-dashboard #radio-topic-board .select-topic-title h4,
+    #component-governance-dashboard #segmented-topic-board .select-topic-title h4,
+    #component-governance-dashboard #switch-topic-board .select-topic-title h4,
+    #component-governance-dashboard #badge-topic-board .select-topic-title h4,
+    #component-governance-dashboard #tag-topic-board .select-topic-title h4,
+    #component-governance-dashboard #checkbox-topic-board .select-topic-title h4 {
       font-size: calc(var(--font-size-h3) + 2px);
       font-weight: 600;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-title > .select-topic-index,
     #component-governance-dashboard #select-topic-board .select-topic-title > .select-topic-index,
     #component-governance-dashboard #statistic-topic-board .select-topic-title > .select-topic-index,
-    #component-governance-dashboard #tabs-topic-board .select-topic-title > .select-topic-index {
+    #component-governance-dashboard #tabs-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #radio-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #segmented-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #switch-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #badge-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #tag-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #checkbox-topic-board .select-topic-title > .select-topic-index {
       padding: 3px 7px;
       color: var(--primary);
       border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
@@ -1910,13 +1978,25 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #component-governance-dashboard #modal-topic-board .modal-scenario-header,
     #component-governance-dashboard #statistic-topic-board .modal-scenario-header,
-    #component-governance-dashboard #tabs-topic-board .modal-scenario-header {
+    #component-governance-dashboard #tabs-topic-board .modal-scenario-header,
+    #component-governance-dashboard #radio-topic-board .modal-scenario-header,
+    #component-governance-dashboard #segmented-topic-board .modal-scenario-header,
+    #component-governance-dashboard #switch-topic-board .modal-scenario-header,
+    #component-governance-dashboard #badge-topic-board .modal-scenario-header,
+    #component-governance-dashboard #tag-topic-board .modal-scenario-header,
+    #component-governance-dashboard #checkbox-topic-board .modal-scenario-header {
       min-height: 28px;
       align-items: center;
     }
     #component-governance-dashboard #modal-topic-board .modal-scenario-header .select-topic-index,
     #component-governance-dashboard #statistic-topic-board .modal-scenario-header .select-topic-index,
-    #component-governance-dashboard #tabs-topic-board .modal-scenario-header .select-topic-index {
+    #component-governance-dashboard #tabs-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #radio-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #segmented-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #switch-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #badge-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #tag-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #checkbox-topic-board .modal-scenario-header .select-topic-index {
       padding: 2px 6px;
       color: var(--muted-foreground);
       border: 1px solid var(--border);
@@ -1929,7 +2009,13 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #component-governance-dashboard #modal-topic-board .modal-scenario-header strong,
     #component-governance-dashboard #statistic-topic-board .modal-scenario-header strong,
-    #component-governance-dashboard #tabs-topic-board .modal-scenario-header strong {
+    #component-governance-dashboard #tabs-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #radio-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #segmented-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #switch-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #badge-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #tag-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #checkbox-topic-board .modal-scenario-header strong {
       font-size: var(--font-size-small);
     }
     #component-governance-dashboard .modal-scenario-evidence {
@@ -2085,8 +2171,17 @@ html&gt;body{padding:0}&lt;/style&gt;
       #component-governance-dashboard #modal-topic-board .select-topic-header,
       #component-governance-dashboard #select-topic-board .select-topic-header,
       #component-governance-dashboard #statistic-topic-board .select-topic-header,
-      #component-governance-dashboard #tabs-topic-board .select-topic-header {
+      #component-governance-dashboard #tabs-topic-board .select-topic-header,
+      #component-governance-dashboard #radio-topic-board .select-topic-header,
+      #component-governance-dashboard #segmented-topic-board .select-topic-header,
+      #component-governance-dashboard #switch-topic-board .select-topic-header,
+      #component-governance-dashboard #badge-topic-board .select-topic-header,
+      #component-governance-dashboard #tag-topic-board .select-topic-header,
+      #component-governance-dashboard #checkbox-topic-board .select-topic-header {
         align-items: start;
+      }
+      #component-governance-dashboard .badge-conclusion-grid {
+        grid-template-columns: 1fr;
       }
       #component-governance-dashboard .select-topic-evidence,
       #component-governance-dashboard .select-topic-evidence.is-pair,
@@ -2624,6 +2719,54 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;select-topic-board&quot; id=&quot;tabs-topic-board&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
+        &lt;section id=&quot;radio-topic-section&quot; aria-label=&quot;Radio 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Radio 治理专题与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题连续查看规则、真实场景、标准效果与组件边界&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;radio-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;segmented-topic-section&quot; aria-label=&quot;Segmented 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Segmented 治理专题与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题连续查看使用边界、真实问题、标准效果与组件定位&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;segmented-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;switch-topic-section&quot; aria-label=&quot;Switch 页面证据&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Switch 页面证据&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按菜单查看已收集的一级网真实页面截图&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;switch-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;badge-topic-section&quot; aria-label=&quot;Badge 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Badge 状态语义与示例&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;查看状态颜色结论集合与一级网真实页面示例&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;badge-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;tag-topic-section&quot; aria-label=&quot;Tag 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Tag 样式语义与组件边界&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题查看原生规则、当前问题与标准效果&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;tag-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;checkbox-topic-section&quot; aria-label=&quot;Checkbox 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Checkbox 治理专题与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题连续查看规则、真实场景、标准效果与组件边界&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;checkbox-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
         &lt;section id=&quot;evidence-section&quot; aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
             &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
@@ -2669,7 +2812,6 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;component-governance-dashboard&#x27;);
-      return;
       const stageNames = [&#x27;资产盘点&#x27;, &#x27;代码核验&#x27;, &#x27;场景梳理&#x27;, &#x27;Token 绑定&#x27;, &#x27;规范沉淀&#x27;, &#x27;统一使用说明&#x27;, &#x27;开发整改 / 验收&#x27;];
       const dimensionNames = [&#x27;组件集&#x27;, &#x27;变体 / 组件&#x27;, &#x27;图片证据节点&#x27;, &#x27;治理说明区&#x27;];
       const completed = {
@@ -2922,7 +3064,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;菜单级联选择&#x27;, &#x27;跟随整体菜单交互方案，不单独提前定型。&#x27;, &#x27;BM01 页面 448:67&#x27;, &#x27;持续关注&#x27;)
         ],
         checkbox: [
-          issue(&#x27;批量与独立选择&#x27;, &#x27;独立选择、批量选择和状态矩阵已完成治理。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;已完成&#x27;)
+          issue(&#x27;Table 场景行选择&#x27;, &#x27;表格行复选框（pid/名称/时间列的选择列），统一使用 Checkbox 组件的行选择模式。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;规范已沉淀·待开发整改&#x27;),
+          issue(&#x27;TreeSelect 层级勾选&#x27;, &#x27;树形分组复选框（片区分组/东部城区/英集智慧供热等层级勾选），统一使用 TreeSelect 组件。&#x27;, &#x27;station-filter.component.html：tree-select-search、nz-tree-select、nz-select 并存&#x27;, &#x27;规范已沉淀·待开发整改&#x27;),
+          issue(&#x27;配置节点默认状态&#x27;, &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站），默认状态错误，修正为组件默认态。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;已修正默认态&#x27;)
         ],
         datePicker: [
           issue(&#x27;日期选择&#x27;, &#x27;需要补齐一级网页面证据，预计没有复杂分支。&#x27;, &#x27;真实页面待收集&#x27;, &#x27;低成本核验&#x27;)
@@ -2967,6 +3111,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         upload: [
           issue(&#x27;上传与导入&#x27;, &#x27;一级网样式较杂乱，需要核实导入弹框、文件列表和入口边界。&#x27;, &#x27;BM01 已收集多类截图&#x27;, &#x27;重点治理&#x27;)
         ],
+        switch: [
+          issue(&#x27;Switch 使用边界&#x27;, &#x27;Switch 只用于点击后立即启停的能力或系统状态；枚举值、记录状态和保存后才生效的字段不得使用 Switch。&#x27;, &#x27;已归档 1 张治理结论图与热力站详情、设备类型编辑、菜单配置、设备定义属性配置、调控指令 5 张一级网页面截图&#x27;, &#x27;规范已沉淀·代码未核验&#x27;)
+        ],
+        badge: [
+          issue(&#x27;Badge 状态颜色语义&#x27;, &#x27;统一使用 Default、Error、Processing、Success、Warning 五类状态颜色；颜色表达语义阶段，具体含义由状态文字说明。&#x27;, &#x27;已归档民用一级网、工业蒸汽网、设备组态和业务状态颜色语义 4 张治理结论图&#x27;, &#x27;规范已沉淀·代码未核验&#x27;),
+          issue(&#x27;Badge 一级网示例&#x27;, &#x27;告警等级和日前计划业务状态作为 Badge 在一级网列表中的示例场景。&#x27;, &#x27;已归档告警列表与日前计划 2 张一级网真实页面截图&#x27;, &#x27;示例已关联·开发整改未开始&#x27;)
+        ],
         tabs: [
           issue(&#x27;基础 Tabs 样式统一&#x27;, &#x27;Tabs 容器统一负责 item 间距、激活下划线、底部分割线、内容 Slot、尺寸与对齐；空状态、筛选区和业务内容留在面板内部。&#x27;, &#x27;BM01 Tabs 页面 411:17；4 组真实菜单场景 / 8 张证据已关联，具体 Angular 调用点待逐项核验&#x27;, &#x27;规范已沉淀·代码待核验&#x27;),
           issue(&#x27;Basic / Show Extra&#x27;, &#x27;页面级操作、筛选或状态摘要可放入 Tab Bar 右侧扩展区，但不得挤入 Tab 标题或内容区；没有扩展内容时不占位。&#x27;, &#x27;拟映射 nz-tab-set 的 Tab Bar Extra Content；3 个真实菜单问题场景与 1 张共享标准图已关联&#x27;, &#x27;Figma 属性已形成·Angular API 待核验&#x27;),
@@ -2975,6 +3126,16 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;嵌套 Tabs&#x27;, &#x27;Tabs 层级最多建议 2 层；第 3 层应优先改为筛选、口径选择或对象选择，避免多层导航竞争。&#x27;, &#x27;3 个真实场景 / 6 张证据已关联；嵌套 nz-tab-set 的具体调用点待核验&#x27;, &#x27;边界已形成·待开发整改&#x27;),
           issue(&#x27;Vertical Tabs 与 Menu 边界&#x27;, &#x27;平级、少量内容切换使用 Vertical Tabs；数量多、存在分组或父子层级时使用 Menu，不以视觉上位于左侧作为判断依据。&#x27;, &#x27;splitCalcWin.component.html:3；run-diagnose.component.html:609；3 个真实场景 / 6 张证据已关联&#x27;, &#x27;部分代码已核验·其余入口待定位&#x27;),
           issue(&#x27;添加与删除操作&#x27;, &#x27;保留现有线型 Tabs，组合关闭 Icon Button 与“添加”Link Button；可从代码侧实现，不新增公共组件或 Tabs 变体。&#x27;, &#x27;经济性分析 → 设置：1 组真实场景 / 2 张证据已关联，具体实现路径待核验&#x27;, &#x27;复用结论已形成·代码待核验&#x27;)
+        ],
+        segmented: [
+          issue(&#x27;Segmented 使用边界&#x27;, &#x27;Segmented 只用于同一内容对象内的展示形态或查看口径切换；业务对象、业务状态和独立内容模块不得使用 Segmented。字段值互斥选择归 Radio Group，独立内容面板切换归 Tabs。&#x27;, &#x27;已归档 Segmented 边界说明图；Figma 组件规则已形成，Angular / ng-zorro 真实调用路径待核验&#x27;, &#x27;规范已沉淀·代码待核验&#x27;),
+          issue(&#x27;时间粒度与视图形态&#x27;, &#x27;同一份数据在分钟值、整点、小时平均、日平均等查看口径间切换，以及列表 / 看板等展示形态切换，可使用 Segmented；控件应作为一组紧凑入口，不与 Tabs、筛选条件或业务状态混用。&#x27;, &#x27;热力站详情 → 历史记录当前问题 1 张；告警列表 → 列表 / 看板标准效果 1 张；具体组件调用点待核验&#x27;, &#x27;规范已沉淀·页面入口与代码待核验&#x27;)
+        ],
+        radio: [
+          issue(&#x27;基础 Radio 样式与禁用状态&#x27;, &#x27;基础 Radio 去除文字颜色状态与选项卡片背景，选项间距统一由 Gap 控制；禁用必须作用于 Radio 与文字整体，不能只禁用圆点。说明文字按需进入 Tooltip，不扩张基础 Radio 结构。&#x27;, &#x27;负荷预测、告警列表、通道管理、智能调控、自定义监测、调度预案：6 组场景 / 13 张证据已关联；Angular 调用路径待核验&#x27;, &#x27;规范已沉淀·代码待核验&#x27;),
+          issue(&#x27;Radio Group 样式收编&#x27;, &#x27;一级网按钮式互斥选择统一收编为 Radio Group：使用同一组边框、选中态和紧凑间距，不再由页面分别拼装按钮或线型标签。&#x27;, &#x27;设备列表、下位诊断、导出中心：3 组场景 / 6 张问题与标准证据已关联&#x27;, &#x27;规范已沉淀·Figma 属性待同步·代码待核验&#x27;),
+          issue(&#x27;Radio Group 与 Tabs 使用边界&#x27;, &#x27;同一内容区内选择统计口径、筛选条件或表单值使用 Radio Group；切换到独立内容区域或子内容区使用 Tabs。先判断选项是否拥有独立内容面板，不按外观是否像下划线或按钮判断。&#x27;, &#x27;热源监测、大温差驾驶舱、告警统计、站点单耗、运行统计：5 张边界分类证据已关联；具体调用路径待核验&#x27;, &#x27;边界结论已形成·页面入口待核验&#x27;),
+          issue(&#x27;Radio Group、Switch、Checkbox 使用边界&#x27;, &#x27;Radio Group 承担编辑一条记录的状态或枚举字段；Switch 承担即时启停或能力开关；Checkbox 承担一个或多个可独立成立的属性；等级值、事实值和枚举优先使用 Select / Radio，不滥用 Switch。&#x27;, &#x27;告警配置、设备类型状态、菜单配置、属性配置、调控设置：5 张边界分类证据已关联；Angular 调用路径待核验&#x27;, &#x27;边界结论已形成·代码待核验&#x27;)
         ],
         calendar: [
           issue(&#x27;一级网日历&#x27;, &#x27;已找到 3 处使用，复杂度仍需核实，预计相对好治理。&#x27;, &#x27;BM01 已归档 3 类页面截图&#x27;, &#x27;核实并治理&#x27;)
@@ -3001,7 +3162,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;一级网表格专项&#x27;, &#x27;场景数量和差异最大，需要先竞品/组件调研，再做分类、组件和开发治理。&#x27;, &#x27;BM01 已汇总大量表格证据&#x27;, &#x27;约 1 周，仍需调研校准&#x27;)
         ],
         tag: [
-          issue(&#x27;抢修单记录&#x27;, &#x27;“超过24h / 超过7天”属于状态 Tag，不是普通文字。&#x27;, &#x27;src/app/routes/common/custom-form/custom-form-page.component.ts:225&#x27;, &#x27;已定位&#x27;)
+          issue(&#x27;基础 Tag / Colorful 样式统一&#x27;, &#x27;分类标签统一同色，超时、超期提醒统一红色；相同语义不得混用填充、描边或多种颜色。&#x27;, &#x27;已关联抢修单、供热系统分组 2 组场景 / 4 张一级网页面证据&#x27;, &#x27;规范已沉淀 · 代码未核验&#x27;),
+          issue(&#x27;Tag 颜色语义与组件边界&#x27;, &#x27;方向标签偏高红、偏低蓝；重复且无区分价值的标签应收敛；告警等级使用等级图形加文字，不使用 Tag。&#x27;, &#x27;已关联告警配置、告警列表、GIS 告警看板 3 组场景 / 6 张证据&#x27;, &#x27;边界已形成 · 开发整改未开始&#x27;)
         ],
         modal: [
           issue(&#x27;确认提示 / Small 576&#x27;, &#x27;信息较少、结构简单的确认提示统一使用 Small 576。标题使用“确认 + 动作 + 对象”，正文说明操作后果；删除、清空、放弃修改等破坏性动作直接写明按钮结果并使用危险按钮，普通离开确认使用主色按钮。右上角 X 只关闭弹窗、不执行危险动作，高风险场景可以隐藏；只告知结果或状态时使用 Information，不使用 Confirm。&#x27;, &#x27;modal.confirm 30 处 / 20 文件；splitCalcWin.component.ts:719 · defect-management.component.ts:725；映射 nzWidth=576 / nzOkText / 危险按钮配置 / nzClosable&#x27;, &#x27;统一 Small 576、动作型文案、危险按钮与关闭策略&#x27;),
@@ -3047,19 +3209,56 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const metrics = {
         pagination: [4, 45, 8, 1],
-        checkbox: [1, 11, 5, 1],
+        checkbox: [3, 11, 6, 3],
         statistic: [5, 31, 33, 4],
         select: [6, 8, 20, 5],
-        switch: [2, 32, 11, 1],
-        badge: [4, 24, 24, 1],
+        switch: [1, 32, 6, 1],
+        badge: [2, 24, 7, 3],
         tabs: [13, 150, 41, 7],
-        segmented: [2, 81, 15, 1],
-        radio: [3, 108, 30, 1],
-        tag: [5, 36, 13, 1],
+        segmented: [2, 81, 3, 2],
+        radio: [4, 108, 29, 4],
+        tag: [2, 36, 10, 5],
         modal: [3, 26, 83, 5]
       };
 
       const imageEvidenceByKey = {
+        tag: [
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;抢修单 → 超时提醒&#x27;, src: &#x27;evidence-assets/tag/01-抢修单-超时提醒A-当前问题.png&#x27;, title: &#x27;当前问题：超时提醒样式 A&#x27;, note: &#x27;同一超时语义同时出现填充式与描边式 Tag，样式口径不一致。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;抢修单 → 超时提醒&#x27;, src: &#x27;evidence-assets/tag/01-抢修单-超时提醒-标准答案.png&#x27;, title: &#x27;标准效果：超时提醒统一红色描边&#x27;, note: &#x27;“超24小时”和“超7天”统一使用红色提醒语义与描边 Tag，避免高饱和填充抢占表格信息。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;供热系统分组 → 分组类型&#x27;, src: &#x27;evidence-assets/tag/02-供热系统分组-当前问题.png&#x27;, title: &#x27;当前问题：分类 Tag 颜色过强&#x27;, note: &#x27;片区分组、热网分组、管理分组均属同一分类体系，却使用高强调蓝色填充样式。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;供热系统分组 → 分组类型&#x27;, src: &#x27;evidence-assets/tag/02-供热系统分组-标准答案.png&#x27;, title: &#x27;标准效果：分类 Tag 统一同色&#x27;, note: &#x27;同一分类体系统一使用中性描边 Tag，颜色不承担等级或状态含义。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;工业告警配置 → 类型标识&#x27;, src: &#x27;evidence-assets/tag/03-告警配置-当前问题.png&#x27;, title: &#x27;当前问题：二元标签同时重复铺设&#x27;, note: &#x27;“安全型/非安全型”两种互斥标签全部连续展示，信息密度高且重点不明确。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;工业告警配置 → 类型标识&#x27;, src: &#x27;evidence-assets/tag/03-告警配置-标准答案.png&#x27;, title: &#x27;标准效果：二元标签仅展示强调状态&#x27;, note: &#x27;字段只有两种互斥状态时，强调状态使用 Tag，普通状态不展示；本场景仅保留需强调的一类。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;工业告警列表 → 偏差方向&#x27;, src: &#x27;evidence-assets/tag/04-告警列表-当前问题.png&#x27;, title: &#x27;当前问题：方向 Tag 样式不统一&#x27;, note: &#x27;同类方向 Tag 混用不同基础样式，偏高、偏低的视觉表达不一致。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;工业告警列表 → 偏差方向&#x27;, src: &#x27;evidence-assets/tag/04-告警列表-标准答案.png&#x27;, title: &#x27;标准效果：统一方向 Tag 样式&#x27;, note: &#x27;偏高、偏低统一使用同一种基础 Tag 样式，仅通过红色与蓝色表达方向差异。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;GIS 看板 → 告警看板&#x27;, src: &#x27;evidence-assets/tag/05-GIS看板-告警看板-当前问题.png&#x27;, title: &#x27;当前问题：告警等级误用 Tag&#x27;, note: &#x27;“非常紧急”属于告警等级，却采用红色描边 Tag，与分类字段混淆。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;GIS 看板 → 告警看板&#x27;, src: &#x27;evidence-assets/tag/05-GIS看板-告警看板-标准答案.png&#x27;, title: &#x27;标准效果：等级图形加文字&#x27;, note: &#x27;“非常紧急”改为红色等级图形加文字；“手动/自动”等分类字段继续使用同色 Tag。&#x27; }
+        ],
+        badge: [
+          { topicId: &#x27;01&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/badge/01-民用一级网-列表状态颜色-治理结论.png&#x27;, title: &#x27;民用一级网列表状态颜色分类&#x27;, note: &#x27;汇总一级网页签与列表中的状态文案，并归入五类颜色语义。&#x27; },
+          { topicId: &#x27;01&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/badge/02-工业蒸汽网-列表状态颜色-治理结论.png&#x27;, title: &#x27;工业蒸汽网列表状态颜色分类&#x27;, note: &#x27;统一工业蒸汽业务状态与五类 Badge 颜色语义的对应关系。&#x27; },
+          { topicId: &#x27;01&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/badge/03-设备组态-状态颜色-治理结论.png&#x27;, title: &#x27;设备组态状态颜色分类&#x27;, note: &#x27;沉淀设备运行、停运、初始化、检修等状态的统一颜色表达。&#x27; },
+          { topicId: &#x27;01&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/badge/04-业务状态-颜色语义-治理结论.png&#x27;, title: &#x27;业务状态颜色语义（五色版）&#x27;, note: &#x27;颜色表达语义类别，状态文字表达具体含义；同一颜色可承载多个同义状态。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;告警列表 → 展示告警等级&#x27;, src: &#x27;evidence-assets/badge/05-告警列表-展示告警等级-示例场景.png&#x27;, title: &#x27;示例场景：告警等级&#x27;, note: &#x27;列表通过形状、颜色与文字共同区分非常紧急、紧急、一般和普通等级。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;日前计划 → 展示业务状态&#x27;, src: &#x27;evidence-assets/badge/06-日前计划-展示业务状态-示例场景.png&#x27;, title: &#x27;示例场景：日前计划状态&#x27;, note: &#x27;已过期、已驳回、待提交、审批中、已执行和待重做等状态按五类语义颜色展示。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;GIS 看板 → 告警看板 → 告警等级&#x27;, src: &#x27;evidence-assets/badge/07-GIS看板-告警看板告警等级-示例场景.png&#x27;, title: &#x27;示例场景：GIS 告警等级&#x27;, note: &#x27;“非常紧急”等告警等级由等级图形、语义颜色和文字共同表达，不作为分类 Tag 使用。&#x27; }
+        ],
+        switch: [
+          { topicId: &#x27;01&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/switch/00-Switch-使用边界-治理结论.png&#x27;, title: &#x27;Switch 使用边界&#x27;, note: &#x27;Switch 管“直接开关控制 / 联动后续配置可用”；枚举、记录状态和保存后生效的字段使用相邻基础组件。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站详情 → 告警配置&#x27;, src: &#x27;evidence-assets/switch/01-热力站详情-告警配置.png&#x27;, title: &#x27;应使用 Switch + RadioGroup&#x27;, note: &#x27;“启用告警”是立即生效的总开关；调用或自定义是开启后的模式选择，归 RadioGroup。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;设备类型 → 编辑&#x27;, src: &#x27;evidence-assets/switch/02-设备类型编辑.png&#x27;, title: &#x27;应归 RadioGroup&#x27;, note: &#x27;“是否启用”是编辑记录中的枚举状态，保存后才生效，不属于立即启停能力。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;菜单 → 配置&#x27;, src: &#x27;evidence-assets/switch/03-菜单配置.png&#x27;, title: &#x27;应归 RadioGroup&#x27;, note: &#x27;菜单启用属于记录状态字段，随表单保存后生效，不应点击后立即切换系统状态。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;设备定义 → 属性配置&#x27;, src: &#x27;evidence-assets/switch/04-设备定义属性配置.png&#x27;, title: &#x27;应使用 Switch&#x27;, note: &#x27;已配置为“单字段能力”，用于立即打开或关闭字段特性。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;调控指令 → 设置表格&#x27;, src: &#x27;evidence-assets/switch/05-调控指令.png&#x27;, title: &#x27;按字段使用 Radio / Switch / Checkbox / Select&#x27;, note: &#x27;优先级是枚举值；启用调控能力使用 Switch；是否有流量计是属性；调节方式使用 Select。&#x27; }
+        ],
+        checkbox: [
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → Table 场景&#x27;, src: &#x27;evidence-assets/checkbox/01-热力站监测-Table场景-当前问题.png&#x27;, title: &#x27;当前问题：表格行复选框样式不一致&#x27;, note: &#x27;pid/名称/时间列的选择列样式与交互不统一，部分行选择依赖自定义实现。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → Table 场景&#x27;, src: &#x27;evidence-assets/checkbox/01-热力站监测-Table场景-标准答案.png&#x27;, title: &#x27;标准效果：统一 Checkbox 行选择模式&#x27;, note: &#x27;表格行复选框统一使用 Checkbox 组件的行选择模式，选中态与交互一致。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → 站点归属&#x27;, src: &#x27;evidence-assets/checkbox/02-热力站监测-站点归属-TreeSelct场景-当前问题.png&#x27;, title: &#x27;当前问题：树形分组复选框混用&#x27;, note: &#x27;checkbox-style Select 与 tree-select-search / nz-tree-select 混用，交互与样式不统一。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → 站点归属&#x27;, src: &#x27;evidence-assets/checkbox/02-热力站监测-站点归属-TreeSelct场景-标准答案.png&#x27;, title: &#x27;标准效果：统一 TreeSelect 层级勾选&#x27;, note: &#x27;有层级关系的多选统一为 TreeSelect，选中态、展开与勾选行为一致。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;指标配置 → 配置节点&#x27;, src: &#x27;evidence-assets/checkbox/03-指标配置-配置节点-当前问题.png&#x27;, title: &#x27;当前问题：配置节点默认状态错误&#x27;, note: &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站）默认状态不符合组件规范。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;指标配置 → 配置节点&#x27;, src: &#x27;evidence-assets/checkbox/03-指标配置-配置节点-标准答案.png&#x27;, title: &#x27;标准效果：修正为组件默认态&#x27;, note: &#x27;Checkbox 默认状态统一为组件规范默认态，禁用态与选中态表达一致。&#x27; }
+        ],
         tabs: [
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;顶部 → 调控下发通知&#x27;, src: &#x27;evidence-assets/tabs/01/01-顶部-调控下发通知-当前问题.png&#x27;, title: &#x27;当前问题：调控下发通知 Tabs&#x27;, note: &#x27;激活项、底部分割线、内容空态与容器间距由页面分别拼装，样式责任不清。&#x27; },
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;顶部 → 调控下发通知&#x27;, src: &#x27;evidence-assets/tabs/01/01-顶部-调控下发通知-标准答案.png&#x27;, title: &#x27;标准效果：统一 Basic Tabs&#x27;, note: &#x27;Tabs 只负责标签、激活下划线和分割线；空态与业务内容进入 Slot。&#x27; },
@@ -3108,6 +3307,40 @@ html&gt;body{padding:0}&lt;/style&gt;
 
           { topicId: &#x27;07&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;经济性分析 → 设置&#x27;, src: &#x27;evidence-assets/tabs/07/01-经济性分析-设置-当前问题.png&#x27;, title: &#x27;当前问题：标签内添加删除样式混杂&#x27;, note: &#x27;可关闭标签、删除文字和新增入口由页面自由拼装，操作层级与点击区域不一致。&#x27; },
           { topicId: &#x27;07&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;经济性分析 → 设置&#x27;, src: &#x27;evidence-assets/tabs/07/01-经济性分析-设置-标准答案.png&#x27;, title: &#x27;标准效果：组合现有按钮能力&#x27;, note: &#x27;保留线型 Tabs，关闭使用 Icon Button，“添加”使用 Link Button，不新增 Tabs 变体。&#x27; }
+        ],
+        radio: [
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;负荷预测 → 设置&#x27;, src: &#x27;evidence-assets/radio/01/01-负荷预测-设置-当前问题.png&#x27;, title: &#x27;当前问题：禁用状态只作用于图标&#x27;, note: &#x27;Radio 圆点进入禁用态，但文字仍保持正常颜色，整体状态不完整。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;负荷预测 → 设置&#x27;, src: &#x27;evidence-assets/radio/01/01-负荷预测-设置-标准答案.png&#x27;, title: &#x27;标准效果：图标与文字整体禁用&#x27;, note: &#x27;禁用态同步作用于 Radio 和选项文字，仍可清晰识别当前选择。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;告警列表 / 通道管理 → 批量与状态选择&#x27;, src: &#x27;evidence-assets/radio/01/02-01-告警列表-批量操作.png&#x27;, title: &#x27;当前问题 A：选项组使用整块背景&#x27;, note: &#x27;整组灰底与 Radio 语义无关，已选数量又直接拼在选项文字中。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;告警列表 / 通道管理 → 批量与状态选择&#x27;, src: &#x27;evidence-assets/radio/01/02-02-通道管理-短信账户配置-当前问题.png&#x27;, title: &#x27;当前问题 B：选项背景和字段布局耦合&#x27;, note: &#x27;状态选择依赖表单区域底色，Radio 自身间距与点击范围不稳定。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;告警列表 / 通道管理 → 批量与状态选择&#x27;, src: &#x27;evidence-assets/radio/01/02-标准答案.png&#x27;, title: &#x27;标准效果：基础 Radio + Gap&#x27;, note: &#x27;移除整组背景，仅保留 Radio、文本和统一 Gap，由表单容器负责外层布局。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;智能调控 → 调控模式&#x27;, src: &#x27;evidence-assets/radio/01/03-智能调控-调控模式-当前问题.png&#x27;, title: &#x27;当前问题：选项文字承担颜色状态&#x27;, note: &#x27;“自优 / 自动”等文字被赋予额外颜色语义，和当前选中态重复。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;智能调控 → 调控模式&#x27;, src: &#x27;evidence-assets/radio/01/03-智能调控-调控模式-标准答案.png&#x27;, title: &#x27;标准效果：文字使用统一中性色&#x27;, note: &#x27;选择状态只由 Radio 表达，文字不再额外着色。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;智能调控 → 批量调频&#x27;, src: &#x27;evidence-assets/radio/01/04-智能调控-批量调频-当前问题.png&#x27;, title: &#x27;当前问题：卡片式选择扩张基础 Radio&#x27;, note: &#x27;选项被包装成大块卡片并承载说明，超出基础 Radio 的结构责任。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;智能调控 → 批量调频&#x27;, src: &#x27;evidence-assets/radio/01/04-智能调控-批量调频-当前问题-1.png&#x27;, title: &#x27;目标参考：回归基础 Radio&#x27;, note: &#x27;只保留互斥选项；补充说明按需进入 Tooltip，不沉淀卡片式 Radio。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;自定义监测 → 添加组件&#x27;, src: &#x27;evidence-assets/radio/01/05-自定义监测-添加组件-当前问题.png&#x27;, title: &#x27;当前问题：展示形式使用卡片并叠加说明&#x27;, note: &#x27;卡片、图标和辅助说明扩大了控件体量，选择语义仍只是一个枚举值。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;自定义监测 → 添加组件&#x27;, src: &#x27;evidence-assets/radio/01/05-自定义监测-添加组件-标准答案.png&#x27;, title: &#x27;标准效果：基础 Radio 展示形式&#x27;, note: &#x27;卡片、表格、图表作为简短枚举项横向排列，说明移出控件主体。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;06&#x27;, scene: &#x27;调度预案 → 方案对比&#x27;, src: &#x27;evidence-assets/radio/01/06-调度预案-方案对比-当前问题.png&#x27;, title: &#x27;当前问题：长说明挤入 Radio 标签&#x27;, note: &#x27;选项名称与说明同时放入标签，造成选项高度、对齐和点击范围不一致。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;06&#x27;, scene: &#x27;调度预案 → 方案对比&#x27;, src: &#x27;evidence-assets/radio/01/06-调度预案-方案对比-标准答案.png&#x27;, title: &#x27;标准效果：短标签 + Tooltip&#x27;, note: &#x27;Radio 只保留方案名称，详细说明通过 Tooltip 按需查看。&#x27; },
+
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;设备列表&#x27;, src: &#x27;evidence-assets/radio/02/01-设备列表-当前问题.png&#x27;, title: &#x27;当前问题：按钮组视觉不统一&#x27;, note: &#x27;互斥入口以零散底色标签呈现，选中边界和成组关系不清。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;设备列表&#x27;, src: &#x27;evidence-assets/radio/02/01-设备列表-标准答案.png&#x27;, title: &#x27;标准效果：Radio Group 按钮式&#x27;, note: &#x27;同一组边框连接选项，选中项使用统一主色描边和文字。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;下位诊断&#x27;, src: &#x27;evidence-assets/radio/02/02-下位诊断-当前问题.png&#x27;, title: &#x27;当前问题：线型标签被当作口径选择&#x27;, note: &#x27;互斥计算口径使用下划线样式，容易与 Tabs 内容导航混淆。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;下位诊断&#x27;, src: &#x27;evidence-assets/radio/02/02-下位诊断-标准答案.png&#x27;, title: &#x27;标准效果：口径选择使用 Radio Group&#x27;, note: &#x27;一次回压、一次瞬流等属于同一结果区的互斥口径，使用按钮式 Radio Group。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;导出中心&#x27;, src: &#x27;evidence-assets/radio/02/03-导出中心-当前问题.png&#x27;, title: &#x27;当前问题：状态筛选使用孤立实心按钮&#x27;, note: &#x27;“全部”使用实心按钮，其余状态为文字，组内样式与点击边界不一致。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;导出中心&#x27;, src: &#x27;evidence-assets/radio/02/03-导出中心-标准答案.png&#x27;, title: &#x27;标准效果：状态筛选统一为 Radio Group&#x27;, note: &#x27;全部、导出中、已导出、导出失败使用同一按钮组结构。&#x27; },
+
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热源监测 → 参数总览&#x27;, src: &#x27;evidence-assets/radio/03/01-热源监测.png&#x27;, title: &#x27;归类判断：应使用 Radio Group&#x27;, note: &#x27;选项只改变同一参数面板的统计口径，不切换独立内容区域。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;数据看板 → 大温差驾驶舱&#x27;, src: &#x27;evidence-assets/radio/03/02-数据看板-大温差驾驶舱.png&#x27;, title: &#x27;归类判断：应使用 Radio Group&#x27;, note: &#x27;热网 / 分公司属于同一看板内的统计范围选择。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;热源监测 → 当前告警统计&#x27;, src: &#x27;evidence-assets/radio/03/03-热源监测-当前告警统计.png&#x27;, title: &#x27;归类判断：应使用 Radio Group&#x27;, note: &#x27;告警数 / 告警率只改变当前图表计算方式，仍是同一内容区。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;热力站监测 → 站点单耗数据&#x27;, src: &#x27;evidence-assets/radio/03/04-热力站监测-站点单耗数据.png&#x27;, title: &#x27;归类判断：应使用 Radio Group&#x27;, note: &#x27;实际单耗与度日数单耗属于同一图表的指标口径。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;热力站监测 → 运行统计&#x27;, src: &#x27;evidence-assets/radio/03/05-热力站监测-运行统计.png&#x27;, title: &#x27;边界判断：应使用 Tabs&#x27;, note: &#x27;运行统计、超欠情况、节能情况分别拥有独立内容面板，应保留 Tabs。&#x27; },
+
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站详情 → 告警配置&#x27;, src: &#x27;evidence-assets/radio/04/01-热力站详情-告警配置.png&#x27;, title: &#x27;混合边界：Switch + Radio Group&#x27;, note: &#x27;告警能力启停使用 Switch；启用后的模式或范围选择使用 Radio Group。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;设备库 → 设备类型状态&#x27;, src: &#x27;evidence-assets/radio/04/02-设备库-设备类型状态.png&#x27;, title: &#x27;归类判断：状态字段使用 Radio Group&#x27;, note: &#x27;启用 / 停用是编辑记录中的枚举状态，提交保存后生效，不是即时能力开关。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;菜单管理 → 菜单配置&#x27;, src: &#x27;evidence-assets/radio/04/03-菜单管理-菜单配置.png&#x27;, title: &#x27;归类判断：记录字段使用 Radio Group&#x27;, note: &#x27;打开新页面、显示状态等是菜单记录的枚举值，应由 Radio Group 表达。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;设备定义 → 属性配置&#x27;, src: &#x27;evidence-assets/radio/04/04-设备定义-属性配置.png&#x27;, title: &#x27;归类判断：属性字段使用 Radio Group&#x27;, note: &#x27;是否必填、是否启用属于编辑表单字段，保存后生效，不使用 Switch。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;调控设置&#x27;, src: &#x27;evidence-assets/radio/04/05-调控设置.png&#x27;, title: &#x27;混合边界：Radio / Checkbox / Select&#x27;, note: &#x27;等级值使用 Select 或 Radio；即时启停能力使用 Switch；多个独立属性使用 Checkbox。&#x27; }
         ],
         modal: [
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;用户列表 → 删除用户提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/01-用户列表-删除用户提示-当前问题.png&#x27;, title: &#x27;当前问题：删除用户提示&#x27;, note: &#x27;标题只写“警示”，正文重复询问，主按钮使用笼统“确定”，没有表达删除的危险语义。&#x27; },
@@ -3206,6 +3439,11 @@ html&gt;body{padding:0}&lt;/style&gt;
           { topicId: &#x27;04&#x27;, scenarioId: &#x27;S5&#x27;, scene: &#x27;能耗考核-总览&#x27;, src: &#x27;evidence-assets/statistic/04-能耗考核-总览.png&#x27;, title: &#x27;【特殊处理】能耗考核：Info Summary Bar 组合&#x27;, note: &#x27;【特殊处理】Info Summary Bar 组合，含二级标签（“热单耗/实际”和“用热量/实际”），可组合拼起来，不沉淀为组件。&#x27;, isSpecial: true },
           { topicId: &#x27;05&#x27;, scenarioId: &#x27;S6&#x27;, scene: &#x27;数据看板-调控信息&#x27;, src: &#x27;evidence-assets/statistic/05-数据看板-调控信息.png&#x27;, title: &#x27;【特殊处理】调控信息：多组数据组合&#x27;, note: &#x27;【特殊处理】多组数据组合，仅此处用到，不作为组件沉淀。每组内数值复用 Metric，外层布局由业务页面负责。&#x27;, isSpecial: true }
         ],
+        segmented: [
+          { topicId: &#x27;01&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/segmented/01-segmented边界.png&#x27;, title: &#x27;治理结论：Segmented 使用边界&#x27;, note: &#x27;同一内容对象内切换查看口径或展示形态使用 Segmented；字段值选择归 Radio Group，独立面板切换归 Tabs。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站详情 → 历史记录&#x27;, src: &#x27;evidence-assets/segmented/02-热力站详情-历史记录.png&#x27;, title: &#x27;当前问题：时间粒度入口样式与边界不清&#x27;, note: &#x27;分钟值、整点、小时平均、日平均与表格 / 图表入口并置，切换层级和控件责任需要统一。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;告警列表 → 列表 / 看板切换&#x27;, src: &#x27;evidence-assets/segmented/03-告警列表-看板切换.png&#x27;, title: &#x27;标准效果：同一数据的展示形态切换&#x27;, note: &#x27;列表与看板展示同一份告警数据，使用紧凑 Segmented 入口切换，不改变业务对象与内容层级。&#x27; }
+        ],
         select: [
           { src: &#x27;evidence-assets/select/select-01-checkbox-current.png&#x27;, title: &#x27;01 当前问题：checkbox-style Select&#x27;, note: &#x27;热力站监测标签分组筛选混用了复选框式交互，组件边界与标准 Select 不一致。&#x27; },
           { src: &#x27;evidence-assets/select/select-01-checkbox-standard.png&#x27;, title: &#x27;01 标准效果：Select Multiple&#x27;, note: &#x27;无层级关系的多选统一为标准选项高亮与勾选反馈。&#x27; },
@@ -3260,7 +3498,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         form: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, summary: &#x27;已做初步整理，仍需结合一级网的真实表单结构仔细治理。&#x27; },
         autoComplete: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
         cascader: { status: &#x27;watch&#x27;, stateLabel: &#x27;持续关注&#x27;, kind: &#x27;持续关注&#x27;, progress: 30, estimate: &#x27;依赖菜单方案&#x27;, summary: &#x27;随菜单整体交互方案持续关注，暂不单独定型。&#x27; },
-        checkbox: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;独立选择、批量选择和状态矩阵已完成治理。&#x27; },
+        checkbox: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;Table 行选择、TreeSelect 层级勾选与配置节点默认状态已完成治理。&#x27; },
         datePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 20, estimate: &#x27;预计较快&#x27;, summary: &#x27;主要工作是补齐一级网页面证据，复杂度较低。&#x27; },
         input: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网 Input 使用广、样式杂，需要投入时间做系统整理。&#x27; },
         inputNumber: { status: &#x27;doing&#x27;, difficulty: 3, progress: 25, estimate: &#x27;待评估&#x27;, summary: &#x27;范围输入形态在现有组件中缺失，需要新建组件并覆盖特殊业务场景。&#x27; },
@@ -3268,7 +3506,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         statistic: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已新建 Statistic 基础 Metric，完成 15 个真实菜单场景归类并补入代码证据；一级网目前未直接使用 nz-statistic，需把页面自拼指标逐步替换为 Metric。Descriptions、Info Summary Bar、业务卡片与页面组合边界已明确；统一使用说明、开发落地与验收尚未完成。&#x27; },
         select: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;标准治理档案&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成 6 类真实场景治理、20 张问题与标准效果证据归档，并核验 Angular 11.2 / ng-zorro 11.4.1 的 Select API 与代码规模。组件边界、Tag Overflow、Select All、Search Position、Option Tag、Menu State 均已形成规则；统一使用说明、开发整改与验收尚未完成。&#x27; },
         slider: { status: &#x27;doing&#x27;, difficulty: 1, progress: 45, estimate: &#x27;预计较快&#x27;, summary: &#x27;已有代码分析，但真实页面入口暂未找到；必要时直接从代码改。&#x27; },
-        switch: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;即时提交、失败回滚、禁用与权限边界已完成治理。&#x27; },
+        switch: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;使用边界&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 0, 0, 0], summary: &#x27;已形成 Switch 与 RadioGroup、Checkbox、Select 的使用边界，并关联 1 张治理结论图和 5 张一级网真实页面截图；真实调用路径、开发整改与验收尚未完成。&#x27; },
         timePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 15, estimate: &#x27;预计较快&#x27;, summary: &#x27;一级网预计没有复杂变化，补证据后即可治理。&#x27; },
         transfer: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
         treeSelect: { status: &#x27;doing&#x27;, difficulty: 2, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;已找到复杂示例，需核实真实代码并完成治理。&#x27; },
@@ -3276,7 +3514,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         upload: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网上传样式较杂，需要核实已有证据并统一导入、上传、文件列表边界。&#x27; },
 
         avatar: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;系统中仅一处使用，无需专项治理；后续开发阶段直接修改代码。&#x27; },
-        badge: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;Dot、Count、单位数、两位数和 99+ 封顶规则已完成治理。&#x27; },
+        badge: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;状态语义&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 0, 0, 0], summary: &#x27;已形成 Default、Error、Processing、Success、Warning 五类状态颜色语义，完成民用一级网、工业蒸汽网和设备组态的状态映射，并关联告警列表、日前计划与 GIS 告警看板 3 个一级网示例；真实调用路径、开发整改与验收尚未完成。&#x27; },
         tabs: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;已形成基础样式、Show Extra、数量、Icon Title、嵌套层级、Vertical 与 Menu 边界以及添加删除操作 7 类治理结论，并关联 41 张真实页面与标准效果证据；部分代码入口仍待核验，开发整改与验收尚未开始。&#x27; },
         calendar: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待核实&#x27;, summary: &#x27;已找到 3 处使用，复杂度待确认，预计相对容易。&#x27; },
         card: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;需要收集全系统卡片情况，复杂且费时。&#x27; },
@@ -3286,9 +3524,9 @@ html&gt;body{padding:0}&lt;/style&gt;
         popover: { status: &#x27;doing&#x27;, difficulty: 1, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;出现位置不多，预计治理简单。&#x27; },
         image: { status: &#x27;doing&#x27;, difficulty: 1, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;当前只识别到少量使用场景，预计治理简单。&#x27; },
         table: { status: &#x27;doing&#x27;, difficulty: 6, progress: 20, knownDays: 5, estimate: &#x27;约 1 周&#x27;, summary: &#x27;所有组件中预计最耗时：需先做组件调研，再对大量一级网表格做专项治理。&#x27; },
-        segmented: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;分段选择的尺寸、状态和组合变体已完成治理。&#x27; },
-        radio: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;普通单选、按钮式单选和卡片式选择边界与矩阵已完成。&#x27; },
-        tag: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;状态、分类、可关闭与可选择 Tag 的使用边界已完成。&#x27; },
+        segmented: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 0, 0, 0], summary: &#x27;已形成 Segmented 与 Radio Group、Tabs 的使用边界，以及时间粒度和展示形态两类治理结论，并关联 3 张规范与一级网页面证据；真实调用路径、开发整改与验收尚未完成。&#x27; },
+        radio: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 100, 0, 0], summary: &#x27;已形成基础 Radio、Radio Group 样式，以及与 Tabs、Switch、Checkbox 的 4 类治理结论，并关联 29 张一级网场景证据；代码入口、开发整改与验收尚未完成。&#x27; },
+        tag: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;样式与边界&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 0, 0, 0], summary: &#x27;已形成分类、方向、提醒三类 Tag 颜色规则，并关联抢修单、供热系统分组、告警配置、告警列表和 GIS 告警看板 5 组 / 10 张一级网页面证据；真实调用路径、开发整改与验收尚未完成。&#x27; },
         modal: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成确认提示、组件边界以及 Small、Medium、Large 与 Workspace 尺寸治理，并明确文案、区域滚动、Footer 与交互反馈规则；统一使用说明、开发整改与验收尚未完成。&#x27; },
         tooltip: { status: &#x27;doing&#x27;, difficulty: 0, progress: 0, estimate: &#x27;待梳理&#x27;, summary: &#x27;BM01 中存在正式页面，但本轮尚未补充一级网治理说明。&#x27; },
         timeline: { status: &#x27;done&#x27;, stateLabel: &#x27;本周收尾·按完成计&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;与 Steps 一起在两天内收尾，按本月交付完成标记。&#x27; },
@@ -3956,7 +4194,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-evidence-index=&quot;${index}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
             &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
             &lt;span class=&quot;evidence-caption&quot;&gt;
-              &lt;strong&gt;${item.title}&lt;/strong&gt;
+              &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
               &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
             &lt;/span&gt;
           &lt;/button&gt;
@@ -3985,6 +4223,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;Large 大型弹框与 Workspace 工作区弹框&#x27;
       ];
 
+      const checkboxTopicNames = [
+        &#x27;Table 场景行选择&#x27;,
+        &#x27;TreeSelect 层级勾选&#x27;,
+        &#x27;配置节点默认状态&#x27;
+      ];
+
       const statisticTopicNames = [
         &#x27;基础 Metric 结构与单位&#x27;,
         &#x27;状态色与趋势对比&#x27;,
@@ -4003,6 +4247,32 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;添加与删除操作&#x27;
       ];
 
+      const radioTopicNames = [
+        &#x27;基础 Radio 样式与禁用状态&#x27;,
+        &#x27;Radio Group 样式收编&#x27;,
+        &#x27;Radio Group 与 Tabs 使用边界&#x27;,
+        &#x27;Radio Group、Switch、Checkbox 使用边界&#x27;
+      ];
+
+      const segmentedTopicNames = [
+        &#x27;Segmented 使用边界&#x27;,
+        &#x27;时间粒度与视图形态&#x27;
+      ];
+
+      const switchTopicNames = [
+        &#x27;Switch 使用边界&#x27;
+      ];
+
+      const badgeTopicNames = [
+        &#x27;Badge 状态颜色语义&#x27;,
+        &#x27;Badge 一级网示例&#x27;
+      ];
+
+      const tagTopicNames = [
+        &#x27;基础 Tag / Colorful 样式统一&#x27;,
+        &#x27;Tag 颜色语义与组件边界&#x27;
+      ];
+
       function renderSelectTopics() {
         const host = root.querySelector(&#x27;#select-topic-board&#x27;);
         const items = imageEvidenceByKey.select || [];
@@ -4019,11 +4289,12 @@ html&gt;body{padding:0}&lt;/style&gt;
           const evidenceClass = topicItems.length &lt;= 2 ? &#x27;select-topic-evidence is-pair&#x27; : &#x27;select-topic-evidence&#x27;;
           const evidenceMarkup = topicItems.length ? topicItems.map(item =&gt; {
             const displayTitle = item.title.replace(/^\d{2}\s*/, &#x27;&#x27;);
+            const titleClass = item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;;
             return `
               &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-topic-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
                 &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
                 &lt;span class=&quot;evidence-caption&quot;&gt;
-                  &lt;strong&gt;${displayTitle}&lt;/strong&gt;
+                  &lt;strong class=&quot;${titleClass}&quot;&gt;${displayTitle}&lt;/strong&gt;
                   &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
                 &lt;/span&gt;
               &lt;/button&gt;
@@ -4100,7 +4371,7 @@ html&gt;body{padding:0}&lt;/style&gt;
                 &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-modal-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
                   &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
                   &lt;span class=&quot;evidence-caption&quot;&gt;
-                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
                     &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
                   &lt;/span&gt;
                 &lt;/button&gt;
@@ -4308,7 +4579,7 @@ html&gt;body{padding:0}&lt;/style&gt;
                 &lt;button type=&quot;button&quot; class=&quot;evidence-card${item.isSpecial ? &#x27; special-card&#x27; : &#x27;&#x27;}&quot; data-statistic-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
                   &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
                   &lt;span class=&quot;evidence-caption&quot;&gt;
-                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
                     &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
                   &lt;/span&gt;
                 &lt;/button&gt;
@@ -4557,7 +4828,7 @@ html&gt;body{padding:0}&lt;/style&gt;
                 &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-tabs-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
                   &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
                   &lt;span class=&quot;evidence-caption&quot;&gt;
-                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
                     &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
                   &lt;/span&gt;
                 &lt;/button&gt;
@@ -4602,6 +4873,576 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
       }
 
+      function renderRadioTopics() {
+        const host = root.querySelector(&#x27;#radio-topic-board&#x27;);
+        const items = imageEvidenceByKey.radio || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          (groups[item.topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+        const radioRuleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;基础样式&#x27;, &#x27;去除选项卡片背景与文字颜色状态；选项间距统一由 Gap 控制&#x27;],
+            [&#x27;禁用状态&#x27;, &#x27;Radio 与文字作为一个整体进入禁用态，不允许只禁用圆点&#x27;],
+            [&#x27;说明边界&#x27;, &#x27;Radio 只保留短标签；长说明按需进入 Tooltip&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;组件形态&#x27;, &#x27;一级网互斥按钮组统一使用 Radio Group&#x27;],
+            [&#x27;视觉规则&#x27;, &#x27;共用连续边框、统一选中态和紧凑间距，不再拼装孤立按钮或线型标签&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;拟映射 nz-radio-group / nz-radio-button；真实菜单调用点待核验&#x27;]
+          ],
+          &#x27;03&#x27;: [
+            [&#x27;Radio Group&#x27;, &#x27;在同一内容区内切换统计口径、筛选条件、计算方式或表单值&#x27;],
+            [&#x27;Tabs&#x27;, &#x27;切换到独立内容区域、子内容区或拥有自身内容面板的页面&#x27;],
+            [&#x27;判断原则&#x27;, &#x27;先看选项是否拥有独立内容面板，不按外观像下划线还是按钮判断&#x27;]
+          ],
+          &#x27;04&#x27;: [
+            [&#x27;Switch&#x27;, &#x27;点击后即时控制能力开关或联动后续配置是否可用&#x27;],
+            [&#x27;Radio Group&#x27;, &#x27;编辑一条记录的状态或枚举字段，随保存或提交生效&#x27;],
+            [&#x27;Checkbox / Select&#x27;, &#x27;多个独立属性使用 Checkbox；等级值、事实值或长枚举优先使用 Select / Radio&#x27;]
+          ]
+        };
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const renderTopicRule = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${radioTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(radioRuleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;radio-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;radio-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-radio-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;状态 / 下一步&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;radio-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;radio-topic-${topicId}&quot;&gt;${radioTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${topicItems.length} 张证据 · ${scenarios.length} 组场景&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderTopicRule(topicId)}
+              &lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;
+              ${traceMarkup(issueItem)}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-radio-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.radioEvidenceIndex)]);
+          });
+        });
+      }
+
+      function renderSegmentedTopics() {
+        const host = root.querySelector(&#x27;#segmented-topic-board&#x27;);
+        const items = imageEvidenceByKey.segmented || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          if (item.kind === &#x27;conclusion&#x27;) return groups;
+          (groups[item.topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+        const conclusionItem = items.find(item =&gt; item.kind === &#x27;conclusion&#x27;);
+        const conclusionIndex = conclusionItem ? items.indexOf(conclusionItem) : -1;
+        const segmentedRuleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;Segmented&#x27;, &#x27;同一内容对象内切换查看口径或展示形态&#x27;],
+            [&#x27;Radio Group&#x27;, &#x27;在表单或筛选中选择互斥字段值，不负责切换内容视图&#x27;],
+            [&#x27;Tabs&#x27;, &#x27;切换拥有独立内容面板的业务模块或子页面&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;时间粒度&#x27;, &#x27;分钟值、整点、小时平均、日平均等同一数据口径可以使用 Segmented&#x27;],
+            [&#x27;展示形态&#x27;, &#x27;列表 / 看板、表格 / 图表等同一数据视图可以使用 Segmented&#x27;],
+            [&#x27;交互边界&#x27;, &#x27;业务状态、筛选条件和独立内容模块不得伪装成 Segmented&#x27;]
+          ]
+        };
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) scenario.items.push(item);
+          else groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          return groups;
+        }, []);
+
+        const renderTopicRule = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${segmentedTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(segmentedRuleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderConclusion = topicId =&gt; topicId === &#x27;01&#x27; &amp;&amp; conclusionItem ? `
+          &lt;div class=&quot;segmented-conclusion&quot; aria-label=&quot;Segmented 治理结论图&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-segmented-evidence-index=&quot;${conclusionIndex}&quot; aria-label=&quot;查看大图：${conclusionItem.title}&quot;&gt;
+              &lt;img class=&quot;evidence-image&quot; src=&quot;${conclusionItem.src}&quot; alt=&quot;${conclusionItem.title}&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;&gt;
+              &lt;span class=&quot;evidence-caption&quot;&gt;
+                &lt;strong class=&quot;is-conclusion&quot;&gt;${conclusionItem.title}&lt;/strong&gt;
+                &lt;span class=&quot;text-small&quot;&gt;${conclusionItem.note}&lt;/span&gt;
+              &lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        ` : &#x27;&#x27;;
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;segmented-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;segmented-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-segmented-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;状态 / 下一步&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          const topicMeta = topicId === &#x27;01&#x27; &amp;&amp; conclusionItem
+            ? &#x27;1 张结论图&#x27;
+            : `${topicItems.length} 张证据 · ${scenarios.length} 组场景`;
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;segmented-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;segmented-topic-${topicId}&quot;&gt;${segmentedTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${topicMeta}&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderTopicRule(topicId)}
+              ${renderConclusion(topicId)}
+              ${scenarios.length ? `&lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;` : &#x27;&#x27;}
+              ${traceMarkup(issueItem)}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-segmented-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.segmentedEvidenceIndex)]);
+          });
+        });
+      }
+
+      function renderSwitchTopics() {
+        const host = root.querySelector(&#x27;#switch-topic-board&#x27;);
+        const items = imageEvidenceByKey.switch || [];
+        const topicId = &#x27;01&#x27;;
+        const conclusionItem = items.find(item =&gt; item.kind === &#x27;conclusion&#x27;);
+        const conclusionIndex = conclusionItem ? items.indexOf(conclusionItem) : -1;
+        const topicItems = items
+          .map((item, index) =&gt; ({ ...item, sourceIndex: index }))
+          .filter(item =&gt; item.kind !== &#x27;conclusion&#x27;);
+        const scenarios = topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const scenarioMarkup = scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;switch-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;switch-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence is-single&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-switch-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong class=&quot;is-conclusion&quot;&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        const conclusionMarkup = conclusionItem ? `
+          &lt;div class=&quot;segmented-conclusion&quot; aria-label=&quot;Switch 治理结论图&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-switch-evidence-index=&quot;${conclusionIndex}&quot; aria-label=&quot;查看大图：${conclusionItem.title}&quot;&gt;
+              &lt;img class=&quot;evidence-image&quot; src=&quot;${conclusionItem.src}&quot; alt=&quot;${conclusionItem.title}&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;&gt;
+              &lt;span class=&quot;evidence-caption&quot;&gt;
+                &lt;strong class=&quot;is-conclusion&quot;&gt;${conclusionItem.title}&lt;/strong&gt;
+                &lt;span class=&quot;text-small&quot;&gt;${conclusionItem.note}&lt;/span&gt;
+              &lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        ` : &#x27;&#x27;;
+
+        host.innerHTML = `
+          &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;switch-topic-${topicId}&quot;&gt;
+            &lt;div class=&quot;select-topic-header&quot;&gt;
+              &lt;div class=&quot;select-topic-title&quot;&gt;
+                &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                &lt;h4 id=&quot;switch-topic-${topicId}&quot;&gt;${switchTopicNames[0]}&lt;/h4&gt;
+              &lt;/div&gt;
+              &lt;span class=&quot;text-small text-muted&quot;&gt;1 张结论图 · ${topicItems.length} 张页面截图 · ${scenarios.length} 组场景&lt;/span&gt;
+            &lt;/div&gt;
+            ${conclusionMarkup}
+            &lt;div class=&quot;modal-scenario-list&quot;&gt;${scenarioMarkup}&lt;/div&gt;
+          &lt;/section&gt;
+        `;
+
+        host.querySelectorAll(&#x27;[data-switch-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.switchEvidenceIndex)]);
+          });
+        });
+      }
+
+      function renderBadgeTopics() {
+        const host = root.querySelector(&#x27;#badge-topic-board&#x27;);
+        const items = imageEvidenceByKey.badge || [];
+        const indexedItems = items.map((item, index) =&gt; ({ ...item, sourceIndex: index }));
+        const conclusionItems = indexedItems.filter(item =&gt; item.topicId === &#x27;01&#x27; &amp;&amp; item.kind === &#x27;conclusion&#x27;);
+        const exampleItems = indexedItems.filter(item =&gt; item.topicId === &#x27;02&#x27;);
+        const scenarios = exampleItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const ruleMarkup = `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;Badge 状态颜色核心规则&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;固定类型&lt;/span&gt;&lt;strong&gt;Default · Error · Processing · Success · Warning&lt;/strong&gt;&lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;颜色责任&lt;/span&gt;&lt;span&gt;表达业务状态所处的语义阶段，不为每个状态分配唯一颜色&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;文字责任&lt;/span&gt;&lt;span&gt;具体状态仍以文字为准，颜色只帮助快速识别类别&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        const conclusionMarkup = `
+          &lt;div class=&quot;badge-conclusion-grid&quot; aria-label=&quot;Badge 治理结论集合&quot;&gt;
+            ${conclusionItems.map(item =&gt; `
+              &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-badge-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title}&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                &lt;span class=&quot;evidence-caption&quot;&gt;
+                  &lt;strong class=&quot;is-conclusion&quot;&gt;${item.title}&lt;/strong&gt;
+                  &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                &lt;/span&gt;
+              &lt;/button&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const scenarioMarkup = scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;badge-scenario-02-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;badge-scenario-02-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence is-single&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-badge-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面示例&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        host.innerHTML = `
+          &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;badge-topic-01&quot;&gt;
+            &lt;div class=&quot;select-topic-header&quot;&gt;
+              &lt;div class=&quot;select-topic-title&quot;&gt;&lt;span class=&quot;select-topic-index&quot;&gt;专题 01&lt;/span&gt;&lt;h4 id=&quot;badge-topic-01&quot;&gt;${badgeTopicNames[0]}&lt;/h4&gt;&lt;/div&gt;
+              &lt;span class=&quot;text-small text-muted&quot;&gt;${conclusionItems.length} 张治理结论&lt;/span&gt;
+            &lt;/div&gt;
+            ${ruleMarkup}
+            ${conclusionMarkup}
+          &lt;/section&gt;
+          &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;badge-topic-02&quot;&gt;
+            &lt;div class=&quot;select-topic-header&quot;&gt;
+              &lt;div class=&quot;select-topic-title&quot;&gt;&lt;span class=&quot;select-topic-index&quot;&gt;专题 02&lt;/span&gt;&lt;h4 id=&quot;badge-topic-02&quot;&gt;${badgeTopicNames[1]}&lt;/h4&gt;&lt;/div&gt;
+              &lt;span class=&quot;text-small text-muted&quot;&gt;${exampleItems.length} 张示例 · ${scenarios.length} 组场景&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-list&quot;&gt;${scenarioMarkup}&lt;/div&gt;
+          &lt;/section&gt;
+        `;
+
+        host.querySelectorAll(&#x27;[data-badge-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.badgeEvidenceIndex)]);
+          });
+        });
+      }
+
+      function renderTagTopics() {
+        const host = root.querySelector(&#x27;#tag-topic-board&#x27;);
+        const items = imageEvidenceByKey.tag || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          (groups[item.topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+        const ruleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;基础责任&#x27;, &#x27;Tag 用于简短分类、方向或提醒信息，不承担复杂状态说明&#x27;],
+            [&#x27;分类标签&#x27;, &#x27;同一分类体系使用同一颜色与同一描边样式&#x27;],
+            [&#x27;提醒标签&#x27;, &#x27;超时、超期统一使用红色提醒语义&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;方向语义&#x27;, &#x27;偏高使用红色，偏低使用蓝色&#x27;],
+            [&#x27;样式统一&#x27;, &#x27;偏高、偏低使用同一基础 Tag 样式，仅通过颜色表达方向差异&#x27;],
+            [&#x27;二元标签&#x27;, &#x27;字段只有两种互斥状态时，仅为需要强调的一种展示 Tag，普通状态不展示&#x27;],
+            [&#x27;组件边界&#x27;, &#x27;告警等级使用等级图形加文字；手动、自动等分类字段保留同色 Tag&#x27;]
+          ]
+        };
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const renderRules = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${tagTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(ruleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;tag-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;tag-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-tag-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        host.innerHTML = [&#x27;01&#x27;, &#x27;02&#x27;].map(topicId =&gt; {
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;tag-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;tag-topic-${topicId}&quot;&gt;${tagTopicNames[Number(topicId) - 1]}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${topicItems.length} 张证据 · ${scenarios.length} 组场景&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderRules(topicId)}
+              &lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-tag-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.tagEvidenceIndex)]);
+          });
+        });
+      }
+
+      function renderCheckboxTopics() {
+        const host = root.querySelector(&#x27;#checkbox-topic-board&#x27;);
+        const items = imageEvidenceByKey.checkbox || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          (groups[item.topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+        const checkboxRuleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;组件责任&#x27;, &#x27;表格行复选框统一使用 Checkbox 组件的行选择模式&#x27;],
+            [&#x27;覆盖场景&#x27;, &#x27;pid/名称/时间列的选择列，全选/反选/批量操作&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;nz-table + nz-checkbox；真实菜单调用点待逐项核验&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;组件形态&#x27;, &#x27;有层级关系的多选统一使用 TreeSelect 组件&#x27;],
+            [&#x27;覆盖场景&#x27;, &#x27;片区分组/东部城区/英集智慧供热等层级勾选&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;nz-tree-select；无层级关系的标签分组统一为标准 Select Multiple&#x27;]
+          ],
+          &#x27;03&#x27;: [
+            [&#x27;默认状态&#x27;, &#x27;Checkbox 默认状态统一为组件规范默认态，不得自定义初始状态&#x27;],
+            [&#x27;覆盖场景&#x27;, &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站）&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;nz-checkbox-group；默认值由业务数据驱动，组件只负责渲染与交互&#x27;]
+          ]
+        };
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const renderTopicRule = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${checkboxTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(checkboxRuleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;checkbox-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;checkbox-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-checkbox-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;状态 / 下一步&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;checkbox-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;checkbox-topic-${topicId}&quot;&gt;${checkboxTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${topicItems.length} 张证据 · ${scenarios.length} 组场景&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderTopicRule(topicId)}
+              &lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;
+              ${traceMarkup(issueItem)}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-checkbox-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.checkboxEvidenceIndex)]);
+          });
+        });
+      }
+
       function renderDetail() {
         root.querySelector(&#x27;#standard-governance-dossier&#x27;).hidden = selected.key !== &#x27;select&#x27;;
         root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
@@ -4632,12 +5473,24 @@ html&gt;body{padding:0}&lt;/style&gt;
         const isModal = selected.key === &#x27;modal&#x27;;
         const isStatistic = selected.key === &#x27;statistic&#x27;;
         const isTabs = selected.key === &#x27;tabs&#x27;;
+        const isRadio = selected.key === &#x27;radio&#x27;;
+        const isSegmented = selected.key === &#x27;segmented&#x27;;
+        const isSwitch = selected.key === &#x27;switch&#x27;;
+        const isBadge = selected.key === &#x27;badge&#x27;;
+        const isTag = selected.key === &#x27;tag&#x27;;
+        const isCheckbox = selected.key === &#x27;checkbox&#x27;;
         root.querySelector(&#x27;#select-topic-section&#x27;).hidden = !isSelect;
         root.querySelector(&#x27;#modal-topic-section&#x27;).hidden = !isModal;
         root.querySelector(&#x27;#statistic-topic-section&#x27;).hidden = !isStatistic;
         root.querySelector(&#x27;#tabs-topic-section&#x27;).hidden = !isTabs;
-        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs;
-        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs;
+        root.querySelector(&#x27;#radio-topic-section&#x27;).hidden = !isRadio;
+        root.querySelector(&#x27;#segmented-topic-section&#x27;).hidden = !isSegmented;
+        root.querySelector(&#x27;#switch-topic-section&#x27;).hidden = !isSwitch;
+        root.querySelector(&#x27;#badge-topic-section&#x27;).hidden = !isBadge;
+        root.querySelector(&#x27;#tag-topic-section&#x27;).hidden = !isTag;
+        root.querySelector(&#x27;#checkbox-topic-section&#x27;).hidden = !isCheckbox;
+        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs || isRadio || isSegmented || isSwitch || isBadge || isTag || isCheckbox;
+        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs || isRadio || isSegmented || isSwitch || isBadge || isTag || isCheckbox;
         if (isSelect) {
           renderSelectTopics();
         } else if (isModal) {
@@ -4646,12 +5499,24 @@ html&gt;body{padding:0}&lt;/style&gt;
           renderStatisticTopics();
         } else if (isTabs) {
           renderTabsTopics();
+        } else if (isRadio) {
+          renderRadioTopics();
+        } else if (isSegmented) {
+          renderSegmentedTopics();
+        } else if (isSwitch) {
+          renderSwitchTopics();
+        } else if (isBadge) {
+          renderBadgeTopics();
+        } else if (isTag) {
+          renderTagTopics();
+        } else if (isCheckbox) {
+          renderCheckboxTopics();
         } else {
           renderImageEvidence();
         }
 
         const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
-        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !selected.evidence.length) {
+        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !isRadio &amp;&amp; !isSegmented &amp;&amp; !isSwitch &amp;&amp; !isBadge &amp;&amp; !isTag &amp;&amp; !isCheckbox &amp;&amp; !selected.evidence.length) {
           issueHost.innerHTML = `
             &lt;tr&gt;
               &lt;td&gt;${selected.label}&lt;/td&gt;
@@ -4660,7 +5525,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
             &lt;/tr&gt;
           `;
-        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs) {
+        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !isRadio &amp;&amp; !isSegmented &amp;&amp; !isSwitch &amp;&amp; !isBadge &amp;&amp; !isTag &amp;&amp; !isCheckbox) {
           issueHost.innerHTML = selected.evidence.map(item =&gt; `
             &lt;tr&gt;
               &lt;td&gt;${item.page}&lt;/td&gt;
