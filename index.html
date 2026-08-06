@@ -1730,7 +1730,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       border-bottom: 1px solid var(--border);
     }
     #component-governance-dashboard #modal-topic-board .select-topic-group,
-    #component-governance-dashboard #select-topic-board .select-topic-group {
+    #component-governance-dashboard #select-topic-board .select-topic-group,
+    #component-governance-dashboard #statistic-topic-board .select-topic-group {
       padding-top: 26px;
     }
     #component-governance-dashboard .select-topic-header {
@@ -1741,7 +1742,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       margin-bottom: 12px;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-header,
-    #component-governance-dashboard #select-topic-board .select-topic-header {
+    #component-governance-dashboard #select-topic-board .select-topic-header,
+    #component-governance-dashboard #statistic-topic-board .select-topic-header {
       align-items: center;
       margin-bottom: 18px;
       padding: 12px 14px;
@@ -1767,12 +1769,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       font-weight: 500;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-title h4,
-    #component-governance-dashboard #select-topic-board .select-topic-title h4 {
+    #component-governance-dashboard #select-topic-board .select-topic-title h4,
+    #component-governance-dashboard #statistic-topic-board .select-topic-title h4 {
       font-size: calc(var(--font-size-h3) + 2px);
       font-weight: 600;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-title > .select-topic-index,
-    #component-governance-dashboard #select-topic-board .select-topic-title > .select-topic-index {
+    #component-governance-dashboard #select-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #statistic-topic-board .select-topic-title > .select-topic-index {
       padding: 3px 7px;
       color: var(--primary);
       border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
@@ -1792,6 +1796,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       gap: 18px;
     }
     #component-governance-dashboard #modal-topic-board .modal-scenario-list {
+      margin: 0 12px;
+      padding-left: 16px;
+      border-left: 2px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+    }
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-list {
       margin: 0 12px;
       padding-left: 16px;
       border-left: 2px solid color-mix(in srgb, var(--primary) 22%, var(--border));
@@ -1874,12 +1883,31 @@ html&gt;body{padding:0}&lt;/style&gt;
       padding-top: 18px;
       border-top: 1px solid var(--border);
     }
+    /* ⭐ 特殊场景样式 */
+    #component-governance-dashboard .special-scenario-group {
+      border-left: 3px solid #d4a017 !important;
+      padding-left: 12px;
+      margin-left: -3px;
+    }
+    #component-governance-dashboard .special-scenario-group .select-topic-index {
+      color: #d4a017;
+      border-color: #d4a017;
+      font-weight: 600;
+    }
+    #component-governance-dashboard .special-card {
+      border-color: #d4a017 !important;
+      box-shadow: 0 1px 4px rgba(212, 160, 23, 0.15) !important;
+    }
     #component-governance-dashboard .modal-scenario-header {
       display: flex;
       align-items: baseline;
       gap: 10px;
     }
     #component-governance-dashboard #modal-topic-board .modal-scenario-header {
+      min-height: 28px;
+      align-items: center;
+    }
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-header {
       min-height: 28px;
       align-items: center;
     }
@@ -1891,10 +1919,21 @@ html&gt;body{padding:0}&lt;/style&gt;
       background: var(--background);
       font-weight: 500;
     }
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-header .select-topic-index {
+      padding: 2px 6px;
+      color: var(--muted-foreground);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--background);
+      font-weight: 500;
+    }
     #component-governance-dashboard .modal-scenario-header strong {
       font-weight: 500;
     }
     #component-governance-dashboard #modal-topic-board .modal-scenario-header strong {
+      font-size: var(--font-size-small);
+    }
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-header strong {
       font-size: var(--font-size-small);
     }
     #component-governance-dashboard .modal-scenario-evidence {
@@ -2048,10 +2087,16 @@ html&gt;body{padding:0}&lt;/style&gt;
         display: grid;
       }
       #component-governance-dashboard #modal-topic-board .select-topic-header,
-      #component-governance-dashboard #select-topic-board .select-topic-header {
+      #component-governance-dashboard #select-topic-board .select-topic-header,
+      #component-governance-dashboard #statistic-topic-board .select-topic-header {
         align-items: start;
       }
       #component-governance-dashboard #modal-topic-board .modal-scenario-list {
+        margin-right: 0;
+        margin-left: 4px;
+        padding-left: 10px;
+      }
+      #component-governance-dashboard #statistic-topic-board .modal-scenario-list {
         margin-right: 0;
         margin-left: 4px;
         padding-left: 10px;
@@ -2576,6 +2621,14 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;select-topic-board&quot; id=&quot;modal-topic-board&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
+        &lt;section id=&quot;statistic-topic-section&quot; aria-label=&quot;Statistic 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Statistic 治理专题与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题连续查看问题、标准效果与代码路径&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;statistic-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
         &lt;section id=&quot;evidence-section&quot; aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
             &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
@@ -2886,21 +2939,11 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;范围数值输入&#x27;, &#x27;现有库缺少一级网使用的范围输入形态，需要新建组件。&#x27;, &#x27;已找到温度范围、跨日时间范围截图&#x27;, &#x27;新建并核验组件&#x27;)
         ],
         statistic: [
-          issue(&#x27;源网监测 → 源网分析&#x27;, &#x27;“今日尖峰负荷、当前网口单耗、今日投放热量”收敛为三个 Statistic Metric；图标、卡片背景和整行布局仍由页面 Card 承载。&#x27;, &#x27;BM01 已归档真实页面；state-monitor/monitor-source-net/monitor-source-net.component.html:38-48 已核验同域指标字段，顶部卡片代码入口待开发定位&#x27;, &#x27;定位顶部卡片模板后替换内部指标&#x27;),
-          issue(&#x27;热源监测 → 概况总览&#x27;, &#x27;“供温均值、瞬时流量”使用 Statistic Metric，单位放右侧；趋势箭头走 Comparison / Status，装饰图标不并入数值内容。&#x27;, &#x27;BM01 已归档真实页面；state-monitor/monitor-source/monitor-source.component.ts:264-285 已核验流量、供温指标，概况卡片入口待定位&#x27;, &#x27;开发协助复现真实入口并替换&#x27;),
-          issue(&#x27;各对象详情 → 基本信息&#x27;, &#x27;“额定总流量、单价、供热能力”属于对象属性信息，整条归 Info Summary Bar / Descriptions；不能因为数值加粗就全部纳入 Statistic。&#x27;, &#x27;civilian-shared/components/single-heatsource-manage/single-heatsource-manage.component.ts:342,354 已核验供热能力与额定总流量&#x27;, &#x27;从 Statistic 清单移出，按字段信息治理&#x27;),
-          issue(&#x27;气温模型 → 选择供热气温&#x27;, &#x27;平均温度、风速、湿度、预测热指标分别复用 Statistic Metric；横向分隔、图标和容器间距保留为 Info Summary Bar 页面组合。&#x27;, &#x27;command-dispatch/temp-plan/temp-plan.component.html:247,449 · temp-plan.component.ts:93,735，菜单动作与弹窗标题均已核验&#x27;, &#x27;代码替换内层数值，保留外层组合&#x27;),
-          issue(&#x27;室温监测&#x27;, &#x27;达标数、未达标数、最高/最低/平均温度使用 Statistic Metric；颜色映射到 Status，查看历史、点击详情等动作留在父级业务卡。&#x27;, &#x27;civilian-shared/components/single-station-manage/station-monitor-roomt/monitor-roomt-overview/monitor-roomt-overview.component.html:13-81，标题、数值、状态色、Tooltip 与点击入口均已核验&#x27;, &#x27;逐项替换指标并保持原业务动作&#x27;),
-          issue(&#x27;首页概览 → 今日看板&#x27;, &#x27;供暖天数、计划供热量、供热面积、实时供热量使用 Statistic Metric；同比/环比使用 Comparison，不把“今日看板”整块沉淀为基础组件。&#x27;, &#x27;shouye-overview/smart-monitor-page/components/today-kan-ban/today-kan-ban.component.html:17-33，供热面积、计划量、实时量已核验&#x27;, &#x27;替换四个内部指标，保留今日看板 Card&#x27;),
-          issue(&#x27;GIS → 对象看板 → 客服工单&#x27;, &#x27;不热工单量、不热面积占比、单位面积不热单量按三个 Statistic Metric 组合；整条对象看板不新增组件。&#x27;, &#x27;BM01 已归档真实页面截图；代码未命中文字，真实 GIS 菜单入口暂未复现&#x27;, &#x27;待开发提供菜单路径或组件文件&#x27;),
-          issue(&#x27;对象详情 → 调控检测&#x27;, &#x27;实测/目标温度、实测/预测负荷属于成组对比场景：内部数值可复用 Metric，四格布局不作为 Statistic 变体沉淀。&#x27;, &#x27;command-dispatch/realtime-control/realtime-control.component.html:85-105，四项指标标题已核验&#x27;, &#x27;保留对比布局，只统一内层数值&#x27;),
-          issue(&#x27;对象详情 → 大温差机组&#x27;, &#x27;当前工况与一次供温、一次回温、二次回温属于页面专用组合；内部数值复用 Metric，整组不沉淀新组件。&#x27;, &#x27;civilian-shared/components/single-station-manage/single-station-manage.component.ts:212,231,456 已核验三个温度字段；真实详情入口待复现&#x27;, &#x27;开发协助确认入口后替换内层数值&#x27;),
-          issue(&#x27;自定义监测&#x27;, &#x27;累计流量、电流、瞬时流量、热量、温度、压力等多指标仅在自定义看板组合；每项复用 Metric，整组保持业务配置能力。&#x27;, &#x27;shouye-overview/smart-monitor-page/intelligent-monitor.component.html:34 已核验“自定义监测模块”；具体动态配置来自运行数据&#x27;, &#x27;从配置渲染层接入统一 Metric&#x27;),
-          issue(&#x27;协同分析&#x27;, &#x27;含凉桥/不含凉桥两个占比使用 Metric；两列背景与分组属于页面布局，不新增“协同分析指标”基础组件。&#x27;, &#x27;BM01 已归档真实页面截图；代码未命中文字，菜单入口待开发定位&#x27;, &#x27;确认组件文件后替换两个百分比指标&#x27;),
-          issue(&#x27;告警列表 → 告警看板&#x27;, &#x27;衡量值与异常值使用 Statistic Metric；异常值通过 Status=Error 显示红色，业务告警逻辑与列表结构不进入 Statistic。&#x27;, &#x27;warning-management/warning-management/warning-card/warning-card.component.html:21-23 · warning-management.component.ts:83-89，字段与展示均已核验&#x27;, &#x27;替换数值与状态色，保留告警卡结构&#x27;),
-          issue(&#x27;GIS → 对象看板 → 调控信息&#x27;, &#x27;调控效果与持续异常时长使用两个 Statistic Metric；百分比、分钟单位和异常红色分别由 Unit、Status 控制。&#x27;, &#x27;BM01 已归档真实页面；operating-center/aiMannual-operate/configData.ts:346,983 已核验“调控效果”，GIS 对象看板入口仍待定位&#x27;, &#x27;开发提供 GIS 入口后完成两项替换&#x27;),
-          issue(&#x27;数据管理考核 → 数据诊断&#x27;, &#x27;总计、一次测、二次测使用三个 Statistic Metric；“数据诊断概览/异常记录”标题与整块容器仍由业务页面负责。&#x27;, &#x27;BM01 已归档真实页面截图；代码未命中界面文字，真实菜单入口暂未复现&#x27;, &#x27;待开发提供菜单路径或组件文件&#x27;),
-          issue(&#x27;区域管理 → 切换单详情&#x27;, &#x27;增加、减少、变化三个结果值使用 Metric；正负号与状态色按 Comparison / Status 输出，切换单字段信息继续使用 Descriptions。&#x27;, &#x27;command-dispatch/heatdistrict-management/heatdistrict-switch-bills-modal/heatdistrict-switch-bills-modal.component.html:49 已核验切换单详情载体；结果值代码入口待定位&#x27;, &#x27;在详情载体中拆分字段信息与结果指标&#x27;)
+          issue(&#x27;基础 Metric 结构与单位&#x27;, &#x27;一级网页面拼装 Statistic 时使用统一的 Metric 结构：标题使用对象或指标名，主值放中心，单位放右侧；横向、纵向、等宽组合由外层容器负责，装饰图标和卡片背景不进入 Metric。nz-statistic 是数值型基础组件，不替代 Card / Tabs / Descriptions。&#x27;, &#x27;BM01 已归档 3 个真实页面；state-monitor/monitor-source-net/monitor-source-net.component.html:38-48；state-monitor/monitor-source/monitor-source.component.ts:264-285；command-dispatch/temp-plan/temp-plan.component.html:247,449 · temp-plan.component.ts:93,735&#x27;, &#x27;按 Title + Value + Unit 替换页面自拼指标，保留外层 Card 与横向容器&#x27;),
+          issue(&#x27;状态色与趋势对比&#x27;, &#x27;衡量值、异常值与对比值使用 Metric 的 Status / Comparison 通道：状态色通过 Status=Success / Warning / Error 表达，正负方向与百分比通过 Comparison 表达，颜色不能替代文本含义。基础组件不沉淀业务告警逻辑，告警通知仍由业务组件承载。&#x27;, &#x27;civilian-shared/components/single-station-manage/station-monitor-roomt/monitor-roomt-overview/monitor-roomt-overview.component.html:13-81；shouye-overview/smart-monitor-page/components/today-kan-ban/today-kan-ban.component.html:17-33；warning-management/warning-management/warning-card/warning-card.component.html:21-23 · warning-management.component.ts:83-89；operating-center/aiMannual-operate/configData.ts:346,983&#x27;, &#x27;替换状态色与 Comparison，保留告警卡业务结构与列表逻辑&#x27;),
+          issue(&#x27;与 Descriptions / 字段信息边界&#x27;, &#x27;对象属性、单值字段与所属关系归 Descriptions / Info Summary Bar；只有实时计算结果、可视化数值或可对比的指标才进入 Statistic Metric。判定要点是字段是否需要承载额外说明，而不是数值是否加粗。⭐特殊场景：区域管理切换单/设备性能排名的字段型信息（对象属性、单号、名称、状态、申请人）整条归 Descriptions；泄漏诊断由 Info Summary Bar 负责横向布局，单元复用 Description Item 或 Metric。&#x27;, &#x27;civilian-shared/components/single-heatsource-manage/single-heatsource-manage.component.ts:342,354；command-dispatch/heatdistrict-management/heatdistrict-switch-bills-modal/heatdistrict-switch-bills-modal.component.html:49&#x27;, &#x27;从 Statistic 清单移出对象属性，按字段信息治理；在切换单详情中拆分字段信息与结果指标；特殊场景按字段归位规则处理&#x27;),
+          issue(&#x27;与业务卡片 / 页面容器边界&#x27;, &#x27;业务看板、对象看板与诊断概览整块不沉淀为基础组件；Statistic 只替换卡片内的指标数值，标题、分组、选中态、Tab 和整组布局仍由业务页面负责。Metric 与业务配置能力各司其职，自定义看板保留动态列配置。⭐特殊场景：储热装置详情弹框/负荷预测存在 2 组数据对比，不沉淀新组件；能耗考核总览为 Info Summary Bar 组合（含二级标签），可拼装但不沉淀为组件。&#x27;, &#x27;BM01 已归档 4 类对象看板 / 自定义监测 / 数据诊断截图；shouye-overview/smart-monitor-page/intelligent-monitor.component.html:34；operating-center/aiMannual-operate/configData.ts:346,983&#x27;, &#x27;进入真实页面入口后逐项替换 Metric；自定义看板从配置渲染层接入统一 Metric；特殊场景保持业务容器承载，不沉淀组件&#x27;),
+          issue(&#x27;多列 / 矩阵组合复用&#x27;, &#x27;2×2 指标矩阵、多列温度、两列百分比等组合复用 Metric；外层等宽、分隔、背景由页面容器承担，Statistic 不沉淀新变体。整组保持业务可配置能力，Metric 只承担数值、单位与状态。⭐特殊场景：大温差驾驶舱/数据看板调控信息为多组数据组合，仅此处用到，不作为组件沉淀，每组内数值复用 Metric 即可。&#x27;, &#x27;command-dispatch/realtime-control/realtime-control.component.html:85-105；civilian-shared/components/single-station-manage/single-station-manage.component.ts:212,231,456；BM01 已归档协同分析截图&#x27;, &#x27;保留对比与多列布局，只统一内层 Metric；后续如有新组合仍走 Metric 复用；特殊场景不沉淀新组件&#x27;)
         ],
         list: [
           issue(&#x27;一级网列表&#x27;, &#x27;使用数量多、结构差异大，需要先归类再确定治理规则。&#x27;, &#x27;BM01 页面 29288:5361&#x27;, &#x27;专项整理&#x27;)
@@ -3076,21 +3119,45 @@ html&gt;body{padding:0}&lt;/style&gt;
           { topicId: &#x27;05&#x27;, scenarioId: &#x27;13&#x27;, scene: &#x27;调控设置 → 复核其他站点&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/13-调控设置-复核其他站点-当前问题.png&#x27;, title: &#x27;当前问题：复核其他站点&#x27;, note: &#x27;多区域批量复核任务的宽度、高度和滚动层级需要统一到 Workspace 规则。&#x27; }
         ],
         statistic: [
-          { src: &#x27;evidence-assets/statistic-01-source-analysis.png&#x27;, title: &#x27;源网监测 → 源网分析&#x27;, note: &#x27;指标卡片包含图标、主值、单位和同比信息，应沉淀 Metric 而非整卡复制。&#x27; },
-          { src: &#x27;evidence-assets/statistic-02-heat-overview.png&#x27;, title: &#x27;热源监测 → 概况总览&#x27;, note: &#x27;纵向指标组合需要统一标题、数值、单位和状态变化表达。&#x27; },
-          { src: &#x27;evidence-assets/statistic-03-object-info.png&#x27;, title: &#x27;各对象详情 → 基本信息&#x27;, note: &#x27;额定流量、单价、供热能力属于指标；对象名称和所属关系应归入 Descriptions。&#x27; },
-          { src: &#x27;evidence-assets/statistic-04-temperature-model.png&#x27;, title: &#x27;气温模型 → 选择供热气温&#x27;, note: &#x27;横向指标条复用 Metric，外层背景与分隔由容器负责。&#x27; },
-          { src: &#x27;evidence-assets/statistic-05-room-monitor.png&#x27;, title: &#x27;室温监测&#x27;, note: &#x27;达标、最高、最低和平均温度共享同一指标结构，状态色不能替代文本含义。&#x27; },
-          { src: &#x27;evidence-assets/statistic-06-today-board.png&#x27;, title: &#x27;首页概览 → 今日看板&#x27;, note: &#x27;供暖面积与实时供热量带趋势比较，需统一增减方向和颜色语义。&#x27; },
-          { src: &#x27;evidence-assets/statistic-07-service-order.png&#x27;, title: &#x27;GIS → 对象看板 → 客服工单&#x27;, note: &#x27;三个重点数值可复用 Metric，整块仍属于业务看板组合。&#x27; },
-          { src: &#x27;evidence-assets/statistic-08-control-detection.png&#x27;, title: &#x27;对象详情 → 调控检测&#x27;, note: &#x27;2×2 指标矩阵需要统一无数据占位、单位和数值对齐。&#x27; },
-          { src: &#x27;evidence-assets/statistic-09-temperature-unit.png&#x27;, title: &#x27;对象详情 → 大温差机组&#x27;, note: &#x27;当前工况中的多项温度应按等宽指标组管理。&#x27; },
-          { src: &#x27;evidence-assets/statistic-10-custom-monitor.png&#x27;, title: &#x27;自定义监测&#x27;, note: &#x27;多列指标使用统一标题、主值和单位，不把整张业务面板沉淀为基础组件。&#x27; },
-          { src: &#x27;evidence-assets/statistic-11-collaboration.png&#x27;, title: &#x27;协同分析&#x27;, note: &#x27;同一口径的两个百分比指标应共享 Metric 并保持对齐。&#x27; },
-          { src: &#x27;evidence-assets/statistic-12-warning-board.png&#x27;, title: &#x27;告警列表 → 告警看板&#x27;, note: &#x27;异常值需同时使用语义颜色和明确状态，不只依赖红色。&#x27; },
-          { src: &#x27;evidence-assets/statistic-13-control-info.png&#x27;, title: &#x27;GIS → 对象看板 → 调控信息&#x27;, note: &#x27;调控效果与持续异常时长是并列指标，需统一字号和分隔。&#x27; },
-          { src: &#x27;evidence-assets/statistic-14-data-diagnosis.png&#x27;, title: &#x27;数据管理考核 → 数据诊断&#x27;, note: &#x27;总计、一次侧、二次侧构成指标组，选中态属于容器交互。&#x27; },
-          { src: &#x27;evidence-assets/statistic-15-switch-detail.png&#x27;, title: &#x27;区域管理 → 切换单详情&#x27;, note: &#x27;增加、减少、变化为对比型指标，正负号和单位格式需要统一。&#x27; }
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;源网监测 → 源网分析&#x27;, src: &#x27;evidence-assets/statistic/01-源网监测-源网分析-当前问题.png&#x27;, title: &#x27;当前问题：源网分析指标&#x27;, note: &#x27;图标、主值、单位和同比信息混在卡片中，应沉淀 Metric 而非整卡复制。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;源网监测 → 源网分析&#x27;, src: &#x27;evidence-assets/statistic/01-源网监测-源网分析-标准答案.png&#x27;, title: &#x27;标准效果：统一 Metric 结构&#x27;, note: &#x27;标题 + 主值 + 单位三段式，外层 Card 承载布局与背景。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;热源监测 → 概况总览&#x27;, src: &#x27;evidence-assets/statistic/02-热源监测-概况总览-当前问题.png&#x27;, title: &#x27;当前问题：热源概况指标&#x27;, note: &#x27;纵向指标组合缺少统一标题、数值、单位和状态变化表达。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;热源监测 → 概况总览&#x27;, src: &#x27;evidence-assets/statistic/02-热源监测-概况总览-标准答案.png&#x27;, title: &#x27;标准效果：Metric + 单位右侧&#x27;, note: &#x27;供温均值、瞬时流量使用 Metric，单位放右侧。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;气温模型 → 选择供热气温&#x27;, src: &#x27;evidence-assets/statistic/04-气温模型-选择供热气温-当前问题.png&#x27;, title: &#x27;当前问题：气温模型指标&#x27;, note: &#x27;横向指标条缺少统一 Metric 结构，分隔与图标混入数值。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;气温模型 → 选择供热气温&#x27;, src: &#x27;evidence-assets/statistic/04-气温模型-选择供热气温-标准答案.png&#x27;, title: &#x27;标准效果：Metric 复用&#x27;, note: &#x27;平均温度、风速等复用 Metric，外层分隔由容器负责。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;室温监测&#x27;, src: &#x27;evidence-assets/statistic/05-室温监测-当前问题.png&#x27;, title: &#x27;当前问题：室温监测指标&#x27;, note: &#x27;达标、最高、最低和平均温度状态色不统一，颜色替代了文本含义。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;室温监测&#x27;, src: &#x27;evidence-assets/statistic/05-室温监测-当前问题-1.png&#x27;, title: &#x27;当前问题：室温监测详情&#x27;, note: &#x27;查看历史、点击详情等动作混入指标区域。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;首页概览 → 今日看板&#x27;, src: &#x27;evidence-assets/statistic/06-首页概览-当前问题.png&#x27;, title: &#x27;当前问题：今日看板趋势&#x27;, note: &#x27;供暖面积与实时供热量趋势比较方向和颜色语义不统一。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;首页概览 → 今日看板&#x27;, src: &#x27;evidence-assets/statistic/06-首页概览-标准答案.png&#x27;, title: &#x27;标准效果：Comparison 通道&#x27;, note: &#x27;同比/环比统一使用 Comparison，增减方向与颜色语义一致。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;告警列表 → 告警看板&#x27;, src: &#x27;evidence-assets/statistic/12-告警列表-告警看板-当前问题.png&#x27;, title: &#x27;当前问题：告警看板状态&#x27;, note: &#x27;异常值只依赖红色，缺少明确状态语义。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;告警列表 → 告警看板&#x27;, src: &#x27;evidence-assets/statistic/12-告警列表-告警看板-标准答案.png&#x27;, title: &#x27;标准效果：Status 通道&#x27;, note: &#x27;异常值通过 Status=Error 显示红色，衡量值使用对应状态色。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;GIS → 对象看板 → 调控信息&#x27;, src: &#x27;evidence-assets/statistic/13-gis-对象看板-调控信息-当前问题.png&#x27;, title: &#x27;当前问题：调控信息指标&#x27;, note: &#x27;调控效果与持续异常时长字号和分隔不统一。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;GIS → 对象看板 → 调控信息&#x27;, src: &#x27;evidence-assets/statistic/13-gis-对象看板-调控信息-标准答案.png&#x27;, title: &#x27;标准效果：Metric 并列&#x27;, note: &#x27;调控效果与持续异常时长按并列 Metric 输出，异常红色由 Status 控制。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站详情 → 基本信息&#x27;, src: &#x27;evidence-assets/statistic/03-热力站详情-基本信息-当前问题.png&#x27;, title: &#x27;当前问题：对象属性误入 Statistic&#x27;, note: &#x27;额定流量、单价、供热能力被当作指标，对象名称和所属关系未归入 Descriptions。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站详情 → 基本信息&#x27;, src: &#x27;evidence-assets/statistic/03-热力站详情-基本信息-标准答案.png&#x27;, title: &#x27;标准效果：字段信息与指标拆分&#x27;, note: &#x27;对象属性归 Descriptions，只有实时计算结果才进入 Statistic Metric。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;区域管理 → 切换单详情&#x27;, src: &#x27;evidence-assets/statistic/15-区域管理-切换单详情-当前问题.png&#x27;, title: &#x27;当前问题：切换单结果值&#x27;, note: &#x27;增加、减少、变化结果值的正负号和单位格式不统一。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;区域管理 → 切换单详情&#x27;, src: &#x27;evidence-assets/statistic/15-区域管理-切换单详情-标准答案.png&#x27;, title: &#x27;标准效果：Comparison + Descriptions&#x27;, note: &#x27;结果值用 Metric + Comparison/Status，字段信息继续使用 Descriptions。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;GIS → 热力站看板 → 客服工单&#x27;, src: &#x27;evidence-assets/statistic/07-gis-热力站看板-客服工单-当前问题.png&#x27;, title: &#x27;当前问题：客服工单看板&#x27;, note: &#x27;三个重点数值缺少统一 Metric，整块看板被当作基础组件。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;GIS → 热力站看板 → 客服工单&#x27;, src: &#x27;evidence-assets/statistic/07-gis-热力站看板-客服工单-标准答案.png&#x27;, title: &#x27;标准效果：Metric 替换数值&#x27;, note: &#x27;不热工单量等按 Metric 组合，整条看板仍属业务页面。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;自定义监测&#x27;, src: &#x27;evidence-assets/statistic/10-自定义监测-当前问题.png&#x27;, title: &#x27;当前问题：自定义监测指标&#x27;, note: &#x27;多列指标缺少统一标题、主值和单位，整张面板被当作基础组件。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;自定义监测&#x27;, src: &#x27;evidence-assets/statistic/10-自定义监测-标准答案.png&#x27;, title: &#x27;标准效果：Metric + 业务配置&#x27;, note: &#x27;每项复用 Metric，整组保持业务配置能力。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;协同分析&#x27;, src: &#x27;evidence-assets/statistic/11-协同分析-当前问题.png&#x27;, title: &#x27;当前问题：协同分析占比&#x27;, note: &#x27;两个百分比指标缺少对齐和共享 Metric 结构。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;协同分析&#x27;, src: &#x27;evidence-assets/statistic/11-协同分析-标准答案.png&#x27;, title: &#x27;标准效果：Metric 共享&#x27;, note: &#x27;同一口径的两个百分比共享 Metric 并保持对齐。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;数据管理考核 → 数据诊断&#x27;, src: &#x27;evidence-assets/statistic/14-数据管理考核-数据诊断-当前问题.png&#x27;, title: &#x27;当前问题：数据诊断指标&#x27;, note: &#x27;总计、一次侧、二次侧指标组缺少统一 Metric，选中态混入指标。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;数据管理考核 → 数据诊断&#x27;, src: &#x27;evidence-assets/statistic/14-数据管理考核-数据诊断-标准答案.png&#x27;, title: &#x27;标准效果：Metric 组合&#x27;, note: &#x27;三个 Metric 组合，选中态属于容器交互。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;对象详情 → 调控监测&#x27;, src: &#x27;evidence-assets/statistic/08-对象详情-调控监测-当前问题.png&#x27;, title: &#x27;当前问题：2×2 指标矩阵&#x27;, note: &#x27;实测/目标温度、实测/预测负荷四格缺少统一无数据占位、单位和数值对齐。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;对象详情 → 调控监测&#x27;, src: &#x27;evidence-assets/statistic/08-对象详情-调控监测-标准答案.png&#x27;, title: &#x27;标准效果：Metric 矩阵复用&#x27;, note: &#x27;内部数值复用 Metric，四格布局不作为 Statistic 变体沉淀。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;对象详情 → 大温差机组&#x27;, src: &#x27;evidence-assets/statistic/09-对象详情-大温差机组-当前问题.png&#x27;, title: &#x27;当前问题：多列温度组合&#x27;, note: &#x27;一次供温、一次回温、二次回温等缺少等宽指标组管理。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;对象详情 → 大温差机组&#x27;, src: &#x27;evidence-assets/statistic/09-对象详情-大温差机组-标准答案.png&#x27;, title: &#x27;标准效果：等宽 Metric 组合&#x27;, note: &#x27;多列温度按等宽 Metric 组合，外层分隔由容器负责。&#x27; },
+          // ===== 特殊处理场景（⭐） =====
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;S1&#x27;, scene: &#x27;储热装置的详情弹框-基本信息&#x27;, src: &#x27;evidence-assets/statistic/01-1储热装置的的详情弹框-基本信息.png&#x27;, title: &#x27;【特殊处理】储热装置详情：2组对比&#x27;, note: &#x27;【特殊处理】存在 2 组数据对比，不沉淀组件。内部数值可复用 Metric，整块不新增 Statistic 变体。&#x27;, isSpecial: true },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;S1&#x27;, scene: &#x27;负荷预测-热力站&#x27;, src: &#x27;evidence-assets/statistic/01-2负荷预测-热力站.png&#x27;, title: &#x27;【特殊处理】负荷预测：2组对比&#x27;, note: &#x27;【特殊处理】存在 2 组数据对比，不沉淀组件。预测值与实际值的成对对比由页面容器承载。&#x27;, isSpecial: true },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;S2&#x27;, scene: &#x27;数据看板-大温差驾驶舱&#x27;, src: &#x27;evidence-assets/statistic/01-3数据看板-大温差驾驶舱.png&#x27;, title: &#x27;【特殊处理】大温差驾驶舱：多组组合&#x27;, note: &#x27;【特殊处理】多组数据组合，仅此处用到，不作为组件沉淀。整组保持业务可配置能力。&#x27;, isSpecial: true },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;S3&#x27;, scene: &#x27;区域管理-查看区域切换单&#x27;, src: &#x27;evidence-assets/statistic/02-1区域管理-查看区域切换单.png&#x27;, title: &#x27;【特殊处理】区域切换单：字段归 Descriptions&#x27;, note: &#x27;【特殊处理】字段型业务信息不进入 Statistic。对象属性、单号、名称、状态、所属关系、申请人等归入 Descriptions。&#x27;, isSpecial: true },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;S3&#x27;, scene: &#x27;设备性能排名-水泵-详情&#x27;, src: &#x27;evidence-assets/statistic/02-2设备性能排名-水泵-详情.png&#x27;, title: &#x27;【特殊处理】设备性能排名：字段归 Descriptions&#x27;, note: &#x27;【特殊处理】字段型业务信息不进入 Statistic。设备属性与性能参数归 Descriptions，只有实时计算结果才进 Metric。&#x27;, isSpecial: true },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;S4&#x27;, scene: &#x27;安全管理-泄漏诊断&#x27;, src: &#x27;evidence-assets/statistic/03-安全管理-泄漏诊断.png&#x27;, title: &#x27;【特殊处理】泄漏诊断：Info Summary Bar 单元复用&#x27;, note: &#x27;【特殊处理】Info Summary Bar 负责横向布局、分隔线、间距、背景；单元复用 Description Item 或 Statistic Metric。&#x27;, isSpecial: true },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;S5&#x27;, scene: &#x27;能耗考核-总览&#x27;, src: &#x27;evidence-assets/statistic/04-能耗考核-总览.png&#x27;, title: &#x27;【特殊处理】能耗考核：Info Summary Bar 组合&#x27;, note: &#x27;【特殊处理】Info Summary Bar 组合，含二级标签（“热单耗/实际”和“用热量/实际”），可组合拼起来，不沉淀为组件。&#x27;, isSpecial: true },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;S6&#x27;, scene: &#x27;数据看板-调控信息&#x27;, src: &#x27;evidence-assets/statistic/05-数据看板-调控信息.png&#x27;, title: &#x27;【特殊处理】调控信息：多组数据组合&#x27;, note: &#x27;【特殊处理】多组数据组合，仅此处用到，不作为组件沉淀。每组内数值复用 Metric，外层布局由业务页面负责。&#x27;, isSpecial: true }
         ],
         select: [
           { src: &#x27;evidence-assets/select/select-01-checkbox-current.png&#x27;, title: &#x27;01 当前问题：checkbox-style Select&#x27;, note: &#x27;热力站监测标签分组筛选混用了复选框式交互，组件边界与标准 Select 不一致。&#x27; },
@@ -3871,6 +3938,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;Large 大型弹框与 Workspace 工作区弹框&#x27;
       ];
 
+      const statisticTopicNames = [
+        &#x27;基础 Metric 结构与单位&#x27;,
+        &#x27;状态色与趋势对比&#x27;,
+        &#x27;与 Descriptions / 字段信息边界&#x27;,
+        &#x27;与业务卡片 / 页面容器边界&#x27;,
+        &#x27;多列 / 矩阵组合复用&#x27;
+      ];
+
       function renderSelectTopics() {
         const host = root.querySelector(&#x27;#select-topic-board&#x27;);
         const items = imageEvidenceByKey.select || [];
@@ -4143,6 +4218,176 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
       }
 
+      function renderStatisticTopics() {
+        const host = root.querySelector(&#x27;#statistic-topic-board&#x27;);
+        const items = imageEvidenceByKey.statistic || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          const topicId = item.topicId || &#x27;01&#x27;;
+          (groups[topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; {
+          const isSpecial = scenario.items.some(item =&gt; item.isSpecial);
+          return `
+          &lt;section class=&quot;modal-scenario-group${isSpecial ? &#x27; special-scenario-group&#x27; : &#x27;&#x27;}&quot; aria-labelledby=&quot;statistic-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}${isSpecial ? &#x27; ⭐&#x27; : &#x27;&#x27;}&lt;/span&gt;
+              &lt;strong id=&quot;statistic-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card${item.isSpecial ? &#x27; special-card&#x27; : &#x27;&#x27;}&quot; data-statistic-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;`;
+        }).join(&#x27;&#x27;);
+
+        const renderTopicRule = topicId =&gt; topicId === &#x27;01&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;基础 Metric 结构与单位&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;统一规格&lt;/span&gt;
+              &lt;strong&gt;Title + Value + Unit&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;适用内容&lt;/span&gt;
+              &lt;span&gt;实时计算结果、可视化数值、可对比指标。标题使用对象或指标名，主值放中心，单位放右侧。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;组件边界&lt;/span&gt;
+              &lt;span&gt;横向、纵向、等宽组合由外层容器负责；装饰图标和卡片背景不进入 Metric。不替代 Card / Tabs / Descriptions。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;02&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;状态色与趋势对比&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
+              &lt;strong&gt;数值是否需要表达状态或趋势？&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Status&lt;/span&gt;
+              &lt;span&gt;Success / Warning / Error 表达状态色，颜色不能替代文本含义。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Comparison&lt;/span&gt;
+              &lt;span&gt;正负方向与百分比表达趋势；业务告警逻辑与列表结构不进入 Statistic。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;03&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;与 Descriptions / 字段信息边界&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
+              &lt;strong&gt;字段是否需要承载额外说明？&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Statistic Metric&lt;/span&gt;
+              &lt;span&gt;实时计算结果、可视化数值、可对比的指标。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Descriptions&lt;/span&gt;
+              &lt;span&gt;对象属性、单值字段、所属关系；不能因为数值加粗就全部纳入 Statistic。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;04&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;与业务卡片 / 页面容器边界&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
+              &lt;strong&gt;整块看板是否需要沉淀为基础组件？&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Statistic&lt;/span&gt;
+              &lt;span&gt;只替换卡片内的指标数值，不沉淀整块看板。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;业务页面&lt;/span&gt;
+              &lt;span&gt;标题、分组、选中态、Tab 和整组布局仍由业务页面负责；自定义看板保留动态列配置。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;05&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;多列 / 矩阵组合复用&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
+              &lt;strong&gt;多列指标是否需要新建变体？&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Metric 复用&lt;/span&gt;
+              &lt;span&gt;2×2 指标矩阵、多列温度、两列百分比等组合复用 Metric，不沉淀新变体。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;容器承担&lt;/span&gt;
+              &lt;span&gt;外层等宽、分隔、背景由页面容器负责；Metric 只承担数值、单位与状态。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : &#x27;&#x27;;
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;下一步&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          const evidenceMarkup = topicItems.length
+            ? `${renderTopicRule(topicId)}&lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;`
+            : `&lt;div class=&quot;evidence-empty text-small&quot;&gt;该专题暂无图片证据，既有代码定位与治理结论已保留。&lt;/div&gt;`;
+          const evidenceCount = topicItems.length ? `${topicItems.length} 张证据 · ${scenarios.length} 组场景` : &#x27;图片待补&#x27;;
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;statistic-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;statistic-topic-${topicId}&quot;&gt;${statisticTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${evidenceCount}&lt;/span&gt;
+              &lt;/div&gt;
+              ${evidenceMarkup}
+              ${traceMarkup(issueItem)}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-statistic-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.statisticEvidenceIndex)]);
+          });
+        });
+      }
+
       function renderDetail() {
         root.querySelector(&#x27;#standard-governance-dossier&#x27;).hidden = selected.key !== &#x27;select&#x27;;
         root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
@@ -4171,20 +4416,24 @@ html&gt;body{padding:0}&lt;/style&gt;
         renderOutput();
         const isSelect = selected.key === &#x27;select&#x27;;
         const isModal = selected.key === &#x27;modal&#x27;;
+        const isStatistic = selected.key === &#x27;statistic&#x27;;
         root.querySelector(&#x27;#select-topic-section&#x27;).hidden = !isSelect;
         root.querySelector(&#x27;#modal-topic-section&#x27;).hidden = !isModal;
-        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal;
-        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal;
+        root.querySelector(&#x27;#statistic-topic-section&#x27;).hidden = !isStatistic;
+        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic;
+        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic;
         if (isSelect) {
           renderSelectTopics();
         } else if (isModal) {
           renderModalConfirmationTopic();
+        } else if (isStatistic) {
+          renderStatisticTopics();
         } else {
           renderImageEvidence();
         }
 
         const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
-        if (!isSelect &amp;&amp; !isModal &amp;&amp; !selected.evidence.length) {
+        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !selected.evidence.length) {
           issueHost.innerHTML = `
             &lt;tr&gt;
               &lt;td&gt;${selected.label}&lt;/td&gt;
@@ -4193,7 +4442,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
             &lt;/tr&gt;
           `;
-        } else if (!isSelect &amp;&amp; !isModal) {
+        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic) {
           issueHost.innerHTML = selected.evidence.map(item =&gt; `
             &lt;tr&gt;
               &lt;td&gt;${item.page}&lt;/td&gt;
