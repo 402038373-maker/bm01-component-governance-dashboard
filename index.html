@@ -1731,7 +1731,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-group,
     #component-governance-dashboard #select-topic-board .select-topic-group,
-    #component-governance-dashboard #statistic-topic-board .select-topic-group {
+    #component-governance-dashboard #statistic-topic-board .select-topic-group,
+    #component-governance-dashboard #tabs-topic-board .select-topic-group {
       padding-top: 26px;
     }
     #component-governance-dashboard .select-topic-header {
@@ -1743,7 +1744,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-header,
     #component-governance-dashboard #select-topic-board .select-topic-header,
-    #component-governance-dashboard #statistic-topic-board .select-topic-header {
+    #component-governance-dashboard #statistic-topic-board .select-topic-header,
+    #component-governance-dashboard #tabs-topic-board .select-topic-header {
       align-items: center;
       margin-bottom: 18px;
       padding: 12px 14px;
@@ -1770,13 +1772,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-title h4,
     #component-governance-dashboard #select-topic-board .select-topic-title h4,
-    #component-governance-dashboard #statistic-topic-board .select-topic-title h4 {
+    #component-governance-dashboard #statistic-topic-board .select-topic-title h4,
+    #component-governance-dashboard #tabs-topic-board .select-topic-title h4 {
       font-size: calc(var(--font-size-h3) + 2px);
       font-weight: 600;
     }
     #component-governance-dashboard #modal-topic-board .select-topic-title > .select-topic-index,
     #component-governance-dashboard #select-topic-board .select-topic-title > .select-topic-index,
-    #component-governance-dashboard #statistic-topic-board .select-topic-title > .select-topic-index {
+    #component-governance-dashboard #statistic-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #tabs-topic-board .select-topic-title > .select-topic-index {
       padding: 3px 7px;
       color: var(--primary);
       border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
@@ -1795,22 +1799,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       display: grid;
       gap: 18px;
     }
-    #component-governance-dashboard #modal-topic-board .modal-scenario-list {
-      margin: 0 12px;
-      padding-left: 16px;
-      border-left: 2px solid color-mix(in srgb, var(--primary) 22%, var(--border));
-    }
-    #component-governance-dashboard #statistic-topic-board .modal-scenario-list {
-      margin: 0 12px;
-      padding-left: 16px;
-      border-left: 2px solid color-mix(in srgb, var(--primary) 22%, var(--border));
-    }
     #component-governance-dashboard .modal-topic-rule {
       display: grid;
       grid-template-columns: minmax(180px, .8fr) minmax(240px, 1.1fr) minmax(320px, 1.5fr);
       margin-bottom: 18px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
       background: color-mix(in srgb, var(--primary) 4%, transparent);
     }
     #component-governance-dashboard .modal-topic-rule-item {
@@ -1914,23 +1908,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       align-items: baseline;
       gap: 10px;
     }
-    #component-governance-dashboard #modal-topic-board .modal-scenario-header {
+    #component-governance-dashboard #modal-topic-board .modal-scenario-header,
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-header,
+    #component-governance-dashboard #tabs-topic-board .modal-scenario-header {
       min-height: 28px;
       align-items: center;
     }
-    #component-governance-dashboard #statistic-topic-board .modal-scenario-header {
-      min-height: 28px;
-      align-items: center;
-    }
-    #component-governance-dashboard #modal-topic-board .modal-scenario-header .select-topic-index {
-      padding: 2px 6px;
-      color: var(--muted-foreground);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      background: var(--background);
-      font-weight: 500;
-    }
-    #component-governance-dashboard #statistic-topic-board .modal-scenario-header .select-topic-index {
+    #component-governance-dashboard #modal-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #tabs-topic-board .modal-scenario-header .select-topic-index {
       padding: 2px 6px;
       color: var(--muted-foreground);
       border: 1px solid var(--border);
@@ -1941,10 +1927,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard .modal-scenario-header strong {
       font-weight: 500;
     }
-    #component-governance-dashboard #modal-topic-board .modal-scenario-header strong {
-      font-size: var(--font-size-small);
-    }
-    #component-governance-dashboard #statistic-topic-board .modal-scenario-header strong {
+    #component-governance-dashboard #modal-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #statistic-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #tabs-topic-board .modal-scenario-header strong {
       font-size: var(--font-size-small);
     }
     #component-governance-dashboard .modal-scenario-evidence {
@@ -2099,18 +2084,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
       #component-governance-dashboard #modal-topic-board .select-topic-header,
       #component-governance-dashboard #select-topic-board .select-topic-header,
-      #component-governance-dashboard #statistic-topic-board .select-topic-header {
+      #component-governance-dashboard #statistic-topic-board .select-topic-header,
+      #component-governance-dashboard #tabs-topic-board .select-topic-header {
         align-items: start;
-      }
-      #component-governance-dashboard #modal-topic-board .modal-scenario-list {
-        margin-right: 0;
-        margin-left: 4px;
-        padding-left: 10px;
-      }
-      #component-governance-dashboard #statistic-topic-board .modal-scenario-list {
-        margin-right: 0;
-        margin-left: 4px;
-        padding-left: 10px;
       }
       #component-governance-dashboard .select-topic-evidence,
       #component-governance-dashboard .select-topic-evidence.is-pair,
