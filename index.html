@@ -1729,12 +1729,24 @@ html&gt;body{padding:0}&lt;/style&gt;
       padding: 20px 0 24px;
       border-bottom: 1px solid var(--border);
     }
+    #component-governance-dashboard #modal-topic-board .select-topic-group,
+    #component-governance-dashboard #select-topic-board .select-topic-group {
+      padding-top: 26px;
+    }
     #component-governance-dashboard .select-topic-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 12px;
+    }
+    #component-governance-dashboard #modal-topic-board .select-topic-header,
+    #component-governance-dashboard #select-topic-board .select-topic-header {
+      align-items: center;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--primary);
+      background: color-mix(in srgb, var(--primary) 8%, transparent);
     }
     #component-governance-dashboard .select-topic-title {
       min-width: 0;
@@ -1754,6 +1766,19 @@ html&gt;body{padding:0}&lt;/style&gt;
       font-size: var(--font-size-h3);
       font-weight: 500;
     }
+    #component-governance-dashboard #modal-topic-board .select-topic-title h4,
+    #component-governance-dashboard #select-topic-board .select-topic-title h4 {
+      font-size: calc(var(--font-size-h3) + 2px);
+      font-weight: 600;
+    }
+    #component-governance-dashboard #modal-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #select-topic-board .select-topic-title > .select-topic-index {
+      padding: 3px 7px;
+      color: var(--primary);
+      border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
     #component-governance-dashboard .select-topic-evidence {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1761,6 +1786,124 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #component-governance-dashboard .select-topic-evidence.is-pair {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    #component-governance-dashboard .modal-scenario-list {
+      display: grid;
+      gap: 18px;
+    }
+    #component-governance-dashboard #modal-topic-board .modal-scenario-list {
+      margin: 0 12px;
+      padding-left: 16px;
+      border-left: 2px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+    }
+    #component-governance-dashboard .modal-topic-rule {
+      display: grid;
+      grid-template-columns: minmax(180px, .8fr) minmax(240px, 1.1fr) minmax(320px, 1.5fr);
+      margin-bottom: 18px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--primary) 4%, transparent);
+    }
+    #component-governance-dashboard .modal-topic-rule-item {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 5px;
+      padding: 10px 12px;
+    }
+    #component-governance-dashboard .modal-topic-rule-item + .modal-topic-rule-item {
+      border-left: 1px solid var(--border);
+    }
+    #component-governance-dashboard .modal-topic-rule-item strong {
+      font-weight: 500;
+    }
+    #component-governance-dashboard .modal-copy-rule {
+      margin: -2px 0 18px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--background);
+    }
+    #component-governance-dashboard .modal-copy-rule-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--primary) 4%, transparent);
+    }
+    #component-governance-dashboard .modal-copy-rule-heading strong {
+      font-weight: 500;
+    }
+    #component-governance-dashboard .modal-copy-rule-table-wrap {
+      overflow-x: auto;
+    }
+    #component-governance-dashboard .modal-copy-rule-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    #component-governance-dashboard .modal-copy-rule-table th,
+    #component-governance-dashboard .modal-copy-rule-table td {
+      padding: 9px 12px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    #component-governance-dashboard .modal-copy-rule-table th {
+      color: var(--muted-foreground);
+      background: color-mix(in srgb, var(--foreground) 2%, transparent);
+      font-weight: 500;
+    }
+    #component-governance-dashboard .modal-copy-rule-table th:first-child,
+    #component-governance-dashboard .modal-copy-rule-table td:first-child {
+      width: 22%;
+    }
+    #component-governance-dashboard .modal-size-rule-table {
+      min-width: 980px;
+      table-layout: auto;
+    }
+    #component-governance-dashboard .modal-size-rule-table th:first-child,
+    #component-governance-dashboard .modal-size-rule-table td:first-child {
+      width: 17%;
+    }
+    #component-governance-dashboard .modal-scenario-group {
+      display: grid;
+      gap: 8px;
+    }
+    #component-governance-dashboard .modal-scenario-group + .modal-scenario-group {
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    #component-governance-dashboard .modal-scenario-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    #component-governance-dashboard #modal-topic-board .modal-scenario-header {
+      min-height: 28px;
+      align-items: center;
+    }
+    #component-governance-dashboard #modal-topic-board .modal-scenario-header .select-topic-index {
+      padding: 2px 6px;
+      color: var(--muted-foreground);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--background);
+      font-weight: 500;
+    }
+    #component-governance-dashboard .modal-scenario-header strong {
+      font-weight: 500;
+    }
+    #component-governance-dashboard #modal-topic-board .modal-scenario-header strong {
+      font-size: var(--font-size-small);
+    }
+    #component-governance-dashboard .modal-scenario-evidence {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    #component-governance-dashboard .modal-scenario-evidence.is-single {
+      grid-template-columns: minmax(0, calc(50% - 5px));
     }
     #component-governance-dashboard .select-topic-trace {
       display: grid;
@@ -1904,10 +2047,26 @@ html&gt;body{padding:0}&lt;/style&gt;
       #component-governance-dashboard .select-topic-header {
         display: grid;
       }
+      #component-governance-dashboard #modal-topic-board .select-topic-header,
+      #component-governance-dashboard #select-topic-board .select-topic-header {
+        align-items: start;
+      }
+      #component-governance-dashboard #modal-topic-board .modal-scenario-list {
+        margin-right: 0;
+        margin-left: 4px;
+        padding-left: 10px;
+      }
       #component-governance-dashboard .select-topic-evidence,
       #component-governance-dashboard .select-topic-evidence.is-pair,
+      #component-governance-dashboard .modal-scenario-evidence,
+      #component-governance-dashboard .modal-scenario-evidence.is-single,
+      #component-governance-dashboard .modal-topic-rule,
       #component-governance-dashboard .select-topic-trace {
         grid-template-columns: 1fr;
+      }
+      #component-governance-dashboard .modal-topic-rule-item + .modal-topic-rule-item {
+        border-left: 0;
+        border-top: 1px solid var(--border);
       }
       #component-governance-dashboard .select-topic-field + .select-topic-field {
         border-left: 0;
@@ -2409,6 +2568,14 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;select-topic-board&quot; id=&quot;select-topic-board&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
+        &lt;section id=&quot;modal-topic-section&quot; aria-label=&quot;Modal 确认提示专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Modal 确认提示与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;逐场景对照当前问题、标准效果与既有代码结论&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;modal-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
         &lt;section id=&quot;evidence-section&quot; aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
             &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
@@ -2796,13 +2963,11 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;抢修单记录&#x27;, &#x27;“超过24h / 超过7天”属于状态 Tag，不是普通文字。&#x27;, &#x27;src/app/routes/common/custom-form/custom-form-page.component.ts:225&#x27;, &#x27;已定位&#x27;)
         ],
         modal: [
-          issue(&#x27;确认提示 / Small 576&#x27;, &#x27;删除、清空、关闭等风险决策收敛为确认提示：标题使用“确认 + 动作 + 对象”，正文说明操作后果，主按钮直接写“删除 / 清空 / 确认关闭”等动作；只告知结果或状态时使用 Information，不使用 Confirm。&#x27;, &#x27;modal.confirm 30 处 / 20 文件；splitCalcWin.component.ts:719 · defect-management.component.ts:725&#x27;, &#x27;按 BM01 规则统一文案、后果说明与危险按钮&#x27;),
-          issue(&#x27;小表单与配置 / 576·896&#x27;, &#x27;信息少、结构简单的轻量操作使用 Small 576；普通表单、设置和状态调整使用 Medium 896。现有默认宽度及 600、700、800 等零散值需要按内容复杂度归档到两档规格。&#x27;, &#x27;nzWidth 492 处 / 199 文件；source-plan-scheme.component.html:131 · hotSourceRun.component.html:272&#x27;, &#x27;建立尺寸映射并逐弹窗替换&#x27;),
-          issue(&#x27;区域滚动与表单布局&#x27;, &#x27;内容超过视口时只允许 Body 滚动，Header 与 Footer 固定可见；表单优先 Vertical，短标签和稳定字段可用 Horizontal，Inline 仅用于局部强关联字段，不能破坏容器 Padding。&#x27;, &#x27;define-plan.component.ts:407 存在局部 85vh Body 高度；其余弹窗需按页面逐项核验&#x27;, &#x27;沉淀公共 Body 滚动与表单布局规格&#x27;),
-          issue(&#x27;表单校验与交互反馈&#x27;, &#x27;禁止“无响应确定”：前置条件不满足时禁用确定按钮；点击后立即校验，展示错误并定位首个错误项；校验通过后提交，并提供加载、成功或失败反馈。&#x27;, &#x27;hotSourceRun.component.ts:1502 点击后直接组参请求且缺少校验与失败反馈；source-plan-scheme.component.ts:280 仅用 Message 拦截重复值&#x27;, &#x27;补禁用条件、字段校验、首错定位和提交状态&#x27;),
-          issue(&#x27;Footer 动作分区&#x27;, &#x27;Footer 允许左右分区：左侧放上一步、恢复默认、导出、删除、查看日志等次级动作；右侧保留取消、确定及主流程动作。左侧动作不能抢占提交语义，危险操作仍需二次确认。&#x27;, &#x27;detail-fault-form-modal.component.html:516 等弹窗按钮区域需按动作语义复核&#x27;, &#x27;统一 Footer 槽位、顺序与按钮文案&#x27;),
-          issue(&#x27;复杂工作流 / 90vw·90vh&#x27;, &#x27;表格、地图、图表和复杂表单使用工作台型 Modal：最大 90vw / 90vh，Header 与 Footer 固定，Body 为滚动工作区；数据为空时仍保留稳定内容高度并展示空状态，按信息密度减少非必要按钮。&#x27;, &#x27;detail-fault-form-modal.component.html:3 使用 80vw；define-plan.component.ts:407 使用 85vh，现状尚未统一为工作台规格&#x27;, &#x27;按超大尺寸专项改造，禁止散落硬编码高度&#x27;),
-          issue(&#x27;关闭与危险操作&#x27;, &#x27;右上角 X 只关闭弹窗，不执行危险动作；高风险场景可隐藏 X。删除、清空、放弃修改等不可逆动作使用危险按钮并二次确认，普通确认使用主色按钮。&#x27;, &#x27;nzMaskClosable 170 处 / 88 文件；nzKeyboard 43 处 / 23 文件，关闭策略分散&#x27;, &#x27;代码已核验；真实菜单入口暂未复现，待开发协助定位&#x27;)
+          issue(&#x27;确认提示 / Small 576&#x27;, &#x27;信息较少、结构简单的确认提示统一使用 Small 576。标题使用“确认 + 动作 + 对象”，正文说明操作后果；删除、清空、放弃修改等破坏性动作直接写明按钮结果并使用危险按钮，普通离开确认使用主色按钮。右上角 X 只关闭弹窗、不执行危险动作，高风险场景可以隐藏；只告知结果或状态时使用 Information，不使用 Confirm。&#x27;, &#x27;modal.confirm 30 处 / 20 文件；splitCalcWin.component.ts:719 · defect-management.component.ts:725；映射 nzWidth=576 / nzOkText / 危险按钮配置 / nzClosable&#x27;, &#x27;统一 Small 576、动作型文案、危险按钮与关闭策略&#x27;),
+          issue(&#x27;Basic / Information 使用边界&#x27;, &#x27;凡是要求用户承担操作后果并作出选择的内容，例如“是否确认、确定吗、确认关闭、确认删除、确认清空”，统一使用 Basic；Information 只承载操作结果或系统状态的单向告知，例如“操作失败，请稍后重试”。&#x27;, &#x27;映射 Modal Basic / modal.confirm 与 Modal Information / modal.info；真实菜单调用点按现有代码核验结果逐项关联&#x27;, &#x27;按是否需要用户决策统一 Basic 与 Information 组件边界&#x27;),
+          issue(&#x27;Information / Notification 使用边界&#x27;, &#x27;当前流程中用户必须知晓、需要中断当前操作并确认后才能继续的信息使用 Modal Information；当前流程之外、无需打断操作且允许立即查看或稍后处理的信息使用 Notification。&#x27;, &#x27;拟映射 Modal Information / modal.info 与 Notification / NzNotificationService；真实菜单调用点待逐项补充&#x27;, &#x27;按是否属于当前流程、是否需要阻断操作统一组件边界&#x27;),
+          issue(&#x27;Small 小型弹框与 Medium 标准弹框&#x27;, &#x27;信息少、结构简单的轻量操作使用 Small 576，高度随内容自适应且不产生内部滚动；普通配置、多字段表单和简单规则使用 Medium 896，高度最大 90vh，超出后仅 Body 滚动。标题统一采用“动作 + 对象”；查看详情使用“查看 + 对象/内容”且 Footer 只保留关闭。&#x27;, &#x27;nzWidth 492 处 / 199 文件；source-plan-scheme.component.html:131 · hotSourceRun.component.html:272；12 个场景 / 20 张最终版证据已关联&#x27;, &#x27;按 576 / 896 尺寸、标题、Header 内容归属与 Footer 文案逐弹窗替换&#x27;),
+          issue(&#x27;Large 大型弹框与 Workspace 工作区弹框&#x27;, &#x27;复杂配置、表格编辑和详情查看使用 Large 1152，高度自适应且最大 90vh；地图、监控、分析、大型流程和多区域操作使用 Workspace：宽 90vw、最大 1800px，高 90vh、最大 900px。两类均只允许 Body 滚动；操作型保留 Footer，查看型隐藏 Footer。&#x27;, &#x27;13 个真实问题场景已归档；define-plan.component.ts:407 存在局部 85vh Body 高度；具体菜单代码入口待逐项核验&#x27;, &#x27;按 Large / Workspace 边界统一宽高、滚动容器、Header 与 Footer&#x27;)
         ],
         alert: [
           issue(&#x27;Alert 触发场景&#x27;, &#x27;代码可以检索到，但不知道从哪个菜单或按钮触发，无法与真实页面映射。&#x27;, &#x27;代码路径已有，业务入口缺失&#x27;, &#x27;先补“菜单 → 操作 → 状态”定位&#x27;)
@@ -2855,13 +3020,60 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const imageEvidenceByKey = {
         modal: [
-          { src: &#x27;evidence-assets/modal-01-confirm.png&#x27;, title: &#x27;确认类提示归类&#x27;, note: &#x27;收敛为 Small / 576px，统一危险动作、按钮层级与标题结构。&#x27; },
-          { src: &#x27;evidence-assets/modal-02-copy.png&#x27;, title: &#x27;确认文案与按钮规则&#x27;, note: &#x27;标题写清对象与动作；危险操作使用明确动词，不再统一写“确定”。&#x27; },
-          { src: &#x27;evidence-assets/modal-03-boundary.png&#x27;, title: &#x27;Confirm 与 Information 边界&#x27;, note: &#x27;需要用户作出决策时使用 Confirm；仅告知结果或状态时使用 Information。&#x27; },
-          { src: &#x27;evidence-assets/modal-04-sizes.png&#x27;, title: &#x27;小表单与配置尺寸&#x27;, note: &#x27;小表单统一收敛至 Small / Medium 两档，减少任意宽度。&#x27; },
-          { src: &#x27;evidence-assets/modal-05-feedback.png&#x27;, title: &#x27;区域滚动与交互反馈&#x27;, note: &#x27;Header / Footer 固定、Body 滚动；表单校验失败时禁止无响应确认。&#x27; },
-          { src: &#x27;evidence-assets/modal-06-workbench-rule.png&#x27;, title: &#x27;复杂工作流尺寸规则&#x27;, note: &#x27;复杂工作台按 90vw / 90vh 管理，避免散落固定像素高度。&#x27; },
-          { src: &#x27;evidence-assets/modal-07-workbench-page.png&#x27;, title: &#x27;复杂工作台真实页面&#x27;, note: &#x27;表格、地图和图表进入 Body 滚动工作区，空数据时仍保持稳定高度。&#x27; }
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;用户列表 → 删除用户提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/01-用户列表-删除用户提示-当前问题.png&#x27;, title: &#x27;当前问题：删除用户提示&#x27;, note: &#x27;标题只写“警示”，正文重复询问，主按钮使用笼统“确定”，没有表达删除的危险语义。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;用户列表 → 删除用户提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/01-用户列表-删除用户提示-标准答案.png&#x27;, title: &#x27;标准效果：确认删除用户&#x27;, note: &#x27;标题写清动作与对象，正文说明强制退出后果，主按钮直接使用危险动作“删除”。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;日前计划 → 关闭计划弹窗&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/02-日前计划-关闭计划弹窗-当前问题.png&#x27;, title: &#x27;当前问题：关闭未保存计划&#x27;, note: &#x27;确认问题与后果全部挤在正文中，缺少明确标题，按钮仍使用“取消 / 确定”的系统视角文案。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;日前计划 → 关闭计划弹窗&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/02-日前计划-关闭计划弹窗-标准答案.png&#x27;, title: &#x27;标准效果：确认关闭弹窗&#x27;, note: &#x27;标题提出决策，正文说明未保存内容将丢失，按钮改为“继续编辑 / 确认关闭”。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;智能监盘 → 移除服务提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/03-智能监盘-移除服务提示-当前问题.png&#x27;, title: &#x27;当前问题：移除服务提示&#x27;, note: &#x27;需要用户决策的危险操作被表现成单按钮告知弹窗，用户无法取消，移除动作也没有危险层级。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;智能监盘 → 移除服务提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/03-智能监盘-移除服务提示-标准答案.png&#x27;, title: &#x27;标准效果：确认移除服务&#x27;, note: &#x27;恢复“取消 / 移除”决策路径，标题明确当前服务，正文保留同步清除追踪记录的影响说明。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;数据管理考核 → 规则设置清空&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/04-数据管理考核-规则设置清空-当前问题.png&#x27;, title: &#x27;当前问题：清空编辑内容&#x27;, note: &#x27;弹窗只有提问和按钮，缺少稳定标题区与不可恢复的后果说明，危险动作仍使用主色。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;数据管理考核 → 规则设置清空&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/04-数据管理考核-规则设置清空-标准答案.png&#x27;, title: &#x27;标准效果：确认清空内容&#x27;, note: &#x27;标题、后果和按钮动作保持一致；“清空”使用危险按钮，“暂不清空”保留返回路径。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;故障单 → 激活故障单&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/05-故障单-激活故障单-当前问题.png&#x27;, title: &#x27;当前问题：激活故障单&#x27;, note: &#x27;标题仅写“提示”，正文和主按钮都使用笼统“确定”，没有说明激活后的状态变化。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;故障单 → 激活故障单&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/05-故障单-激活故障单-标准答案.png&#x27;, title: &#x27;标准效果：确认激活故障单&#x27;, note: &#x27;标题明确动作与对象，正文说明故障单状态将发生变化，主按钮直接使用“激活”。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;供热档位 → 批量修正取消调整&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/01-供热档位-批量修正取消调整-当前问题.png&#x27;, title: &#x27;当前问题：用 Information 承载取消确认&#x27;, note: &#x27;内容要求用户决定是否取消本次调整，却使用 Information 形态和“取消 / 确定”笼统按钮，组件语义错误。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;供热档位 → 批量修正取消调整&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/01-供热档位-批量修正取消调整-标准答案.png&#x27;, title: &#x27;标准效果：使用 Basic 确认取消&#x27;, note: &#x27;用户需要承担取消后果并作出选择，因此使用 Basic；“继续调整 / 确认取消”明确两条路径。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;消息配置 → 消息模板状态停用&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/02-消息配置-消息模板状态停用提示-当前问题.png&#x27;, title: &#x27;当前问题：用 Information 承载状态切换确认&#x27;, note: &#x27;文案要求用户确认切换状态并承担消息触达影响，应属于 Basic，不应使用 Information。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;消息配置 → 消息模板状态停用&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/02-消息配置-消息模板状态停用提示-标准答案.png&#x27;, title: &#x27;标准效果：使用 Basic 确认切换&#x27;, note: &#x27;标题提出确认问题，正文说明切换影响，主按钮使用结果明确的“确认切换”。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;消息配置 → 消息场景删除模板&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/03-消息配置-消息场景删除模板-当前问题.png&#x27;, title: &#x27;当前问题：用 Information 承载删除确认&#x27;, note: &#x27;删除模板属于需要用户承担后果的危险选择，却使用 Information 和笼统“确定”按钮。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;消息配置 → 消息场景删除模板&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/03-消息配置-消息场景删除模板-标准答案.png&#x27;, title: &#x27;标准效果：使用 Basic 确认删除&#x27;, note: &#x27;标题、后果与动作保持一致；删除使用危险按钮，并保留取消路径。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;登录 → 登录校验&#x27;, src: &#x27;evidence-assets/modal/专题02 Basic与Information使用边界/04-登录-登录校验-正确.png&#x27;, title: &#x27;正确示例：Information 告知校验状态&#x27;, note: &#x27;这里只告知用户名或密码错误及重试后果，不要求用户确认业务动作，使用 Information。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;组件规范 → 使用边界对照&#x27;, src: &#x27;evidence-assets/modal/专题03 Information与Notification使用边界/01-组件规范-Information-标准示例.png&#x27;, title: &#x27;Modal / Information 标准示例&#x27;, note: &#x27;用于当前流程中必须知晓的信息；弹窗会中断操作，用户确认后才能继续。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;组件规范 → 使用边界对照&#x27;, src: &#x27;evidence-assets/modal/专题03 Information与Notification使用边界/02-组件规范-Notification-标准示例.png&#x27;, title: &#x27;Notification 标准示例&#x27;, note: &#x27;用于当前流程之外的非阻断通知；用户可以立即查看，也可以稍后处理。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;首页概览 → 系统告警表格设置&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/01-首页概览-系统告警表格设置-当前问题.png&#x27;, title: &#x27;当前问题：系统告警表格设置&#x27;, note: &#x27;弹窗尺寸、标题和操作区未按统一小表单规格收敛。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;首页概览 → 系统告警表格设置&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/01-首页概览-系统告警表格设置-标准答案.png&#x27;, title: &#x27;标准效果：设置表格&#x27;, note: &#x27;统一为 Small 576，标题使用动作加对象，并使用标准 Footer 承载操作。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;应急调度 → 退出创建&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/02-应急调度-退出创建-当前问题.png&#x27;, title: &#x27;当前问题：退出创建&#x27;, note: &#x27;轻量选择弹窗的宽度和操作区需要归入统一 Small 规格。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;应急调度 → 退出创建&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/02-应急调度-退出创建-标准答案.png&#x27;, title: &#x27;标准效果：退出创建&#x27;, note: &#x27;统一为 Small 576，保留清晰标题及右侧取消、确定操作。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;热力站监测 → 详情弹框添加监盘&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/03-热力站监测-详情弹框添加监盘-当前问题.png&#x27;, title: &#x27;当前问题：添加监盘&#x27;, note: &#x27;内容简单但弹窗结构和底部操作区未使用统一小表单模板。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;热力站监测 → 详情弹框添加监盘&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/03-热力站监测-详情弹框添加监盘-标准答案.png&#x27;, title: &#x27;标准效果：添加监盘列表&#x27;, note: &#x27;统一为 Small 576，并补齐标准 Footer 操作区。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;供热档位 → 档位设置添加档位&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/04-供热档位-档位设置添加档位-当前问题.png&#x27;, title: &#x27;当前问题：添加档位&#x27;, note: &#x27;标题与按钮文案未统一，轻量表单尺寸也需要收敛。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;供热档位 → 档位设置添加档位&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/04-供热档位-档位设置添加档位-标准答案.png&#x27;, title: &#x27;标准效果：新增档位&#x27;, note: &#x27;统一为 Small 576，修正标题并使用标准底部按钮。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;安全管理 → 风险地图风险等级&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/05-安全管理-风险地图风险等级-当前问题.png&#x27;, title: &#x27;当前问题：风险等级设置&#x27;, note: &#x27;轻量配置弹窗尺寸和标题表达不统一。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;安全管理 → 风险地图风险等级&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/05-安全管理-风险地图风险等级-标准答案.png&#x27;, title: &#x27;标准效果：配置风险等级&#x27;, note: &#x27;统一为 Small 576，标题按动作加对象改为“配置风险等级”。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;06&#x27;, scene: &#x27;实时优化 → 匹配条件&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/06-实时优化-匹配条件-当前问题.png&#x27;, title: &#x27;当前问题：匹配条件&#x27;, note: &#x27;表单属于轻量配置，但标题仍是对象名，缺少明确动作。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;06&#x27;, scene: &#x27;实时优化 → 匹配条件&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/06-实时优化-匹配条件-标准答案.png&#x27;, title: &#x27;标准效果：配置匹配条件&#x27;, note: &#x27;统一为 Small 576，标题按场景改为“配置匹配条件”。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;07&#x27;, scene: &#x27;操作日志 → 查看详情&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/07-操作日志-查看详情-当前问题.png&#x27;, title: &#x27;当前问题：操作内容&#x27;, note: &#x27;只读详情仍使用模糊标题，并保留操作式按钮，不符合查看型弹窗规则。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;07&#x27;, scene: &#x27;操作日志 → 查看详情&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/07-操作日志-查看详情-标准答案.png&#x27;, title: &#x27;标准效果：查看操作内容&#x27;, note: &#x27;只读详情统一为 Small 576，标题使用“查看 + 对象/内容”，Footer 只保留“关闭”。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;08&#x27;, scene: &#x27;供热档位 → 调档记录 → 查看详情&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/08-供热档位-调档记录-查看详情-当前问题.png&#x27;, title: &#x27;当前问题：调档记录详情&#x27;, note: &#x27;查看型详情仍保留取消与确定，容易被理解为可提交操作。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;08&#x27;, scene: &#x27;供热档位 → 调档记录 → 查看详情&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/08-供热档位-调档记录-查看详情-标准答案.png&#x27;, title: &#x27;标准效果：查看操作内容&#x27;, note: &#x27;查看型弹窗统一为 Small 576，隐藏取消与确定，仅在 Footer 保留“关闭”。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;09&#x27;, scene: &#x27;全数据看板 → 调控设置&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/09-全数据看板-调控设置-当前问题.png&#x27;, title: &#x27;当前问题：调控设置&#x27;, note: &#x27;配置项多且内容密度高，标题和底部操作文案也未形成统一规则。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;09&#x27;, scene: &#x27;全数据看板 → 调控设置&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/09-全数据看板-调控设置-标准答案.png&#x27;, title: &#x27;标准效果：配置展示指标&#x27;, note: &#x27;多分组配置统一为 Medium 896，并修正标题及 Footer 操作文案。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;10&#x27;, scene: &#x27;调控指令 → 批量下发&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/10-调控指令-批量下发-当前问题.png&#x27;, title: &#x27;当前问题：批量下发&#x27;, note: &#x27;复杂配置弹窗缺少清晰的 Footer 动作分区，辅助动作与主流程动作混在一起。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;10&#x27;, scene: &#x27;调控指令 → 批量下发&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/10-调控指令-批量下发-标准答案.png&#x27;, title: &#x27;标准效果：批量下发&#x27;, note: &#x27;统一为 Medium 896；次级动作放左侧，主流程动作放右侧。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;11&#x27;, scene: &#x27;调控设置 → 更多设置 → 公建启停时段设置&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/11-调控设置-更多设置公建启停时段设置-标准答案.png&#x27;, title: &#x27;标准效果：配置公建启停时段&#x27;, note: &#x27;统一为 Medium 896；Header 只放标题和关闭入口，Tab、统计说明等业务内容进入 Body。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;12&#x27;, scene: &#x27;日前计划 → 制定计划 → 设置&#x27;, src: &#x27;evidence-assets/modal/04 小表单与配置Modal/12-日前计划-制定计划-设置-标准答案.png&#x27;, title: &#x27;标准效果：配置单耗调整&#x27;, note: &#x27;统一为 Medium 896；标题使用动作加对象，Tab 与统计说明不放在 Header。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;曲线库 → 气候补偿设置&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/01-曲线库-气候补偿设置-当前问题.png&#x27;, title: &#x27;当前问题：气候补偿设置&#x27;, note: &#x27;原宽度 1012 未归入统一规格，标题也未明确表达“配置气候补偿曲线”。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;负荷预测 → 预测配置&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/02-负荷预测-预测配置-当前问题.png&#x27;, title: &#x27;当前问题：预测配置&#x27;, note: &#x27;原宽度 1230、最大高度和滚动方式未统一；标题应改为“配置热网负荷预测”。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;查漏单 → 新增查漏单&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/03-查漏单-新增查漏单-当前问题.png&#x27;, title: &#x27;当前问题：新增查漏单&#x27;, note: &#x27;多字段表单仍使用 1230 等零散宽度，需要统一到 Large 1152。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;室温监测 → 统计详情&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/04-室温监测-统计详情-当前问题.png&#x27;, title: &#x27;当前问题：统计详情&#x27;, note: &#x27;查看型表格详情宽度未统一，统计说明等业务内容不应放在 Header。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;05&#x27;, scene: &#x27;调控指令 → 分时段设置&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/05-调控指令-分时段设置-当前问题.png&#x27;, title: &#x27;当前问题：分时段设置&#x27;, note: &#x27;复杂多区域内容造成外部页面滚动，应按 Workspace 规格固定容器并只让 Body 滚动。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;06&#x27;, scene: &#x27;日前计划 → 计划详情&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/06-日前计划-计划详情-当前问题.png&#x27;, title: &#x27;当前问题：计划详情&#x27;, note: &#x27;高密度详情未按 Workspace 宽高和 Body 滚动规则处理。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;07&#x27;, scene: &#x27;数据管理考核 → 规则设置&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/07-数据管理考核-规则设置-当前问题.png&#x27;, title: &#x27;当前问题：规则设置&#x27;, note: &#x27;列表与编辑区并列的复杂配置缺少统一 Workspace 尺寸和内部滚动策略。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;08&#x27;, scene: &#x27;故障单 → 创建故障单&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/08-故障单-创建故障单-当前问题.png&#x27;, title: &#x27;当前问题：创建故障单&#x27;, note: &#x27;地图型任务应使用 Workspace 工作区弹窗，宽高及滚动层级需要统一。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;09&#x27;, scene: &#x27;热力站监测 → 热力站详情&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/09-热力站监测-热力站详情-当前问题.png&#x27;, title: &#x27;当前问题：热力站详情&#x27;, note: &#x27;多区域监控详情应采用 Workspace 规格，并将长内容滚动限制在 Body 内。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;10&#x27;, scene: &#x27;调控指令 → 分时段设置&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/10-调控指令-分时段设置-当前问题.png&#x27;, title: &#x27;当前问题：分时段设置外部滚动&#x27;, note: &#x27;当前页面在 Modal 外部滚动，应固定 Workspace 容器并改为 Body 内部滚动。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;11&#x27;, scene: &#x27;抢修单列表 → 草稿箱&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/11-抢修单列表-草稿箱-当前问题.png&#x27;, title: &#x27;当前问题：草稿箱&#x27;, note: &#x27;查看型表格弹窗出现外部滚动且错误保留“取消”；应按新宽高规则处理并隐藏 Footer。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;12&#x27;, scene: &#x27;调控设置 → 调档历史&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/12-调控设置-调档历史-当前问题.png&#x27;, title: &#x27;当前问题：调档历史&#x27;, note: &#x27;历史列表的宽度、高度和内容区滚动尚未按 Large / Workspace 新规则归档。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;13&#x27;, scene: &#x27;调控设置 → 复核其他站点&#x27;, src: &#x27;evidence-assets/modal/05 large大型弹框和Workspace工作区弹框/13-调控设置-复核其他站点-当前问题.png&#x27;, title: &#x27;当前问题：复核其他站点&#x27;, note: &#x27;多区域批量复核任务的宽度、高度和滚动层级需要统一到 Workspace 规则。&#x27; }
         ],
         statistic: [
           { src: &#x27;evidence-assets/statistic-01-source-analysis.png&#x27;, title: &#x27;源网监测 → 源网分析&#x27;, note: &#x27;指标卡片包含图标、主值、单位和同比信息，应沉淀 Metric 而非整卡复制。&#x27; },
@@ -2881,26 +3093,26 @@ html&gt;body{padding:0}&lt;/style&gt;
           { src: &#x27;evidence-assets/statistic-15-switch-detail.png&#x27;, title: &#x27;区域管理 → 切换单详情&#x27;, note: &#x27;增加、减少、变化为对比型指标，正负号和单位格式需要统一。&#x27; }
         ],
         select: [
-          { src: &#x27;evidence-assets/select-01-checkbox-current.png&#x27;, title: &#x27;01 当前问题：checkbox-style Select&#x27;, note: &#x27;热力站监测标签分组筛选混用了复选框式交互，组件边界与标准 Select 不一致。&#x27; },
-          { src: &#x27;evidence-assets/select-01-checkbox-standard.png&#x27;, title: &#x27;01 标准效果：Select Multiple&#x27;, note: &#x27;无层级关系的多选统一为标准选项高亮与勾选反馈。&#x27; },
-          { src: &#x27;evidence-assets/select-02-collapse-current-a.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 A&#x27;, note: &#x27;真实页面同时出现 +5、17+ 等不同隐藏数量写法。&#x27; },
-          { src: &#x27;evidence-assets/select-02-collapse-current-b.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 B&#x27;, note: &#x27;同类筛选中出现带边框的“+ 2 ...”，占用空间且语义不清。&#x27; },
-          { src: &#x27;evidence-assets/select-02-collapse-current-c.png&#x27;, title: &#x27;02 当前问题：省略号替代数量&#x27;, note: &#x27;省略号无法告诉用户隐藏了多少已选项。&#x27; },
-          { src: &#x27;evidence-assets/select-02-collapse-standard.png&#x27;, title: &#x27;02 标准效果：Tag Overflow = Collapse&#x27;, note: &#x27;+N 采用无边框纯文本，只表达被隐藏的已选项数量。&#x27; },
-          { src: &#x27;evidence-assets/select-02-form-current.png&#x27;, title: &#x27;02 真实表单：多行已选项&#x27;, note: &#x27;推送人选择存在大量标签，需要独立于筛选区定义多行展示规则。&#x27; },
-          { src: &#x27;evidence-assets/select-02-form-standard.png&#x27;, title: &#x27;02 标准效果：标签换行与省略&#x27;, note: &#x27;完整标签自动换行、单标签不拆分；超长省略，表单最多 3–4 行并内部滚动。&#x27; },
-          { src: &#x27;evidence-assets/select-03-all-current.png&#x27;, title: &#x27;03 当前问题：全选文案切换&#x27;, note: &#x27;全选后文案变为“取消全选”，把状态和动作混在文字中。&#x27; },
-          { src: &#x27;evidence-assets/select-03-all-external.png&#x27;, title: &#x27;03 当前问题：全选开关外置&#x27;, note: &#x27;阀门列表把全选做成 Select 外部开关，形成第二套状态源。&#x27; },
-          { src: &#x27;evidence-assets/select-03-all-standard-off.png&#x27;, title: &#x27;03 标准效果：未全选&#x27;, note: &#x27;全选固定在下拉底部，未选状态使用未勾选复选框。&#x27; },
-          { src: &#x27;evidence-assets/select-03-all-standard-on.png&#x27;, title: &#x27;03 标准效果：已全选&#x27;, note: &#x27;文案保持“全选”，选中状态由复选框表达。&#x27; },
-          { src: &#x27;evidence-assets/select-04-search-current.png&#x27;, title: &#x27;04 当前问题：搜索位置与图标不一致&#x27;, note: &#x27;一级网同时存在触发器搜索和下拉顶部搜索，箭头与放大镜切换规则不统一。&#x27; },
-          { src: &#x27;evidence-assets/select-04-search-none.png&#x27;, title: &#x27;04 标准效果：Search None&#x27;, note: &#x27;无搜索需求时保持标准下拉触发器。&#x27; },
-          { src: &#x27;evidence-assets/select-04-search-trigger.png&#x27;, title: &#x27;04 标准效果：Search Trigger&#x27;, note: &#x27;在触发器内输入搜索时，尾部统一显示放大镜。&#x27; },
-          { src: &#x27;evidence-assets/select-04-search-dropdown.png&#x27;, title: &#x27;04 标准效果：Search Dropdown&#x27;, note: &#x27;搜索框固定在下拉顶部，触发器继续保留标准箭头。&#x27; },
-          { src: &#x27;evidence-assets/select-05-tag-current-area.png&#x27;, title: &#x27;05 真实页面：负荷预测区域标签&#x27;, note: &#x27;选项包含管理分组、片区分组等辅助分类信息。&#x27; },
-          { src: &#x27;evidence-assets/select-05-tag-current-message.png&#x27;, title: &#x27;05 真实页面：消息模板字段标签&#x27;, note: &#x27;消息模板选项通过辅助文本说明变量含义。&#x27; },
-          { src: &#x27;evidence-assets/select-05-tag-standard.png&#x27;, title: &#x27;05 标准效果：Option Tag&#x27;, note: &#x27;辅助标签位于选项右侧，只补充语义，不替代主选项。&#x27; },
-          { src: &#x27;evidence-assets/select-06-empty-standard.png&#x27;, title: &#x27;06 标准效果：Menu State = Empty&#x27;, note: &#x27;Select Menu 无数据时显示统一图标和 No Data，并与搜索无结果、加载失败区分。&#x27; }
+          { src: &#x27;evidence-assets/select/select-01-checkbox-current.png&#x27;, title: &#x27;01 当前问题：checkbox-style Select&#x27;, note: &#x27;热力站监测标签分组筛选混用了复选框式交互，组件边界与标准 Select 不一致。&#x27; },
+          { src: &#x27;evidence-assets/select/select-01-checkbox-standard.png&#x27;, title: &#x27;01 标准效果：Select Multiple&#x27;, note: &#x27;无层级关系的多选统一为标准选项高亮与勾选反馈。&#x27; },
+          { src: &#x27;evidence-assets/select/select-02-collapse-current-a.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 A&#x27;, note: &#x27;真实页面同时出现 +5、17+ 等不同隐藏数量写法。&#x27; },
+          { src: &#x27;evidence-assets/select/select-02-collapse-current-b.png&#x27;, title: &#x27;02 当前问题：折叠格式不一致 B&#x27;, note: &#x27;同类筛选中出现带边框的“+ 2 ...”，占用空间且语义不清。&#x27; },
+          { src: &#x27;evidence-assets/select/select-02-collapse-current-c.png&#x27;, title: &#x27;02 当前问题：省略号替代数量&#x27;, note: &#x27;省略号无法告诉用户隐藏了多少已选项。&#x27; },
+          { src: &#x27;evidence-assets/select/select-02-collapse-standard.png&#x27;, title: &#x27;02 标准效果：Tag Overflow = Collapse&#x27;, note: &#x27;+N 采用无边框纯文本，只表达被隐藏的已选项数量。&#x27; },
+          { src: &#x27;evidence-assets/select/select-02-form-current.png&#x27;, title: &#x27;02 真实表单：多行已选项&#x27;, note: &#x27;推送人选择存在大量标签，需要独立于筛选区定义多行展示规则。&#x27; },
+          { src: &#x27;evidence-assets/select/select-02-form-standard.png&#x27;, title: &#x27;02 标准效果：标签换行与省略&#x27;, note: &#x27;完整标签自动换行、单标签不拆分；超长省略，表单最多 3–4 行并内部滚动。&#x27; },
+          { src: &#x27;evidence-assets/select/select-03-all-current.png&#x27;, title: &#x27;03 当前问题：全选文案切换&#x27;, note: &#x27;全选后文案变为“取消全选”，把状态和动作混在文字中。&#x27; },
+          { src: &#x27;evidence-assets/select/select-03-all-external.png&#x27;, title: &#x27;03 当前问题：全选开关外置&#x27;, note: &#x27;阀门列表把全选做成 Select 外部开关，形成第二套状态源。&#x27; },
+          { src: &#x27;evidence-assets/select/select-03-all-standard-off.png&#x27;, title: &#x27;03 标准效果：未全选&#x27;, note: &#x27;全选固定在下拉底部，未选状态使用未勾选复选框。&#x27; },
+          { src: &#x27;evidence-assets/select/select-03-all-standard-on.png&#x27;, title: &#x27;03 标准效果：已全选&#x27;, note: &#x27;文案保持“全选”，选中状态由复选框表达。&#x27; },
+          { src: &#x27;evidence-assets/select/select-04-search-current.png&#x27;, title: &#x27;04 当前问题：搜索位置与图标不一致&#x27;, note: &#x27;一级网同时存在触发器搜索和下拉顶部搜索，箭头与放大镜切换规则不统一。&#x27; },
+          { src: &#x27;evidence-assets/select/select-04-search-none.png&#x27;, title: &#x27;04 标准效果：Search None&#x27;, note: &#x27;无搜索需求时保持标准下拉触发器。&#x27; },
+          { src: &#x27;evidence-assets/select/select-04-search-trigger.png&#x27;, title: &#x27;04 标准效果：Search Trigger&#x27;, note: &#x27;在触发器内输入搜索时，尾部统一显示放大镜。&#x27; },
+          { src: &#x27;evidence-assets/select/select-04-search-dropdown.png&#x27;, title: &#x27;04 标准效果：Search Dropdown&#x27;, note: &#x27;搜索框固定在下拉顶部，触发器继续保留标准箭头。&#x27; },
+          { src: &#x27;evidence-assets/select/select-05-tag-current-area.png&#x27;, title: &#x27;05 真实页面：负荷预测区域标签&#x27;, note: &#x27;选项包含管理分组、片区分组等辅助分类信息。&#x27; },
+          { src: &#x27;evidence-assets/select/select-05-tag-current-message.png&#x27;, title: &#x27;05 真实页面：消息模板字段标签&#x27;, note: &#x27;消息模板选项通过辅助文本说明变量含义。&#x27; },
+          { src: &#x27;evidence-assets/select/select-05-tag-standard.png&#x27;, title: &#x27;05 标准效果：Option Tag&#x27;, note: &#x27;辅助标签位于选项右侧，只补充语义，不替代主选项。&#x27; },
+          { src: &#x27;evidence-assets/select/select-06-empty-standard.png&#x27;, title: &#x27;06 标准效果：Menu State = Empty&#x27;, note: &#x27;Select Menu 无数据时显示统一图标和 No Data，并与搜索无结果、加载失败区分。&#x27; }
         ]
       };
 
@@ -2963,7 +3175,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         segmented: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;分段选择的尺寸、状态和组合变体已完成治理。&#x27; },
         radio: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;普通单选、按钮式单选和卡片式选择边界与矩阵已完成。&#x27; },
         tag: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;状态、分类、可关闭与可选择 Tag 的使用边界已完成。&#x27; },
-        modal: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成确认提示、小/中尺寸表单配置和超大尺寸复杂工作流治理，并明确文案边界、区域滚动、Footer 与交互反馈；统一使用说明、开发整改与验收尚未完成。&#x27; },
+        modal: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;已汇报组件&#x27;, phaseComplete: true, deep: true, progress: 71, estimate: &#x27;使用说明与开发待排期&#x27;, stages: [100, 100, 100, 100, 100, 0, 0], summary: &#x27;已完成确认提示、组件边界以及 Small、Medium、Large 与 Workspace 尺寸治理，并明确文案、区域滚动、Footer 与交互反馈规则；统一使用说明、开发整改与验收尚未完成。&#x27; },
         tooltip: { status: &#x27;doing&#x27;, difficulty: 0, progress: 0, estimate: &#x27;待梳理&#x27;, summary: &#x27;BM01 中存在正式页面，但本轮尚未补充一级网治理说明。&#x27; },
         timeline: { status: &#x27;done&#x27;, stateLabel: &#x27;本周收尾·按完成计&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;与 Steps 一起在两天内收尾，按本月交付完成标记。&#x27; },
 
@@ -3651,6 +3863,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;Menu State&#x27;,
         &#x27;Figma ↔ Angular API&#x27;
       ];
+      const modalTopicNames = [
+        &#x27;确认提示&#x27;,
+        &#x27;Basic 与 Information 使用边界&#x27;,
+        &#x27;Information 与 Notification 使用边界&#x27;,
+        &#x27;小表单与配置 Modal：Small 小型弹框与 Medium 标准弹框&#x27;,
+        &#x27;Large 大型弹框与 Workspace 工作区弹框&#x27;
+      ];
 
       function renderSelectTopics() {
         const host = root.querySelector(&#x27;#select-topic-board&#x27;);
@@ -3718,6 +3937,212 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
       }
 
+      function renderModalConfirmationTopic() {
+        const host = root.querySelector(&#x27;#modal-topic-board&#x27;);
+        const items = imageEvidenceByKey.modal || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          const topicId = item.topicId || &#x27;01&#x27;;
+          (groups[topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;modal-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;modal-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-modal-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        const renderTopicRule = topicId =&gt; topicId === &#x27;01&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;确认提示核心规则&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;统一规格&lt;/span&gt;
+              &lt;strong&gt;Small · 576px&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;适用内容&lt;/span&gt;
+              &lt;span&gt;信息较少、结构简单；用于轻量操作、简短表单或少量说明。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;按钮与关闭&lt;/span&gt;
+              &lt;span&gt;按钮直接写明动作结果；危险操作使用危险按钮。X 只关闭弹窗，高风险场景可隐藏。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;02&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;Basic 与 Information 使用边界&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
+              &lt;strong&gt;用户是否需要承担后果并选择？&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Modal / Basic&lt;/span&gt;
+              &lt;span&gt;是否确认、确定吗、确认关闭、确认删除、确认清空等决策场景。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Modal / Information&lt;/span&gt;
+              &lt;span&gt;只告知结果或状态，例如“操作失败，请稍后重试”。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;03&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;Information 与 Notification 使用边界&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
+              &lt;strong&gt;信息是否属于当前流程，并且必须阻断操作？&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Modal / Information&lt;/span&gt;
+              &lt;span&gt;当前流程内必须知晓；中断当前操作，用户确认后继续。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Notification&lt;/span&gt;
+              &lt;span&gt;当前流程外的非阻断通知；用户可立即查看或稍后处理。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ` : topicId === &#x27;04&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;小表单与配置 Modal 核心规则&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;尺寸分档&lt;/span&gt;
+              &lt;strong&gt;Small · 576px / Medium · 896px&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;内容与标题&lt;/span&gt;
+              &lt;span&gt;Small 高度随内容自适应且不滚动；Medium 最大 90vh，超出后只让 Body 滚动。标题使用主动、明确的任务表达。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Footer 与查看&lt;/span&gt;
+              &lt;span&gt;操作型按场景显示 Footer；只读详情使用“查看 + 对象/内容”，Footer 只保留“关闭”。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;section class=&quot;modal-copy-rule&quot; aria-labelledby=&quot;modal-copy-rule-title&quot;&gt;
+            &lt;div class=&quot;modal-copy-rule-heading&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;文案规则&lt;/span&gt;
+              &lt;strong id=&quot;modal-copy-rule-title&quot;&gt;标题与底部按钮保持同一任务语义&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-copy-rule-table-wrap&quot;&gt;
+              &lt;table class=&quot;modal-copy-rule-table&quot;&gt;
+                &lt;thead&gt;
+                  &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;类型&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;顶部标题&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;底部按钮&lt;/th&gt;&lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;新增&lt;/td&gt;&lt;td&gt;新增 + 对象&lt;/td&gt;&lt;td&gt;取消 / 保存&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;编辑&lt;/td&gt;&lt;td&gt;编辑 + 对象&lt;/td&gt;&lt;td&gt;取消 / 保存&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;配置&lt;/td&gt;&lt;td&gt;配置 + 对象&lt;/td&gt;&lt;td&gt;取消 / 保存&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;添加关系&lt;/td&gt;&lt;td&gt;添加/选择 + 对象&lt;/td&gt;&lt;td&gt;取消 / 添加&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;确认动作&lt;/td&gt;&lt;td&gt;动作 + 对象&lt;/td&gt;&lt;td&gt;取消 / 动作&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;执行任务&lt;/td&gt;&lt;td&gt;设置 + 条件&lt;/td&gt;&lt;td&gt;取消 / 执行动作&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+        ` : topicId === &#x27;05&#x27; ? `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;Large 与 Workspace 核心规则&quot;&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;类型与宽度&lt;/span&gt;
+              &lt;strong&gt;Large · 1152px / Workspace · 90vw&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Header 与滚动&lt;/span&gt;
+              &lt;span&gt;Header 只放标题和关闭入口；Tab、统计说明等进入 Body，长内容只允许 Body 滚动。&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Footer&lt;/span&gt;
+              &lt;span&gt;操作型保留 Footer；查看型隐藏 Footer，不展示“取消”按钮。&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;section class=&quot;modal-copy-rule&quot; aria-labelledby=&quot;modal-size-rule-title&quot;&gt;
+            &lt;div class=&quot;modal-copy-rule-heading&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;尺寸规则&lt;/span&gt;
+              &lt;strong id=&quot;modal-size-rule-title&quot;&gt;Large 与 Workspace 的容器边界&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-copy-rule-table-wrap&quot;&gt;
+              &lt;table class=&quot;modal-copy-rule-table modal-size-rule-table&quot;&gt;
+                &lt;thead&gt;
+                  &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;类型&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;宽度&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;高度&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;内容滚动&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Footer&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;适用场景&lt;/th&gt;&lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;Large 大型弹框&lt;/td&gt;&lt;td&gt;1152px&lt;/td&gt;&lt;td&gt;自适应，最大 90vh&lt;/td&gt;&lt;td&gt;超出后 Body 滚动&lt;/td&gt;&lt;td&gt;操作型保留；查看型隐藏&lt;/td&gt;&lt;td&gt;复杂配置、表格编辑、详情查看&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Workspace 工作区弹框&lt;/td&gt;&lt;td&gt;90vw，最大 1800px&lt;/td&gt;&lt;td&gt;90vh，最大 900px&lt;/td&gt;&lt;td&gt;Body 滚动&lt;/td&gt;&lt;td&gt;操作型保留；查看型隐藏&lt;/td&gt;&lt;td&gt;地图、监控、分析、大型流程、多区域操作&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+        ` : &#x27;&#x27;;
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;下一步&lt;/span&gt;
+              &lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          const evidenceMarkup = topicItems.length
+            ? `${renderTopicRule(topicId)}&lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;`
+            : `&lt;div class=&quot;evidence-empty text-small&quot;&gt;该专题暂无图片证据，既有代码定位与治理结论已保留。&lt;/div&gt;`;
+          const evidenceCount = topicItems.length ? `${topicItems.length} 张证据 · ${scenarios.length} 组场景` : &#x27;图片待补&#x27;;
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;modal-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;modal-topic-${topicId}&quot;&gt;${modalTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${evidenceCount}&lt;/span&gt;
+              &lt;/div&gt;
+              ${evidenceMarkup}
+              ${traceMarkup(issueItem)}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-modal-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.modalEvidenceIndex)]);
+          });
+        });
+      }
+
       function renderDetail() {
         root.querySelector(&#x27;#standard-governance-dossier&#x27;).hidden = selected.key !== &#x27;select&#x27;;
         root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
@@ -3745,17 +4170,21 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         renderOutput();
         const isSelect = selected.key === &#x27;select&#x27;;
+        const isModal = selected.key === &#x27;modal&#x27;;
         root.querySelector(&#x27;#select-topic-section&#x27;).hidden = !isSelect;
-        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect;
-        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect;
+        root.querySelector(&#x27;#modal-topic-section&#x27;).hidden = !isModal;
+        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal;
+        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal;
         if (isSelect) {
           renderSelectTopics();
+        } else if (isModal) {
+          renderModalConfirmationTopic();
         } else {
           renderImageEvidence();
         }
 
         const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
-        if (!isSelect &amp;&amp; !selected.evidence.length) {
+        if (!isSelect &amp;&amp; !isModal &amp;&amp; !selected.evidence.length) {
           issueHost.innerHTML = `
             &lt;tr&gt;
               &lt;td&gt;${selected.label}&lt;/td&gt;
@@ -3764,7 +4193,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
             &lt;/tr&gt;
           `;
-        } else if (!isSelect) {
+        } else if (!isSelect &amp;&amp; !isModal) {
           issueHost.innerHTML = selected.evidence.map(item =&gt; `
             &lt;tr&gt;
               &lt;td&gt;${item.page}&lt;/td&gt;
