@@ -1782,6 +1782,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .select-topic-group,
     #component-governance-dashboard #badge-topic-board .select-topic-group,
     #component-governance-dashboard #tag-topic-board .select-topic-group,
+    #component-governance-dashboard #steps-topic-board .select-topic-group,
+    #component-governance-dashboard #tree-select-topic-board .select-topic-group,
     #component-governance-dashboard #checkbox-topic-board .select-topic-group {
       padding-top: 26px;
     }
@@ -1801,6 +1803,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .select-topic-header,
     #component-governance-dashboard #badge-topic-board .select-topic-header,
     #component-governance-dashboard #tag-topic-board .select-topic-header,
+    #component-governance-dashboard #steps-topic-board .select-topic-header,
+    #component-governance-dashboard #tree-select-topic-board .select-topic-header,
     #component-governance-dashboard #checkbox-topic-board .select-topic-header {
       align-items: center;
       margin-bottom: 18px;
@@ -1835,6 +1839,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .select-topic-title h4,
     #component-governance-dashboard #badge-topic-board .select-topic-title h4,
     #component-governance-dashboard #tag-topic-board .select-topic-title h4,
+    #component-governance-dashboard #steps-topic-board .select-topic-title h4,
+    #component-governance-dashboard #tree-select-topic-board .select-topic-title h4,
     #component-governance-dashboard #checkbox-topic-board .select-topic-title h4 {
       font-size: calc(var(--font-size-h3) + 2px);
       font-weight: 600;
@@ -1848,6 +1854,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .select-topic-title > .select-topic-index,
     #component-governance-dashboard #badge-topic-board .select-topic-title > .select-topic-index,
     #component-governance-dashboard #tag-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #steps-topic-board .select-topic-title > .select-topic-index,
+    #component-governance-dashboard #tree-select-topic-board .select-topic-title > .select-topic-index,
     #component-governance-dashboard #checkbox-topic-board .select-topic-title > .select-topic-index {
       padding: 3px 7px;
       color: var(--primary);
@@ -1984,6 +1992,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .modal-scenario-header,
     #component-governance-dashboard #badge-topic-board .modal-scenario-header,
     #component-governance-dashboard #tag-topic-board .modal-scenario-header,
+    #component-governance-dashboard #steps-topic-board .modal-scenario-header,
+    #component-governance-dashboard #tree-select-topic-board .modal-scenario-header,
     #component-governance-dashboard #checkbox-topic-board .modal-scenario-header {
       min-height: 28px;
       align-items: center;
@@ -1996,6 +2006,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .modal-scenario-header .select-topic-index,
     #component-governance-dashboard #badge-topic-board .modal-scenario-header .select-topic-index,
     #component-governance-dashboard #tag-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #steps-topic-board .modal-scenario-header .select-topic-index,
+    #component-governance-dashboard #tree-select-topic-board .modal-scenario-header .select-topic-index,
     #component-governance-dashboard #checkbox-topic-board .modal-scenario-header .select-topic-index {
       padding: 2px 6px;
       color: var(--muted-foreground);
@@ -2015,6 +2027,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard #switch-topic-board .modal-scenario-header strong,
     #component-governance-dashboard #badge-topic-board .modal-scenario-header strong,
     #component-governance-dashboard #tag-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #steps-topic-board .modal-scenario-header strong,
+    #component-governance-dashboard #tree-select-topic-board .modal-scenario-header strong,
     #component-governance-dashboard #checkbox-topic-board .modal-scenario-header strong {
       font-size: var(--font-size-small);
     }
@@ -2314,7 +2328,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;title-block&quot;&gt;
       &lt;div class=&quot;meta-line&quot;&gt;
         &lt;span class=&quot;viz-badge&quot;&gt;一级网 · 组件治理&lt;/span&gt;
-        &lt;span class=&quot;text-small text-muted&quot;&gt;2026 年 7 月 · 实时读取 BM01&lt;/span&gt;
+        &lt;span class=&quot;text-small text-muted&quot;&gt;2026 年 8 月 · 实时读取 BM01&lt;/span&gt;
       &lt;/div&gt;
       &lt;div class=&quot;demo-mark text-small&quot;&gt;
         &lt;i data-lucide=&quot;info&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
@@ -2323,7 +2337,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/div&gt;
     &lt;div class=&quot;scope-line text-small&quot;&gt;
       &lt;span class=&quot;text-muted&quot;&gt;范围：67 个基础治理页 + 4 个业务组件议题；标题、临时页、长输遗留页不计数&lt;/span&gt;
-      &lt;span class=&quot;viz-badge&quot;&gt;截至 07-23&lt;/span&gt;
+      &lt;span class=&quot;viz-badge&quot;&gt;截至 08-06&lt;/span&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -2336,22 +2350,22 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;kpi-grid&quot; aria-label=&quot;治理关键指标&quot;&gt;
     &lt;div class=&quot;card viz-stat&quot;&gt;
       &lt;span class=&quot;text-muted&quot;&gt;阶段结论覆盖&lt;/span&gt;
-      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-coverage&quot;&gt;34 / 67&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-coverage&quot;&gt;36 / 67&lt;/span&gt;
       &lt;div class=&quot;stat-context text-small&quot; id=&quot;kpi-coverage-note&quot;&gt;含深度治理、复用及无需治理结论&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;card viz-stat&quot;&gt;
-      &lt;span class=&quot;text-muted&quot;&gt;本月深度治理交付&lt;/span&gt;
-      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-deep&quot;&gt;12 个&lt;/span&gt;
-      &lt;div class=&quot;stat-context text-small&quot;&gt;已核验 10 个 · Steps、Timeline 本周收尾&lt;/div&gt;
+      &lt;span class=&quot;text-muted&quot;&gt;已深度治理交付&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-deep&quot;&gt;14 个&lt;/span&gt;
+      &lt;div class=&quot;stat-context text-small&quot;&gt;14 个组件已形成深度治理档案&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;card viz-stat&quot;&gt;
       &lt;span class=&quot;text-muted&quot;&gt;已核验治理产出&lt;/span&gt;
-      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-output&quot;&gt;42 / 544&lt;/span&gt;
-      &lt;div class=&quot;stat-context text-small&quot;&gt;10 页产出：组件集 / 变体与组件&lt;/div&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-output&quot;&gt;45 / 552&lt;/span&gt;
+      &lt;div class=&quot;stat-context text-small&quot;&gt;已核验产出仍保持 45 / 552，不把代码未核验的 Steps、TreeSelect 计入。&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;card viz-stat&quot;&gt;
       &lt;span class=&quot;text-muted&quot;&gt;剩余工作预计工期&lt;/span&gt;
-      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-days&quot;&gt;约 1 个月&lt;/span&gt;
+      &lt;span class=&quot;viz-stat-value&quot; id=&quot;kpi-days&quot;&gt;约 2 个月&lt;/span&gt;
       &lt;div class=&quot;stat-context text-small&quot;&gt;基础组件收尾 · 统一使用说明 · 开发整改与验收&lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
@@ -2360,15 +2374,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;progress-summary&quot;&gt;
       &lt;div class=&quot;section-heading&quot;&gt;
         &lt;h3&gt;BM01 基础治理范围&lt;/h3&gt;
-        &lt;strong id=&quot;overview-coverage&quot;&gt;完成阶段结论 34 / 67&lt;/strong&gt;
+        &lt;strong id=&quot;overview-coverage&quot;&gt;完成阶段结论 36 / 67&lt;/strong&gt;
       &lt;/div&gt;
       &lt;div class=&quot;stacked-track&quot; id=&quot;overview-track&quot; role=&quot;img&quot; aria-label=&quot;基础治理状态分布&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;legend text-small&quot; id=&quot;overview-legend&quot; aria-label=&quot;状态图例&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;workload-grid&quot; aria-label=&quot;治理工作量构成&quot;&gt;
-        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-sets&quot;&gt;42&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;组件集&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-variants&quot;&gt;544&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;变体 / 组件&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-images&quot;&gt;276&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;图片证据节点&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-sections&quot;&gt;17&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;治理说明区&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-sets&quot;&gt;45&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;组件集&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-variants&quot;&gt;552&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;变体 / 组件&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-images&quot;&gt;269&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;图片证据节点&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;workload-item&quot;&gt;&lt;strong id=&quot;work-sections&quot;&gt;50&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;治理说明区&lt;/span&gt;&lt;/div&gt;
         &lt;div class=&quot;workload-item&quot;&gt;&lt;strong&gt;173&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;图表涉及页面&lt;/span&gt;&lt;/div&gt;
         &lt;div class=&quot;workload-item&quot;&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;span class=&quot;text-small&quot;&gt;业务组件议题&lt;/span&gt;&lt;/div&gt;
       &lt;/div&gt;
@@ -2767,6 +2781,22 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;select-topic-board&quot; id=&quot;checkbox-topic-board&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
+        &lt;section id=&quot;steps-topic-section&quot; aria-label=&quot;Steps 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Steps 流程步骤与审批业务组件&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题查看组件展示、治理规则、当前问题与标准效果&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;steps-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;tree-select-topic-section&quot; aria-label=&quot;TreeSelect 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;TreeSelect 层级选择与菜单状态&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题查看真实问题、标准效果、组件能力与 Select 规则继承关系&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;tree-select-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
         &lt;section id=&quot;evidence-section&quot; aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
             &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
@@ -3055,7 +3085,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;表格分页&#x27;, &#x27;独立 Pagination 与 Table 内建分页边界已完成治理。&#x27;, &#x27;BM01 页面 377:9704&#x27;, &#x27;已完成&#x27;)
         ],
         steps: [
-          issue(&#x27;流程步骤&#x27;, &#x27;已纳入本周交付，两天内完成最后整理。&#x27;, &#x27;BM01 页面 380:170&#x27;, &#x27;本周收尾&#x27;)
+          issue(&#x27;基础 Steps 样式统一&#x27;, &#x27;收敛多套步骤容器，统一位于页面内容区并居中、行内展示；Steps 只承载计划或操作步骤的顺序与当前进度。&#x27;, &#x27;安全管理风险地图、日前计划、北京实时调度、应急调度：4 张当前问题与 2 张标准效果&#x27;, &#x27;规范已沉淀 · 代码未核验&#x27;),
+          issue(&#x27;Approval Flow 审批流程&#x27;, &#x27;审批流同时包含未来步骤与历史记录，应作为业务组合组件；可借鉴 Steps 点线，但独立承载节点状态、审批人、时间、结果、意见与交互。&#x27;, &#x27;查漏单详情、审批中心查漏单详情与缺陷单：4 组当前问题/标准效果&#x27;, &#x27;业务组件结论已形成 · 开发待整改&#x27;)
         ],
         form: [
           issue(&#x27;一级网表单&#x27;, &#x27;已初步梳理 label、控件宽度和业务表单边界，仍需结合真实页面细化。&#x27;, &#x27;BM01 已汇总筛选区、弹框和复杂表单截图&#x27;, &#x27;继续核验一级网页面&#x27;)
@@ -3103,7 +3134,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;TimePicker&#x27;, &#x27;一级网预计没有复杂变体。&#x27;, &#x27;页面证据待核实&#x27;, &#x27;低成本核验&#x27;)
         ],
         treeSelect: [
-          issue(&#x27;树选择&#x27;, &#x27;已找到多个业务示例，需核实搜索、多选和层级边界。&#x27;, &#x27;BM01 已归档 3 类截图&#x27;, &#x27;结合代码治理&#x27;)
+          issue(&#x27;搜索位置与层级选择&#x27;, &#x27;TreeSelect 只用于真实树层级；搜索固定在下拉面板顶部，触发器保持标准选择器结构。&#x27;, &#x27;热力站监测：2 组当前问题/标准效果&#x27;, &#x27;规范已沉淀 · 代码待核验&#x27;),
+          issue(&#x27;Select Menu / Show Tag&#x27;, &#x27;树节点可展示辅助分类 Tag，但 Tag 不替代节点名称，也不承担选中状态。&#x27;, &#x27;已归档 Show Tag 标准效果与属性展示&#x27;, &#x27;组件能力已定义 · 开发待整改&#x27;),
+          issue(&#x27;Select Menu / Empty State&#x27;, &#x27;无数据时使用统一 Empty State；后续需与搜索无结果、加载失败分别定义。&#x27;, &#x27;已归档 Empty State 标准效果与属性展示&#x27;, &#x27;组件能力已定义 · 状态细分待核验&#x27;)
         ],
         tree: [
           issue(&#x27;Tree&#x27;, &#x27;一级网使用常见，需要系统性收集场景后确定治理规则。&#x27;, &#x27;真实页面待补齐&#x27;, &#x27;场景梳理&#x27;)
@@ -3218,10 +3251,39 @@ html&gt;body{padding:0}&lt;/style&gt;
         segmented: [2, 81, 3, 2],
         radio: [4, 108, 29, 4],
         tag: [2, 36, 10, 5],
-        modal: [3, 26, 83, 5]
+        modal: [3, 26, 83, 5],
+        steps: [2, 0, 15, 8],
+        treeSelect: [3, 0, 8, 2]
       };
 
       const imageEvidenceByKey = {
+        treeSelect: [
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → 标签分组搜索&#x27;, src: &#x27;evidence-assets/treeselect/01/01-热力站监测选择标签搜索在触发器上-当前问题.png&#x27;, title: &#x27;当前问题：搜索入口占用触发器&#x27;, note: &#x27;搜索输入直接占用 TreeSelect 触发器，选择值、搜索态和展开入口混在同一区域。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → 标签分组搜索&#x27;, src: &#x27;evidence-assets/treeselect/01/02-热力站监测选择标签搜索在下拉框中-标准效果.png&#x27;, title: &#x27;标准效果：搜索固定在下拉面板顶部&#x27;, note: &#x27;继承 Select 的 Search Dropdown 规则：触发器保持标准箭头，搜索框固定在树菜单顶部。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;热力站监测 → 树节点辅助分类&#x27;, src: &#x27;evidence-assets/treeselect/01/02-热力站监测选择标签搜索在下拉框中-当前问题.png&#x27;, title: &#x27;当前问题：节点 Tag 使用口径不完整&#x27;, note: &#x27;辅助分类只出现在部分父节点，节点名称、分类信息和层级关系缺少统一排列规则。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;热力站监测 → 树节点辅助分类&#x27;, src: &#x27;evidence-assets/treeselect/01/02-热力站监测选择标签-标准效果.png&#x27;, title: &#x27;标准效果：辅助 Tag 跟随节点名称&#x27;, note: &#x27;继承 Select 的 Option Tag 原则，Tag 位于节点名称右侧，只补充分类语义。&#x27; },
+          { topicId: &#x27;02&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/treeselect/02/01-组件规范-TreeSelect菜单-ShowTag标准效果.png&#x27;, title: &#x27;标准效果：TreeSelect Menu / Show Tag&#x27;, note: &#x27;Show Tag 开启后，树节点可显示辅助分类；标签不替代名称，不参与勾选状态。&#x27; },
+          { topicId: &#x27;02&#x27;, kind: &#x27;property&#x27;, src: &#x27;evidence-assets/treeselect/02/02-组件规范-TreeSelect菜单-ShowTag属性展示.png&#x27;, title: &#x27;属性展示：Show Tag&#x27;, note: &#x27;在 TreeSelect 节点属性中提供 Show Tag 开关，并与 Type、Level、State 等节点属性组合。&#x27; },
+          { topicId: &#x27;03&#x27;, kind: &#x27;conclusion&#x27;, src: &#x27;evidence-assets/treeselect/03/01-组件规范-TreeSelect菜单-EmptyState标准效果.png&#x27;, title: &#x27;标准效果：TreeSelect Menu / Empty State&#x27;, note: &#x27;菜单无数据时展示统一空状态图形与 No Data 文案，不保留空白树容器。&#x27; },
+          { topicId: &#x27;03&#x27;, kind: &#x27;property&#x27;, src: &#x27;evidence-assets/treeselect/03/02-组件规范-TreeSelect菜单-EmptyState属性展示.png&#x27;, title: &#x27;属性展示：Empty State&#x27;, note: &#x27;通过 Empty State 属性控制空状态；Search 属性独立管理是否提供菜单内搜索。&#x27; }
+        ],
+        steps: [
+          { kind: &#x27;component&#x27;, src: &#x27;evidence-assets/steps/Approval Flow组件展示.png&#x27;, title: &#x27;Approval Flow 组件展示&#x27;, note: &#x27;Default / Small 两种尺寸，覆盖 Finish、Process、Wait、Error 四类节点状态。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;安全管理 → 风险地图 → 风险等级配置&#x27;, src: &#x27;evidence-assets/steps/01/01-安全管理-风险地图-当前问题.png&#x27;, title: &#x27;当前问题：步骤条容器与页面内容脱节&#x27;, note: &#x27;步骤信息以页面局部自定义结构呈现，宽度、间距和对齐未纳入统一 Steps 容器。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;日前计划 → 新建计划&#x27;, src: &#x27;evidence-assets/steps/01/02-日前计划-新建计划-当前问题.png&#x27;, title: &#x27;当前问题：多步骤流程样式未统一&#x27;, note: &#x27;计划创建流程的节点尺寸、连线与内容区位置采用页面自定义口径。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;北京实时调度 → 创建优化方案&#x27;, src: &#x27;evidence-assets/steps/01/03-北京实时调度-创建优化方案-当前问题.png&#x27;, title: &#x27;当前问题：步骤导航与业务区对齐不稳定&#x27;, note: &#x27;步骤导航悬置于图表内容上方，未形成可复用的居中行内容器。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;应急调度 → 创建应急方案&#x27;, src: &#x27;evidence-assets/steps/01/04-应急调度-当前问题.png&#x27;, title: &#x27;当前问题：流程步骤与页面标题区混排&#x27;, note: &#x27;步骤条承担页面导航但位置和视觉层级不稳定，需要统一收进内容区。&#x27; },
+          { topicId: &#x27;01&#x27;, kind: &#x27;standard&#x27;, scenarioId: &#x27;standard-01&#x27;, scene: &#x27;标准效果&#x27;, src: &#x27;evidence-assets/steps/01/收进Steps组件-标准效果1.png&#x27;, title: &#x27;标准效果：两步流程收进 Steps 组件&#x27;, note: &#x27;使用统一节点、连线和状态样式，在内容区居中并保持紧凑行内展示。&#x27; },
+          { topicId: &#x27;01&#x27;, kind: &#x27;standard&#x27;, scenarioId: &#x27;standard-02&#x27;, scene: &#x27;标准效果&#x27;, src: &#x27;evidence-assets/steps/01/收进Steps组件-标准效果2.png&#x27;, title: &#x27;标准效果：多步流程统一行内展示&#x27;, note: &#x27;多步骤流程沿用同一容器、节点间距和当前状态表达，不随页面重复造型。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;查漏单详情 → 审批流程&#x27;, src: &#x27;evidence-assets/steps/02/01-查漏单详情-当前问题.png&#x27;, title: &#x27;当前问题：审批节点状态仅靠同形圆点表达&#x27;, note: &#x27;通过、驳回与流程发起使用相同节点图形，长流程中难以快速定位关键结果。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;查漏单详情 → 审批流程&#x27;, src: &#x27;evidence-assets/steps/02/01-查漏单详情-标准效果.png&#x27;, title: &#x27;标准效果：完成与驳回状态明确区分&#x27;, note: &#x27;完成节点使用勾选，驳回节点使用错误态；审批人、时间、结果与意见保持稳定对齐。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;审批中心 → 查漏单详情（审批中）&#x27;, src: &#x27;evidence-assets/steps/02/02-审批中心查漏单详情审批中-当前问题.png&#x27;, title: &#x27;当前问题：审批中、未审批缺少层级&#x27;, note: &#x27;历史结果与未来步骤使用同一种空心节点，当前停留位置不够清晰。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;审批中心 → 查漏单详情（审批中）&#x27;, src: &#x27;evidence-assets/steps/02/02-审批中心查漏单详情审批中-标准效果.png&#x27;, title: &#x27;标准效果：当前审批节点与等待节点分层&#x27;, note: &#x27;完成、失败、进行中和等待分别使用独立状态，未来步骤保留序号但降低视觉权重。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;审批中心 → 查漏单详情（已完成）&#x27;, src: &#x27;evidence-assets/steps/02/03-审批中心查漏单详情已完成无审批意见-当前问题.png&#x27;, title: &#x27;当前问题：完成流程仍沿用普通时间线节点&#x27;, note: &#x27;所有节点形态一致，完成状态只能依赖右侧文案识别，流程结束感较弱。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;审批中心 → 查漏单详情（已完成）&#x27;, src: &#x27;evidence-assets/steps/02/03-审批中心查漏单详情已完成无审批意见-标准效果.png&#x27;, title: &#x27;标准效果：已完成流程统一使用完成节点&#x27;, note: &#x27;全部审批节点使用完成态，审批角色、人员、时间和结果在固定位置连续阅读。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;审批中心 → 缺陷单审批&#x27;, src: &#x27;evidence-assets/steps/02/04-审批中心缺陷单-当前问题.png&#x27;, title: &#x27;当前问题：复杂审批流缺少当前状态表达&#x27;, note: &#x27;签发、接收、许可、开工等未来节点均以空心圆展示，无法快速识别当前审批位置。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;审批中心 → 缺陷单审批&#x27;, src: &#x27;evidence-assets/steps/02/04-审批中心缺陷单-标准效果.png&#x27;, title: &#x27;标准效果：复杂审批流展示完整节点状态&#x27;, note: &#x27;完成节点、当前审批中节点与后续等待节点明确区分，并在节点内稳定承载审批意见。&#x27; }
+        ],
         tag: [
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;抢修单 → 超时提醒&#x27;, src: &#x27;evidence-assets/tag/01-抢修单-超时提醒A-当前问题.png&#x27;, title: &#x27;当前问题：超时提醒样式 A&#x27;, note: &#x27;同一超时语义同时出现填充式与描边式 Tag，样式口径不一致。&#x27; },
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;抢修单 → 超时提醒&#x27;, src: &#x27;evidence-assets/tag/01-抢修单-超时提醒-标准答案.png&#x27;, title: &#x27;标准效果：超时提醒统一红色描边&#x27;, note: &#x27;“超24小时”和“超7天”统一使用红色提醒语义与描边 Tag，避免高饱和填充抢占表格信息。&#x27; },
@@ -3493,7 +3555,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         dropdown: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, knownDays: 1, estimate: &#x27;约 1 人日&#x27;, summary: &#x27;截图和代码证据已找到，需梳理使用场景并移出不属于 Dropdown 的内容。&#x27; },
         menu: { status: &#x27;watch&#x27;, stateLabel: &#x27;等待交互方案&#x27;, kind: &#x27;持续关注&#x27;, progress: 30, estimate: &#x27;依赖交互方案&#x27;, summary: &#x27;交互正在产出新的菜单设计，方案确定后再纳入组件。&#x27; },
         pagination: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;独立 Pagination 与 Table 内建分页的边界、样式和参数口径已完成。&#x27; },
-        steps: { status: &#x27;done&#x27;, stateLabel: &#x27;本周收尾·按完成计&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;与 Timeline 一起在两天内收尾，按本月交付完成标记。&#x27; },
+        steps: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;流程与业务组件&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 0, 0, 0], summary: &#x27;已形成基础 Steps 样式收敛与 Approval Flow 审批业务组件两类治理结论，并关联 8 组场景、15 张组件展示与问题/标准效果证据；真实调用路径、开发整改与验收尚未完成。&#x27; },
 
         form: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, summary: &#x27;已做初步整理，仍需结合一级网的真实表单结构仔细治理。&#x27; },
         autoComplete: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
@@ -3509,7 +3571,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         switch: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;使用边界&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 0, 0, 0], summary: &#x27;已形成 Switch 与 RadioGroup、Checkbox、Select 的使用边界，并关联 1 张治理结论图和 5 张一级网真实页面截图；真实调用路径、开发整改与验收尚未完成。&#x27; },
         timePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 15, estimate: &#x27;预计较快&#x27;, summary: &#x27;一级网预计没有复杂变化，补证据后即可治理。&#x27; },
         transfer: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
-        treeSelect: { status: &#x27;doing&#x27;, difficulty: 2, progress: 35, estimate: &#x27;预计较快&#x27;, summary: &#x27;已找到复杂示例，需核实真实代码并完成治理。&#x27; },
+        treeSelect: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;层级选择与菜单状态&#x27;, phaseComplete: true, deep: true, progress: 57, estimate: &#x27;代码核验与开发待排期&#x27;, stages: [100, 0, 100, 100, 100, 0, 0], summary: &#x27;已形成搜索位置、树节点 Show Tag 与 Empty State 三类治理结论，并关联 2 组真实场景和 8 张问题、标准效果及属性证据；层级选择与 Select Multiple 的边界已明确，真实调用路径、状态细分、开发整改与验收尚未完成。&#x27; },
         tree: { status: &#x27;doing&#x27;, difficulty: 2, progress: 15, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网使用常见，需要继续收集系统情况并确定治理规则。&#x27; },
         upload: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网上传样式较杂，需要核实已有证据并统一导入、上传、文件列表边界。&#x27; },
 
@@ -3830,6 +3892,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         const pendingCount = foundationItems.length - phaseComplete - watchCount;
         const verified = foundationItems.filter(item =&gt; item.output[1] &gt; 0);
         const sums = verified.reduce((acc, item) =&gt; acc.map((value, index) =&gt; value + item.output[index]), [0, 0, 0, 0]);
+        const allOutputSums = foundationItems.reduce((acc, item) =&gt; acc.map((value, index) =&gt; value + item.output[index]), [0, 0, 0, 0]);
         const knownDays = allItems.reduce((sum, item) =&gt; sum + item.knownDays, 0);
         const coverage = (phaseComplete / foundationItems.length * 100).toFixed(1);
 
@@ -3837,15 +3900,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#kpi-coverage-note&#x27;).textContent = `完成率 ${coverage}% · 含深度治理、复用及无需治理结论`;
         root.querySelector(&#x27;#kpi-deep&#x27;).textContent = `${deepCount} 个`;
         root.querySelector(&#x27;#kpi-output&#x27;).textContent = `${sums[0]} / ${sums[1]}`;
-        root.querySelector(&#x27;#kpi-days&#x27;).textContent = &#x27;约 1 个月&#x27;;
+        root.querySelector(&#x27;#kpi-days&#x27;).textContent = &#x27;约 2 个月&#x27;;
         root.querySelector(&#x27;#overview-coverage&#x27;).textContent = `完成阶段结论 ${phaseComplete} / ${foundationItems.length}`;
         root.querySelector(&#x27;#work-sets&#x27;).textContent = sums[0];
         root.querySelector(&#x27;#work-variants&#x27;).textContent = sums[1];
-        root.querySelector(&#x27;#work-images&#x27;).textContent = sums[2];
-        root.querySelector(&#x27;#work-sections&#x27;).textContent = sums[3];
+        root.querySelector(&#x27;#work-images&#x27;).textContent = allOutputSums[2];
+        root.querySelector(&#x27;#work-sections&#x27;).textContent = allOutputSums[3];
 
         const segments = [
-          [&#x27;done&#x27;, deepCount, &#x27;深度治理交付&#x27;],
+          [&#x27;done&#x27;, deepCount, &#x27;已深度治理交付&#x27;],
           [&#x27;concluded&#x27;, conclusionCount, &#x27;复用 / 无需治理结论&#x27;],
           [&#x27;watch&#x27;, watchCount, &#x27;持续关注&#x27;],
           [&#x27;doing&#x27;, pendingCount, &#x27;待治理&#x27;]
@@ -4273,6 +4336,17 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;Tag 颜色语义与组件边界&#x27;
       ];
 
+      const stepsTopicNames = [
+        &#x27;基础 Steps 样式统一&#x27;,
+        &#x27;Approval Flow 审批流程&#x27;
+      ];
+
+      const treeSelectTopicNames = [
+        &#x27;搜索位置与层级选择&#x27;,
+        &#x27;Select Menu / Show Tag&#x27;,
+        &#x27;Select Menu / Empty State&#x27;
+      ];
+
       function renderSelectTopics() {
         const host = root.querySelector(&#x27;#select-topic-board&#x27;);
         const items = imageEvidenceByKey.select || [];
@@ -4289,7 +4363,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           const evidenceClass = topicItems.length &lt;= 2 ? &#x27;select-topic-evidence is-pair&#x27; : &#x27;select-topic-evidence&#x27;;
           const evidenceMarkup = topicItems.length ? topicItems.map(item =&gt; {
             const displayTitle = item.title.replace(/^\d{2}\s*/, &#x27;&#x27;);
-            const titleClass = item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;;
+            const titleClass = displayTitle.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : &#x27;is-standard&#x27;;
             return `
               &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-topic-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
                 &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
@@ -5443,6 +5517,223 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
       }
 
+      function renderStepsTopics() {
+        const host = root.querySelector(&#x27;#steps-topic-board&#x27;);
+        const items = (imageEvidenceByKey.steps || []).map((item, sourceIndex) =&gt; ({ ...item, sourceIndex }));
+        const componentOverview = items.find(item =&gt; item.kind === &#x27;component&#x27;);
+        const topicItems = items.filter(item =&gt; item.topicId);
+        const evidenceByTopic = topicItems.reduce((groups, item) =&gt; {
+          (groups[item.topicId] ||= []).push(item);
+          return groups;
+        }, {});
+        const ruleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;组件责任&#x27;, &#x27;只表达流程步骤顺序、完成状态与当前进度&#x27;],
+            [&#x27;布局规则&#x27;, &#x27;收进统一 Steps 容器，位于页面内容区并居中、行内展示&#x27;],
+            [&#x27;适用边界&#x27;, &#x27;页面或表单导航使用 Steps，不承载审批历史记录&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;组件责任&#x27;, &#x27;统一展示未来审批步骤与历史审批记录&#x27;],
+            [&#x27;节点信息&#x27;, &#x27;时间、审批人、结果与意见采用稳定结构和对齐方式&#x27;],
+            [&#x27;组件边界&#x27;, &#x27;可借鉴 Steps 点线；Approval Flow 独立定义节点状态、内容和交互&#x27;]
+          ]
+        };
+
+        const renderRules = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${stepsTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(ruleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderCard = item =&gt; `
+          &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-steps-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+            &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网治理证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+            &lt;span class=&quot;evidence-caption&quot;&gt;
+              &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : item.title.startsWith(&#x27;标准效果&#x27;) ? &#x27;is-standard&#x27; : &#x27;is-conclusion&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
+              &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/button&gt;
+        `;
+
+        const groupScenarios = entries =&gt; entries.reduce((groups, item) =&gt; {
+          const scenario = groups.find(entry =&gt; entry.id === item.scenarioId);
+          if (scenario) scenario.items.push(item);
+          else groups.push({ id: item.scenarioId, scene: item.scene, items: [item] });
+          return groups;
+        }, []);
+
+        const renderScenario = (topicId, scenario) =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;steps-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;steps-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(renderCard).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `;
+
+        const overviewMarkup = componentOverview ? `
+          &lt;section class=&quot;segmented-conclusion&quot; aria-labelledby=&quot;steps-component-overview&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;组件展示&lt;/span&gt;
+              &lt;strong id=&quot;steps-component-overview&quot;&gt;Approval Flow 状态与尺寸&lt;/strong&gt;
+            &lt;/div&gt;
+            ${renderCard(componentOverview)}
+          &lt;/section&gt;
+        ` : &#x27;&#x27;;
+
+        const topicsMarkup = [&#x27;01&#x27;, &#x27;02&#x27;].map(topicId =&gt; {
+          const entries = evidenceByTopic[topicId] || [];
+          const standards = topicId === &#x27;01&#x27; ? entries.filter(item =&gt; item.kind === &#x27;standard&#x27;) : [];
+          const scenarioEntries = topicId === &#x27;01&#x27; ? entries.filter(item =&gt; item.kind !== &#x27;standard&#x27;) : entries;
+          const scenarios = groupScenarios(scenarioEntries);
+          const standardMarkup = standards.length ? `
+            &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;steps-standard-${topicId}&quot;&gt;
+              &lt;div class=&quot;modal-scenario-header&quot;&gt;
+                &lt;span class=&quot;select-topic-index&quot;&gt;标准效果&lt;/span&gt;
+                &lt;strong id=&quot;steps-standard-${topicId}&quot;&gt;统一 Steps 容器&lt;/strong&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;modal-scenario-evidence&quot;&gt;${standards.map(renderCard).join(&#x27;&#x27;)}&lt;/div&gt;
+            &lt;/section&gt;
+          ` : &#x27;&#x27;;
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;steps-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;steps-topic-${topicId}&quot;&gt;${stepsTopicNames[Number(topicId) - 1]}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${entries.length} 张证据 · ${scenarios.length} 组场景&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderRules(topicId)}
+              &lt;div class=&quot;modal-scenario-list&quot;&gt;
+                ${scenarios.map(scenario =&gt; renderScenario(topicId, scenario)).join(&#x27;&#x27;)}
+                ${standardMarkup}
+              &lt;/div&gt;
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.innerHTML = overviewMarkup + topicsMarkup;
+        host.querySelectorAll(&#x27;[data-steps-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; openEvidenceLightbox(items[Number(button.dataset.stepsEvidenceIndex)]));
+        });
+      }
+
+      function renderTreeSelectTopics() {
+        const host = root.querySelector(&#x27;#tree-select-topic-board&#x27;);
+        const items = (imageEvidenceByKey.treeSelect || []).map((item, sourceIndex) =&gt; ({ ...item, sourceIndex }));
+        const evidenceByTopic = items.reduce((groups, item) =&gt; {
+          (groups[item.topicId] ||= []).push(item);
+          return groups;
+        }, {});
+        const ruleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;组件边界&#x27;, &#x27;仅真实树层级使用 TreeSelect；无层级多选继续使用 Select Multiple&#x27;],
+            [&#x27;搜索规则&#x27;, &#x27;搜索框固定在下拉面板顶部，触发器保留选择值与标准展开箭头&#x27;],
+            [&#x27;继承 Select&#x27;, &#x27;沿用 Search Dropdown、选中标签折叠与清空行为，树层级由 TreeSelect 独立负责&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;能力定义&#x27;, &#x27;Show Tag 为树节点补充分类、类型或范围信息&#x27;],
+            [&#x27;展示规则&#x27;, &#x27;Tag 跟随节点名称右侧，不替代名称，不表达勾选或展开状态&#x27;],
+            [&#x27;继承 Select&#x27;, &#x27;沿用 Option Tag 的辅助语义原则，并增加 Level、Collapsed、Line 等树节点属性&#x27;]
+          ],
+          &#x27;03&#x27;: [
+            [&#x27;状态定义&#x27;, &#x27;无节点数据时展示统一 Empty State，不保留空白树容器&#x27;],
+            [&#x27;状态边界&#x27;, &#x27;无数据、搜索无结果和加载失败需要分别定义，当前仅沉淀无数据状态&#x27;],
+            [&#x27;继承 Select&#x27;, &#x27;沿用 Menu State = Empty 的图形与文案结构，Search 属性独立控制搜索能力&#x27;]
+          ]
+        };
+
+        const renderRules = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${treeSelectTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(ruleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderCard = item =&gt; `
+          &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-tree-select-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+            &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} TreeSelect 治理证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+            &lt;span class=&quot;evidence-caption&quot;&gt;
+              &lt;strong class=&quot;${item.title.startsWith(&#x27;当前问题&#x27;) ? &#x27;is-problem&#x27; : item.title.startsWith(&#x27;标准效果&#x27;) ? &#x27;is-standard&#x27; : &#x27;is-conclusion&#x27;}&quot;&gt;${item.title}&lt;/strong&gt;
+              &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/button&gt;
+        `;
+
+        const groupScenarios = entries =&gt; entries.reduce((groups, item) =&gt; {
+          const scenario = groups.find(entry =&gt; entry.id === item.scenarioId);
+          if (scenario) scenario.items.push(item);
+          else groups.push({ id: item.scenarioId, scene: item.scene, items: [item] });
+          return groups;
+        }, []);
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;专题 / 能力&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;证据 / 定位&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;状态 / 下一步&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = [&#x27;01&#x27;, &#x27;02&#x27;, &#x27;03&#x27;].map((topicId, index) =&gt; {
+          const entries = evidenceByTopic[topicId] || [];
+          const scenarios = topicId === &#x27;01&#x27; ? groupScenarios(entries) : [];
+          const evidenceMarkup = topicId === &#x27;01&#x27; ? `
+            &lt;div class=&quot;modal-scenario-list&quot;&gt;
+              ${scenarios.map(scenario =&gt; `
+                &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;tree-select-scenario-${scenario.id}&quot;&gt;
+                  &lt;div class=&quot;modal-scenario-header&quot;&gt;
+                    &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+                    &lt;strong id=&quot;tree-select-scenario-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;modal-scenario-evidence&quot;&gt;${scenario.items.map(renderCard).join(&#x27;&#x27;)}&lt;/div&gt;
+                &lt;/section&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          ` : `
+            &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;tree-select-conclusion-${topicId}&quot;&gt;
+              &lt;div class=&quot;modal-scenario-header&quot;&gt;
+                &lt;span class=&quot;select-topic-index&quot;&gt;组件结论&lt;/span&gt;
+                &lt;strong id=&quot;tree-select-conclusion-${topicId}&quot;&gt;${treeSelectTopicNames[index]} 属性与标准效果&lt;/strong&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;modal-scenario-evidence&quot;&gt;${entries.map(renderCard).join(&#x27;&#x27;)}&lt;/div&gt;
+            &lt;/section&gt;
+          `;
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;tree-select-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;tree-select-topic-${topicId}&quot;&gt;${treeSelectTopicNames[index]}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${entries.length} 张证据${scenarios.length ? ` · ${scenarios.length} 组场景` : &#x27; · 组件结论&#x27;}&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderRules(topicId)}
+              ${evidenceMarkup}
+              ${traceMarkup(selected.evidence[index])}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-tree-select-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; openEvidenceLightbox(items[Number(button.dataset.treeSelectEvidenceIndex)]));
+        });
+      }
+
       function renderDetail() {
         root.querySelector(&#x27;#standard-governance-dossier&#x27;).hidden = selected.key !== &#x27;select&#x27;;
         root.querySelector(&#x27;#selected-name&#x27;).textContent = selected.label;
@@ -5479,6 +5770,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         const isBadge = selected.key === &#x27;badge&#x27;;
         const isTag = selected.key === &#x27;tag&#x27;;
         const isCheckbox = selected.key === &#x27;checkbox&#x27;;
+        const isSteps = selected.key === &#x27;steps&#x27;;
+        const isTreeSelect = selected.key === &#x27;treeSelect&#x27;;
         root.querySelector(&#x27;#select-topic-section&#x27;).hidden = !isSelect;
         root.querySelector(&#x27;#modal-topic-section&#x27;).hidden = !isModal;
         root.querySelector(&#x27;#statistic-topic-section&#x27;).hidden = !isStatistic;
@@ -5489,8 +5782,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#badge-topic-section&#x27;).hidden = !isBadge;
         root.querySelector(&#x27;#tag-topic-section&#x27;).hidden = !isTag;
         root.querySelector(&#x27;#checkbox-topic-section&#x27;).hidden = !isCheckbox;
-        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs || isRadio || isSegmented || isSwitch || isBadge || isTag || isCheckbox;
-        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs || isRadio || isSegmented || isSwitch || isBadge || isTag || isCheckbox;
+        root.querySelector(&#x27;#steps-topic-section&#x27;).hidden = !isSteps;
+        root.querySelector(&#x27;#tree-select-topic-section&#x27;).hidden = !isTreeSelect;
+        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs || isRadio || isSegmented || isSwitch || isBadge || isTag || isCheckbox || isSteps || isTreeSelect;
+        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs || isRadio || isSegmented || isSwitch || isBadge || isTag || isCheckbox || isSteps || isTreeSelect;
         if (isSelect) {
           renderSelectTopics();
         } else if (isModal) {
@@ -5511,12 +5806,16 @@ html&gt;body{padding:0}&lt;/style&gt;
           renderTagTopics();
         } else if (isCheckbox) {
           renderCheckboxTopics();
+        } else if (isSteps) {
+          renderStepsTopics();
+        } else if (isTreeSelect) {
+          renderTreeSelectTopics();
         } else {
           renderImageEvidence();
         }
 
         const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
-        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !isRadio &amp;&amp; !isSegmented &amp;&amp; !isSwitch &amp;&amp; !isBadge &amp;&amp; !isTag &amp;&amp; !isCheckbox &amp;&amp; !selected.evidence.length) {
+        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !isRadio &amp;&amp; !isSegmented &amp;&amp; !isSwitch &amp;&amp; !isBadge &amp;&amp; !isTag &amp;&amp; !isCheckbox &amp;&amp; !isSteps &amp;&amp; !isTreeSelect &amp;&amp; !selected.evidence.length) {
           issueHost.innerHTML = `
             &lt;tr&gt;
               &lt;td&gt;${selected.label}&lt;/td&gt;
@@ -5525,7 +5824,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
             &lt;/tr&gt;
           `;
-        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !isRadio &amp;&amp; !isSegmented &amp;&amp; !isSwitch &amp;&amp; !isBadge &amp;&amp; !isTag &amp;&amp; !isCheckbox) {
+        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !isRadio &amp;&amp; !isSegmented &amp;&amp; !isSwitch &amp;&amp; !isBadge &amp;&amp; !isTag &amp;&amp; !isCheckbox &amp;&amp; !isSteps &amp;&amp; !isTreeSelect) {
           issueHost.innerHTML = selected.evidence.map(item =&gt; `
             &lt;tr&gt;
               &lt;td&gt;${item.page}&lt;/td&gt;
