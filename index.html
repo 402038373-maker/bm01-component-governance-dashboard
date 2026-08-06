@@ -1826,6 +1826,17 @@ html&gt;body{padding:0}&lt;/style&gt;
     #component-governance-dashboard .modal-topic-rule-item strong {
       font-weight: 500;
     }
+    #component-governance-dashboard .statistic-governance-overview {
+      margin-bottom: 28px;
+      padding: 18px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--primary) 3%, transparent);
+    }
+    #component-governance-dashboard .statistic-governance-overview + .select-topic-group {
+      border-top: 2px solid var(--primary);
+      padding-top: 4px;
+    }
     #component-governance-dashboard .modal-copy-rule {
       margin: -2px 0 18px;
       border-top: 1px solid var(--border);
@@ -2629,6 +2640,14 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;select-topic-board&quot; id=&quot;statistic-topic-board&quot;&gt;&lt;/div&gt;
         &lt;/section&gt;
 
+        &lt;section id=&quot;tabs-topic-section&quot; aria-label=&quot;Tabs 治理专题&quot; hidden&gt;
+          &lt;div class=&quot;section-heading&quot;&gt;
+            &lt;h3&gt;Tabs 治理专题与开发定位&lt;/h3&gt;
+            &lt;span class=&quot;text-small text-muted&quot;&gt;按专题连续查看规则、真实问题、标准效果与代码路径&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;select-topic-board&quot; id=&quot;tabs-topic-board&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
         &lt;section id=&quot;evidence-section&quot; aria-label=&quot;一级网真实页面证据&quot;&gt;
           &lt;div class=&quot;section-heading&quot;&gt;
             &lt;h3 id=&quot;evidence-heading&quot;&gt;一级网真实页面证据&lt;/h3&gt;
@@ -2973,10 +2992,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           issue(&#x27;上传与导入&#x27;, &#x27;一级网样式较杂乱，需要核实导入弹框、文件列表和入口边界。&#x27;, &#x27;BM01 已收集多类截图&#x27;, &#x27;重点治理&#x27;)
         ],
         tabs: [
-          issue(&#x27;基础设置&#x27;, &#x27;左侧固定设置分类属于垂直 Tabs。&#x27;, &#x27;src/app/routes/civilian/dispatch-platform/dispatch-platform/split-calculate/splitCalcWin/splitCalcWin.component.html:3&#x27;, &#x27;已定位&#x27;),
-          issue(&#x27;补水点配置&#x27;, &#x27;左侧热网是对象列表；右侧补水点/热源/泵站/隔压站才是 Tabs。&#x27;, &#x27;BM01 页面截图&#x27;, &#x27;页面已识别&#x27;),
-          issue(&#x27;经济分析设置&#x27;, &#x27;成本构成/采暖收入/行业对标属于固定垂直 Tabs。&#x27;, &#x27;BM01 页面截图&#x27;, &#x27;页面已识别&#x27;),
-          issue(&#x27;诊断设置&#x27;, &#x27;能耗/参数/设备诊断属于固定垂直 Tabs。&#x27;, &#x27;src/app/routes/civilian/intellect-diagnose/run-diagnose/run-diagnose.component.html:609&#x27;, &#x27;已定位&#x27;)
+          issue(&#x27;基础 Tabs 样式统一&#x27;, &#x27;Tabs 容器统一负责 item 间距、激活下划线、底部分割线、内容 Slot、尺寸与对齐；空状态、筛选区和业务内容留在面板内部。&#x27;, &#x27;BM01 Tabs 页面 411:17；4 组真实菜单场景 / 8 张证据已关联，具体 Angular 调用点待逐项核验&#x27;, &#x27;规范已沉淀·代码待核验&#x27;),
+          issue(&#x27;Basic / Show Extra&#x27;, &#x27;页面级操作、筛选或状态摘要可放入 Tab Bar 右侧扩展区，但不得挤入 Tab 标题或内容区；没有扩展内容时不占位。&#x27;, &#x27;拟映射 nz-tab-set 的 Tab Bar Extra Content；3 个真实菜单问题场景与 1 张共享标准图已关联&#x27;, &#x27;Figma 属性已形成·Angular API 待核验&#x27;),
+          issue(&#x27;Tabs Item / showCounter&#x27;, &#x27;数量是标签语义的一部分，统一显示为 Title + Count；数量为 0 时隐藏，不使用括号文本，也不单独沉淀 Badge。&#x27;, &#x27;拟通过 nzTitle 模板输出标题与数量；showCounter 为 Figma / 业务封装属性，Angular 无同名原生 API&#x27;, &#x27;规范已沉淀·封装方式待核验&#x27;),
+          issue(&#x27;Basic / Icon Title&#x27;, &#x27;固定侧边区域的图标加文字入口采用 Icon Title；2 项时等分，超过 2 项时每行 3 个。它仍是 Tabs 标题形态，不扩张为新组件。&#x27;, &#x27;拟映射 nzTitle 模板与现有 Icon；4 个真实场景 / 7 张证据已关联&#x27;, &#x27;规范已沉淀·代码待核验&#x27;),
+          issue(&#x27;嵌套 Tabs&#x27;, &#x27;Tabs 层级最多建议 2 层；第 3 层应优先改为筛选、口径选择或对象选择，避免多层导航竞争。&#x27;, &#x27;3 个真实场景 / 6 张证据已关联；嵌套 nz-tab-set 的具体调用点待核验&#x27;, &#x27;边界已形成·待开发整改&#x27;),
+          issue(&#x27;Vertical Tabs 与 Menu 边界&#x27;, &#x27;平级、少量内容切换使用 Vertical Tabs；数量多、存在分组或父子层级时使用 Menu，不以视觉上位于左侧作为判断依据。&#x27;, &#x27;splitCalcWin.component.html:3；run-diagnose.component.html:609；3 个真实场景 / 6 张证据已关联&#x27;, &#x27;部分代码已核验·其余入口待定位&#x27;),
+          issue(&#x27;添加与删除操作&#x27;, &#x27;保留现有线型 Tabs，组合关闭 Icon Button 与“添加”Link Button；可从代码侧实现，不新增公共组件或 Tabs 变体。&#x27;, &#x27;经济性分析 → 设置：1 组真实场景 / 2 张证据已关联，具体实现路径待核验&#x27;, &#x27;复用结论已形成·代码待核验&#x27;)
         ],
         calendar: [
           issue(&#x27;一级网日历&#x27;, &#x27;已找到 3 处使用，复杂度仍需核实，预计相对好治理。&#x27;, &#x27;BM01 已归档 3 类页面截图&#x27;, &#x27;核实并治理&#x27;)
@@ -3054,7 +3076,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         select: [6, 8, 20, 5],
         switch: [2, 32, 11, 1],
         badge: [4, 24, 24, 1],
-        tabs: [13, 150, 54, 1],
+        tabs: [13, 150, 41, 7],
         segmented: [2, 81, 15, 1],
         radio: [3, 108, 30, 1],
         tag: [5, 36, 13, 1],
@@ -3062,6 +3084,55 @@ html&gt;body{padding:0}&lt;/style&gt;
       };
 
       const imageEvidenceByKey = {
+        tabs: [
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;顶部 → 调控下发通知&#x27;, src: &#x27;evidence-assets/tabs/01/01-顶部-调控下发通知-当前问题.png&#x27;, title: &#x27;当前问题：调控下发通知 Tabs&#x27;, note: &#x27;激活项、底部分割线、内容空态与容器间距由页面分别拼装，样式责任不清。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;顶部 → 调控下发通知&#x27;, src: &#x27;evidence-assets/tabs/01/01-顶部-调控下发通知-标准答案.png&#x27;, title: &#x27;标准效果：统一 Basic Tabs&#x27;, note: &#x27;Tabs 只负责标签、激活下划线和分割线；空态与业务内容进入 Slot。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;调度平台 → 应急调度&#x27;, src: &#x27;evidence-assets/tabs/01/02-调度平台-应急调度-当前问题.png&#x27;, title: &#x27;当前问题：应急调度 Tabs&#x27;, note: &#x27;页内图标导航与内容 Tabs 混用，标签间距、激活态和内容起始位置不统一。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;调度平台 → 应急调度&#x27;, src: &#x27;evidence-assets/tabs/01/02-调度平台-应急调度-标准答案.png&#x27;, title: &#x27;标准效果：内容切换使用 Basic Tabs&#x27;, note: &#x27;热网实况与历史方案作为平级内容面板，统一标签间距和内容 Slot。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;顶部 → 智能监盘&#x27;, src: &#x27;evidence-assets/tabs/01/03-顶部-智能监盘-当前问题.png&#x27;, title: &#x27;当前问题：智能监盘 Tabs&#x27;, note: &#x27;标签区域与页面骨架混在一起，内容起始位置和分割关系不稳定。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;顶部 → 智能监盘&#x27;, src: &#x27;evidence-assets/tabs/01/03-顶部-智能监盘-标准答案.png&#x27;, title: &#x27;标准效果：当前存在与历史记录&#x27;, note: &#x27;两个平级视图复用 Basic Tabs，内容区由统一 Slot 承载。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;调度预案 → 方案对比&#x27;, src: &#x27;evidence-assets/tabs/01/04-调度预案-方案对比-当前问题.png&#x27;, title: &#x27;当前问题：方案对比 Tabs&#x27;, note: &#x27;筛选、方案选项和内容区域同时挤在 Tabs 周围，组件边界与对齐不清。&#x27; },
+          { topicId: &#x27;01&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;调度预案 → 方案对比&#x27;, src: &#x27;evidence-assets/tabs/01/04-调度预案-方案对比-标准答案.png&#x27;, title: &#x27;标准效果：按方案维度切换内容&#x27;, note: &#x27;室外温度下查看与解列方案下查看作为平级标签，筛选留在内容区。&#x27; },
+
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;日前计划&#x27;, src: &#x27;evidence-assets/tabs/02/01-日前计划-当前问题.png&#x27;, title: &#x27;当前问题：操作区与 Tabs 分离&#x27;, note: &#x27;右侧设置和视图操作与当前 Tabs 属于同一标题栏语境，但缺少统一扩展位。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;策略分析&#x27;, src: &#x27;evidence-assets/tabs/02/02-策略分析-当前问题.png&#x27;, title: &#x27;当前问题：状态与筛选占位不统一&#x27;, note: &#x27;当前方案、历史数据范围等辅助信息散落在标题栏，未进入一致的 Extra 区。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;申请单&#x27;, src: &#x27;evidence-assets/tabs/02/03-申请单-当前问题.png&#x27;, title: &#x27;当前问题：新增操作缺少归属&#x27;, note: &#x27;新增、查询和导出等操作靠页面自由对齐，无法与标签区域形成稳定结构。&#x27; },
+          { topicId: &#x27;02&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;组件规范 → Show Extra&#x27;, src: &#x27;evidence-assets/tabs/02/04-组件规范-Show Extra-标准答案.png&#x27;, title: &#x27;标准效果：Tab Bar Extra Slot&#x27;, note: &#x27;标签保持在左侧，当前区域的辅助操作放右侧 Extra Slot，内容仍由 Slot 承载。&#x27; },
+
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;值班日志 → 值班记录&#x27;, src: &#x27;evidence-assets/tabs/03/01-值班日志-值班记录-当前问题.png&#x27;, title: &#x27;当前问题：括号数量混入标题&#x27;, note: &#x27;“事件（6）”使用普通文本拼接，数量样式、间距和更新规则不统一。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;值班日志 → 值班记录&#x27;, src: &#x27;evidence-assets/tabs/03/01-值班日志-值班记录-标准答案.png&#x27;, title: &#x27;标准效果：Title + Count&#x27;, note: &#x27;数量作为标签语义的一部分紧邻标题显示，避免括号字符串。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;顶部铃铛 → 消息&#x27;, src: &#x27;evidence-assets/tabs/03/02-顶部铃铛消息-当前问题.png&#x27;, title: &#x27;当前问题：零数量仍显示&#x27;, note: &#x27;“业务消息(0)”和“公告消息(0)”在无消息时仍展示统计，增加噪声。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;顶部铃铛 → 消息&#x27;, src: &#x27;evidence-assets/tabs/03/02-顶部铃铛消息-标准答案.png&#x27;, title: &#x27;标准效果：0 不展示统计&#x27;, note: &#x27;数量为 0 时只显示标签标题，空状态由内容区表达。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;顶部铃铛 → 告警消息&#x27;, src: &#x27;evidence-assets/tabs/03/03-顶部铃铛告警消息-当前问题.png&#x27;, title: &#x27;当前问题：单标签仍拼接 0&#x27;, note: &#x27;安全告警标题在无数据时继续显示“（0）”，数量表达与其他消息不一致。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;顶部铃铛 → 告警消息&#x27;, src: &#x27;evidence-assets/tabs/03/03-顶部铃铛告警消息-标准答案.png&#x27;, title: &#x27;标准效果：隐藏零计数&#x27;, note: &#x27;无告警时隐藏计数，保留标题与内容空态。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;安全管理 → 安全监盘&#x27;, src: &#x27;evidence-assets/tabs/03/04-安全管理-安全监盘-当前问题.png&#x27;, title: &#x27;当前问题：大数量括号表达&#x27;, note: &#x27;测点告警与压力仿真预警使用括号数字，长数字破坏标签对齐。&#x27; },
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;安全管理 → 安全监盘&#x27;, src: &#x27;evidence-assets/tabs/03/04-安全管理-安全监盘-标准答案.png&#x27;, title: &#x27;标准效果：统一 Counter 视觉通道&#x27;, note: &#x27;数量紧随标题，以统一弱化容器承载；业务告警状态仍由内容区负责。&#x27; },
+
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;负荷预测&#x27;, src: &#x27;evidence-assets/tabs/04/01-1负荷预测-当前问题.png&#x27;, title: &#x27;当前问题：图标入口密度不稳定&#x27;, note: &#x27;固定侧区的图标和文字入口尺寸、选中背景与数量排列缺少统一规则。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;负荷预测&#x27;, src: &#x27;evidence-assets/tabs/04/01-1负荷预测-标准答案.png&#x27;, title: &#x27;标准效果：2 项等分&#x27;, note: &#x27;Icon Title 数量为 2 时平分可用宽度，图标、文字和选中背景整体居中。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;运行诊断&#x27;, src: &#x27;evidence-assets/tabs/04/01-2-运行诊断-当前问题.png&#x27;, title: &#x27;当前问题：双入口与列表混排&#x27;, note: &#x27;图标标题、搜索和对象列表混在同一区域，需要先稳定 Icon Title 的空间责任。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;下位诊断&#x27;, src: &#x27;evidence-assets/tabs/04/02-下位诊断-当前问题.png&#x27;, title: &#x27;当前问题：多图标入口列数不统一&#x27;, note: &#x27;多对象入口的列宽、图标位置和标签换行规则随页面变化。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;下位诊断&#x27;, src: &#x27;evidence-assets/tabs/04/02-下位诊断-标准答案.png&#x27;, title: &#x27;标准效果：超过 2 项每行 3 个&#x27;, note: &#x27;Icon Title 超过 2 项时使用三列网格，选中态覆盖完整单元。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;设备台账 → 管理分组&#x27;, src: &#x27;evidence-assets/tabs/04/03-设备台账-管理分组-当前问题.png&#x27;, title: &#x27;当前问题：图标入口与树形分组混用&#x27;, note: &#x27;上方图标入口和下方管理分组承担不同层级，当前视觉关系不清。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;04&#x27;, scene: &#x27;设备台账 → 管理分组&#x27;, src: &#x27;evidence-assets/tabs/04/03-设备台账-管理分组-标准答案.png&#x27;, title: &#x27;标准效果：Icon Title 与内容分层&#x27;, note: &#x27;Icon Title 只负责一级对象类型切换，分组树保留在当前面板内容中。&#x27; },
+
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;智能键盘&#x27;, src: &#x27;evidence-assets/tabs/05/01-智能键盘-当前问题.png&#x27;, title: &#x27;当前问题：多层 Tabs 同时竞争&#x27;, note: &#x27;页面中连续出现多层标签，用户难以判断当前切换影响哪一层内容。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;智能键盘&#x27;, src: &#x27;evidence-assets/tabs/05/01-智能键盘-标准答案.png&#x27;, title: &#x27;标准效果：最多两层&#x27;, note: &#x27;保留“当前存在 / 历史记录”和对象类型两层 Tabs，第 3 层改为内容筛选。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;告警配置&#x27;, src: &#x27;evidence-assets/tabs/05/02-告警配置-当前问题.png&#x27;, title: &#x27;当前问题：导航、告警类型与对象层层嵌套&#x27;, note: &#x27;多个横向标签带叠加导致导航层级过深，且层级重要性难以辨认。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;告警配置&#x27;, src: &#x27;evidence-assets/tabs/05/02-告警配置-标准答案.png&#x27;, title: &#x27;标准效果：告警类型与对象两层&#x27;, note: &#x27;保留两层内容切换，其余条件移入筛选或对象选择。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;下位诊断&#x27;, src: &#x27;evidence-assets/tabs/05/03-下位诊断-当前问题.png&#x27;, title: &#x27;当前问题：诊断维度层级过深&#x27;, note: &#x27;数据源、质量、设备类型与测点口径连续使用 Tabs，形成三层以上嵌套。&#x27; },
+          { topicId: &#x27;05&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;下位诊断&#x27;, src: &#x27;evidence-assets/tabs/05/03-下位诊断-标准答案.png&#x27;, title: &#x27;标准效果：第 3 层改为筛选&#x27;, note: &#x27;数据源和分析维度保留为 Tabs，设备口径等改用筛选控件。&#x27; },
+
+          { topicId: &#x27;06&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;调度员 → 基础设置&#x27;, src: &#x27;evidence-assets/tabs/06/01-调度员-基础设置-当前问题.png&#x27;, title: &#x27;当前问题：Tabs 与树形列表并置&#x27;, note: &#x27;左侧既有设置分类又有分组对象，平级切换与层级导航混在一起。&#x27; },
+          { topicId: &#x27;06&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;调度员 → 基础设置&#x27;, src: &#x27;evidence-assets/tabs/06/01-调度员-基础设置-标准答案.png&#x27;, title: &#x27;标准效果：平级少量使用 Vertical Tabs&#x27;, note: &#x27;能源价格、运行约束等固定平级设置使用 Vertical Tabs；对象树留在面板内部。&#x27; },
+          { topicId: &#x27;06&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;经济性分析 → 设置&#x27;, src: &#x27;evidence-assets/tabs/06/02-经济性分析-设置-当前问题.png&#x27;, title: &#x27;当前问题：左侧分类样式不统一&#x27;, note: &#x27;成本构成、采暖收入与行业对标属于平级内容，但当前选中态和宽度由页面自定义。&#x27; },
+          { topicId: &#x27;06&#x27;, scenarioId: &#x27;02&#x27;, scene: &#x27;经济性分析 → 设置&#x27;, src: &#x27;evidence-assets/tabs/06/02-经济性分析-设置-标准答案.png&#x27;, title: &#x27;标准效果：统一 Vertical Tabs&#x27;, note: &#x27;固定少量分类使用 Vertical Tabs，选中背景、文字和内容起始位置统一。&#x27; },
+          { topicId: &#x27;06&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;运行诊断 → 诊断设置&#x27;, src: &#x27;evidence-assets/tabs/06/03-运行诊断-诊断设置-当前问题.png&#x27;, title: &#x27;当前问题：设置分类与诊断内容边界不清&#x27;, note: &#x27;左侧分类数量少且平级，当前实现仍存在页面专用样式和多余分隔。&#x27; },
+          { topicId: &#x27;06&#x27;, scenarioId: &#x27;03&#x27;, scene: &#x27;运行诊断 → 诊断设置&#x27;, src: &#x27;evidence-assets/tabs/06/03-运行诊断-诊断设置-标准答案.png&#x27;, title: &#x27;标准效果：诊断类型使用 Vertical Tabs&#x27;, note: &#x27;能耗、参数和设备诊断作为少量平级面板，统一为 Vertical Tabs。&#x27; },
+
+          { topicId: &#x27;07&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;经济性分析 → 设置&#x27;, src: &#x27;evidence-assets/tabs/07/01-经济性分析-设置-当前问题.png&#x27;, title: &#x27;当前问题：标签内添加删除样式混杂&#x27;, note: &#x27;可关闭标签、删除文字和新增入口由页面自由拼装，操作层级与点击区域不一致。&#x27; },
+          { topicId: &#x27;07&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;经济性分析 → 设置&#x27;, src: &#x27;evidence-assets/tabs/07/01-经济性分析-设置-标准答案.png&#x27;, title: &#x27;标准效果：组合现有按钮能力&#x27;, note: &#x27;保留线型 Tabs，关闭使用 Icon Button，“添加”使用 Link Button，不新增 Tabs 变体。&#x27; }
+        ],
         modal: [
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;用户列表 → 删除用户提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/01-用户列表-删除用户提示-当前问题.png&#x27;, title: &#x27;当前问题：删除用户提示&#x27;, note: &#x27;标题只写“警示”，正文重复询问，主按钮使用笼统“确定”，没有表达删除的危险语义。&#x27; },
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;用户列表 → 删除用户提示&#x27;, src: &#x27;evidence-assets/modal/专题01确认提示/01-用户列表-删除用户提示-标准答案.png&#x27;, title: &#x27;标准效果：确认删除用户&#x27;, note: &#x27;标题写清动作与对象，正文说明强制退出后果，主按钮直接使用危险动作“删除”。&#x27; },
@@ -3230,7 +3301,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         avatar: { status: &#x27;concluded&#x27;, stateLabel: &#x27;阶段完成&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;系统中仅一处使用，无需专项治理；后续开发阶段直接修改代码。&#x27; },
         badge: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;Dot、Count、单位数、两位数和 99+ 封顶规则已完成治理。&#x27; },
-        tabs: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;横向、纵向、数量提示和业务对象列表边界已完成，并归档真实页面证据。&#x27; },
+        tabs: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;已形成基础样式、Show Extra、数量、Icon Title、嵌套层级、Vertical 与 Menu 边界以及添加删除操作 7 类治理结论，并关联 41 张真实页面与标准效果证据；部分代码入口仍待核验，开发整改与验收尚未开始。&#x27; },
         calendar: { status: &#x27;doing&#x27;, difficulty: 3, progress: 30, estimate: &#x27;待核实&#x27;, summary: &#x27;已找到 3 处使用，复杂度待确认，预计相对容易。&#x27; },
         card: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;需要收集全系统卡片情况，复杂且费时。&#x27; },
         collapse: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, estimate: &#x27;待评估&#x27;, summary: &#x27;已找到大量使用截图，下一步核实并决定治理方式。&#x27; },
@@ -3946,6 +4017,16 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;多列 / 矩阵组合复用&#x27;
       ];
 
+      const tabsTopicNames = [
+        &#x27;基础 Tabs 样式统一&#x27;,
+        &#x27;Basic / Show Extra&#x27;,
+        &#x27;Tabs Item / showCounter&#x27;,
+        &#x27;Basic / Icon Title&#x27;,
+        &#x27;嵌套 Tabs&#x27;,
+        &#x27;Vertical Tabs 与 Menu 边界&#x27;,
+        &#x27;添加与删除操作&#x27;
+      ];
+
       function renderSelectTopics() {
         const host = root.querySelector(&#x27;#select-topic-board&#x27;);
         const items = imageEvidenceByKey.select || [];
@@ -4263,76 +4344,76 @@ html&gt;body{padding:0}&lt;/style&gt;
         const renderTopicRule = topicId =&gt; topicId === &#x27;01&#x27; ? `
           &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;基础 Metric 结构与单位&quot;&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;统一规格&lt;/span&gt;
-              &lt;strong&gt;Title + Value + Unit&lt;/strong&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;统一结构&lt;/span&gt;
+              &lt;strong&gt;Title + Value + Unit&lt;/strong&gt;，单位放数值右侧避免括号嵌套
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;适用内容&lt;/span&gt;
-              &lt;span&gt;实时计算结果、可视化数值、可对比指标。标题使用对象或指标名，主值放中心，单位放右侧。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;覆盖场景&lt;/span&gt;
+              &lt;span&gt;供热面积、供温、调控效果、异常时长等所有&lt;strong&gt;单指标数值展示&lt;/strong&gt;均可统一替换为 Metric&lt;/span&gt;
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;组件边界&lt;/span&gt;
-              &lt;span&gt;横向、纵向、等宽组合由外层容器负责；装饰图标和卡片背景不进入 Metric。不替代 Card / Tabs / Descriptions。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;外层容器&lt;/span&gt;
+              &lt;span&gt;Card、图标、背景、间距由业务页面负责，Metric 只承担标题、数值、单位&lt;/span&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         ` : topicId === &#x27;02&#x27; ? `
           &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;状态色与趋势对比&quot;&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
-              &lt;strong&gt;数值是否需要表达状态或趋势？&lt;/strong&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Status 状态色&lt;/span&gt;
+              &lt;strong&gt;Success / Warning / Error&lt;/strong&gt; 一套搞定，颜色辅助表达不替代文本含义
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;Status&lt;/span&gt;
-              &lt;span&gt;Success / Warning / Error 表达状态色，颜色不能替代文本含义。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Comparison 趋势&lt;/span&gt;
+              &lt;span&gt;&lt;strong&gt;正负方向 + 百分比&lt;/strong&gt;表达涨跌对比，业务告警逻辑不进入 Statistic&lt;/span&gt;
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;Comparison&lt;/span&gt;
-              &lt;span&gt;正负方向与百分比表达趋势；业务告警逻辑与列表结构不进入 Statistic。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;覆盖场景&lt;/span&gt;
+              &lt;span&gt;带状态色的指标、带涨跌箭头的对比值、需要表达正常/异常的数值&lt;/span&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         ` : topicId === &#x27;03&#x27; ? `
           &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;与 Descriptions / 字段信息边界&quot;&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
-              &lt;strong&gt;字段是否需要承载额外说明？&lt;/strong&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Metric 覆盖&lt;/span&gt;
+              &lt;strong&gt;实时计算结果、可视化数值、可对比指标&lt;/strong&gt;归 Statistic Metric
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;Statistic Metric&lt;/span&gt;
-              &lt;span&gt;实时计算结果、可视化数值、可对比的指标。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Descriptions 覆盖&lt;/span&gt;
+              &lt;span&gt;&lt;strong&gt;对象属性、单值字段、所属关系&lt;/strong&gt;（站名、单号、申请人等）归 Descriptions&lt;/span&gt;
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;Descriptions&lt;/span&gt;
-              &lt;span&gt;对象属性、单值字段、所属关系；不能因为数值加粗就全部纳入 Statistic。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;核心原则&lt;/span&gt;
+              &lt;span&gt;不能因为数值加粗就全部纳入 Statistic——&lt;strong&gt;看数据类型而非看样式&lt;/strong&gt;&lt;/span&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         ` : topicId === &#x27;04&#x27; ? `
           &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;与业务卡片 / 页面容器边界&quot;&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
-              &lt;strong&gt;整块看板是否需要沉淀为基础组件？&lt;/strong&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;Metric 职责&lt;/span&gt;
+              &lt;strong&gt;只替换卡片内的指标数值&lt;/strong&gt;，不沉淀整块看板或页面容器
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;Statistic&lt;/span&gt;
-              &lt;span&gt;只替换卡片内的指标数值，不沉淀整块看板。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;业务页面职责&lt;/span&gt;
+              &lt;span&gt;标题、分组、选中态、Tab、&lt;strong&gt;整组布局和动态列配置&lt;/strong&gt;仍由业务页面负责&lt;/span&gt;
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;业务页面&lt;/span&gt;
-              &lt;span&gt;标题、分组、选中态、Tab 和整组布局仍由业务页面负责；自定义看板保留动态列配置。&lt;/span&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;覆盖场景&lt;/span&gt;
+              &lt;span&gt;客服工单看板、自定义监测等场景中的指标卡片均可按 Metric 替换，整组看板保持不变&lt;/span&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         ` : topicId === &#x27;05&#x27; ? `
           &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;多列 / 矩阵组合复用&quot;&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
-              &lt;span class=&quot;select-topic-label&quot;&gt;判断问题&lt;/span&gt;
-              &lt;strong&gt;多列指标是否需要新建变体？&lt;/strong&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
               &lt;span class=&quot;select-topic-label&quot;&gt;Metric 复用&lt;/span&gt;
-              &lt;span&gt;2×2 指标矩阵、多列温度、两列百分比等组合复用 Metric，不沉淀新变体。&lt;/span&gt;
+              &lt;strong&gt;2×2 指标矩阵、多列温度、两列百分比&lt;/strong&gt;等组合均复用 Metric，不沉淀新变体
             &lt;/div&gt;
             &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
               &lt;span class=&quot;select-topic-label&quot;&gt;容器承担&lt;/span&gt;
-              &lt;span&gt;外层等宽、分隔、背景由页面容器负责；Metric 只承担数值、单位与状态。&lt;/span&gt;
+              &lt;span&gt;外层等宽、分隔、背景由页面容器负责；&lt;strong&gt;Metric 只承担数值、单位与状态&lt;/strong&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+              &lt;span class=&quot;select-topic-label&quot;&gt;覆盖场景&lt;/span&gt;
+              &lt;span&gt;调控监测的温度矩阵、大温差驾驶舱的多组数据组合等&lt;/span&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         ` : &#x27;&#x27;;
@@ -4358,7 +4439,41 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;/div&gt;
         `;
 
-        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+        const renderGovernanceOverview = `
+          &lt;section class=&quot;statistic-governance-overview&quot; aria-label=&quot;Statistic 治理总述&quot;&gt;
+            &lt;div class=&quot;select-topic-header&quot;&gt;
+              &lt;div class=&quot;select-topic-title&quot;&gt;
+                &lt;span class=&quot;select-topic-index&quot;&gt;总述&lt;/span&gt;
+                &lt;h4&gt;Statistic 指标组件治理说明&lt;/h4&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;text-small&quot; style=&quot;margin:0 0 14px;color:var(--muted-foreground);line-height:1.7;&quot;&gt;
+              一级网中 Statistic 常作为&lt;strong&gt;指标卡片或监测指标块&lt;/strong&gt;使用，用于展示供热面积、供温、调控效果、异常时长等关键数值。新 Metric 组件已具备 &lt;strong&gt;Title + Value + Unit + Status + Comparison + Icon + Tooltip&lt;/strong&gt; 完整能力，&lt;strong&gt;除 ⭐ 标记的特殊场景外，以下各专题的场景均可通过 Metric 组件统一替换&lt;/strong&gt;。外层容器（Card、看板布局、分隔线）仍由业务页面负责。
+            &lt;/p&gt;
+
+            &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;Metric 组件能力一览&quot;&gt;
+              &lt;h5 style=&quot;font-size:var(--font-size-small);margin:0 0 8px;color:var(--primary);&quot;&gt;📐 新 Metric 组件能力&lt;/h5&gt;
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;基础结构&lt;/span&gt;
+                &lt;span class=&quot;select-topic-value&quot;&gt;Title（标题）+ Value（主值）+ Unit（单位），单位放数值右侧避免括号嵌套&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;状态色&lt;/span&gt;
+                &lt;span class=&quot;select-topic-value&quot;&gt;Status：Success / Warning / Error，颜色辅助表达不替代文本含义&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;趋势对比&lt;/span&gt;
+                &lt;span class=&quot;select-topic-value&quot;&gt;Comparison：正负方向与百分比，业务告警逻辑不进入 Statistic&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;扩展能力&lt;/span&gt;
+                &lt;span class=&quot;select-topic-value&quot;&gt;Icon（装饰图标）、Tooltip（悬浮提示）、Align（对齐方式）&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `;
+
+        host.innerHTML = renderGovernanceOverview + selected.evidence.map((issueItem, index) =&gt; {
           const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
           const topicItems = evidenceByTopic[topicId] || [];
           const scenarios = groupScenarios(topicItems);
@@ -4384,6 +4499,129 @@ html&gt;body{padding:0}&lt;/style&gt;
         host.querySelectorAll(&#x27;[data-statistic-evidence-index]&#x27;).forEach(button =&gt; {
           button.addEventListener(&#x27;click&#x27;, () =&gt; {
             openEvidenceLightbox(items[Number(button.dataset.statisticEvidenceIndex)]);
+          });
+        });
+      }
+
+      function renderTabsTopics() {
+        const host = root.querySelector(&#x27;#tabs-topic-board&#x27;);
+        const items = imageEvidenceByKey.tabs || [];
+        const evidenceByTopic = items.reduce((groups, item, index) =&gt; {
+          (groups[item.topicId] ||= []).push({ ...item, sourceIndex: index });
+          return groups;
+        }, {});
+        const tabsRuleByTopic = {
+          &#x27;01&#x27;: [
+            [&#x27;组件责任&#x27;, &#x27;Item 间距、激活下划线、底部分割线、内容 Slot、尺寸与对齐&#x27;],
+            [&#x27;内容边界&#x27;, &#x27;空状态、筛选区和业务内容进入面板 Slot，不沉淀到 Tabs 外观中&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;nz-tab-set / nz-tab；真实菜单调用点待逐项核验&#x27;]
+          ],
+          &#x27;02&#x27;: [
+            [&#x27;新增属性&#x27;, &#x27;Show Extra：控制 Tab Bar 右侧扩展区域是否出现&#x27;],
+            [&#x27;适用内容&#x27;, &#x27;当前区域的新增、设置、筛选、状态摘要或视图操作&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;拟映射 Tab Bar Extra Content；具体 Angular API 待核验&#x27;]
+          ],
+          &#x27;03&#x27;: [
+            [&#x27;新增属性&#x27;, &#x27;showCounter：数量作为标签标题的一部分显示&#x27;],
+            [&#x27;显示规则&#x27;, &#x27;Title + Count；数量为 0 时隐藏，不使用括号字符串&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;通过 nzTitle 模板组合标题与数量；无同名原生 API&#x27;]
+          ],
+          &#x27;04&#x27;: [
+            [&#x27;组件变体&#x27;, &#x27;Tabs / Basic / Icon Title&#x27;],
+            [&#x27;数量规则&#x27;, &#x27;2 项等分；超过 2 项时每行 3 个&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;nzTitle 模板组合现有 Icon 与文字，不新增独立组件&#x27;]
+          ],
+          &#x27;05&#x27;: [
+            [&#x27;层级上限&#x27;, &#x27;Tabs 最多建议 2 层&#x27;],
+            [&#x27;第 3 层处理&#x27;, &#x27;优先改为筛选、口径选择或对象选择&#x27;],
+            [&#x27;验收重点&#x27;, &#x27;每次切换的影响范围清晰，不出现多层激活线竞争&#x27;]
+          ],
+          &#x27;06&#x27;: [
+            [&#x27;Vertical Tabs&#x27;, &#x27;平级、少量、直接切换当前内容面板&#x27;],
+            [&#x27;Menu&#x27;, &#x27;数量多、可分组或存在父子层级&#x27;],
+            [&#x27;判断原则&#x27;, &#x27;按信息关系判断，不因控件位于左侧就自动归为 Vertical Tabs&#x27;]
+          ],
+          &#x27;07&#x27;: [
+            [&#x27;治理结论&#x27;, &#x27;复用现有线型 Tabs，不新增公共组件或变体&#x27;],
+            [&#x27;删除操作&#x27;, &#x27;组合现有关闭 Icon Button，并保证点击区域独立&#x27;],
+            [&#x27;添加操作&#x27;, &#x27;组合“添加”Link Button，由代码侧实现业务行为&#x27;]
+          ]
+        };
+
+        const groupScenarios = topicItems =&gt; topicItems.reduce((groups, item, index) =&gt; {
+          const scenarioId = item.scenarioId || String(index + 1).padStart(2, &#x27;0&#x27;);
+          const scenario = groups.find(entry =&gt; entry.id === scenarioId);
+          if (scenario) {
+            scenario.items.push(item);
+          } else {
+            groups.push({ id: scenarioId, scene: item.scene, items: [item] });
+          }
+          return groups;
+        }, []);
+
+        const renderTopicRule = topicId =&gt; `
+          &lt;div class=&quot;modal-topic-rule&quot; aria-label=&quot;${tabsTopicNames[Number(topicId) - 1]}核心规则&quot;&gt;
+            ${(tabsRuleByTopic[topicId] || []).map(([label, value], index) =&gt; `
+              &lt;div class=&quot;modal-topic-rule-item&quot;&gt;
+                &lt;span class=&quot;select-topic-label&quot;&gt;${label}&lt;/span&gt;
+                ${index === 0 ? `&lt;strong&gt;${value}&lt;/strong&gt;` : `&lt;span&gt;${value}&lt;/span&gt;`}
+              &lt;/div&gt;
+            `).join(&#x27;&#x27;)}
+          &lt;/div&gt;
+        `;
+
+        const renderScenarios = (topicId, scenarios) =&gt; scenarios.map(scenario =&gt; `
+          &lt;section class=&quot;modal-scenario-group&quot; aria-labelledby=&quot;tabs-scenario-${topicId}-${scenario.id}&quot;&gt;
+            &lt;div class=&quot;modal-scenario-header&quot;&gt;
+              &lt;span class=&quot;select-topic-index&quot;&gt;场景 ${scenario.id}&lt;/span&gt;
+              &lt;strong id=&quot;tabs-scenario-${topicId}-${scenario.id}&quot;&gt;${scenario.scene}&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-scenario-evidence${scenario.items.length === 1 ? &#x27; is-single&#x27; : &#x27;&#x27;}&quot;&gt;
+              ${scenario.items.map(item =&gt; `
+                &lt;button type=&quot;button&quot; class=&quot;evidence-card&quot; data-tabs-evidence-index=&quot;${item.sourceIndex}&quot; aria-label=&quot;查看大图：${item.title}&quot;&gt;
+                  &lt;img class=&quot;evidence-image&quot; src=&quot;${item.src}&quot; alt=&quot;${item.title} 一级网真实页面证据&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+                  &lt;span class=&quot;evidence-caption&quot;&gt;
+                    &lt;strong&gt;${item.title}&lt;/strong&gt;
+                    &lt;span class=&quot;text-small&quot;&gt;${item.note}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/button&gt;
+              `).join(&#x27;&#x27;)}
+            &lt;/div&gt;
+          &lt;/section&gt;
+        `).join(&#x27;&#x27;);
+
+        const traceMarkup = issueItem =&gt; `
+          &lt;div class=&quot;select-topic-trace&quot;&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;页面 / 场景&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.page}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;治理判断&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;${issueItem.judgement}&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;定位 / 证据&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;code&gt;${issueItem.trace}&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;select-topic-field&quot;&gt;&lt;span class=&quot;select-topic-label&quot;&gt;状态 / 下一步&lt;/span&gt;&lt;span class=&quot;select-topic-value&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;${issueItem.next}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        `;
+
+        host.innerHTML = selected.evidence.map((issueItem, index) =&gt; {
+          const topicId = String(index + 1).padStart(2, &#x27;0&#x27;);
+          const topicItems = evidenceByTopic[topicId] || [];
+          const scenarios = groupScenarios(topicItems);
+          return `
+            &lt;section class=&quot;select-topic-group&quot; aria-labelledby=&quot;tabs-topic-${topicId}&quot;&gt;
+              &lt;div class=&quot;select-topic-header&quot;&gt;
+                &lt;div class=&quot;select-topic-title&quot;&gt;
+                  &lt;span class=&quot;select-topic-index&quot;&gt;专题 ${topicId}&lt;/span&gt;
+                  &lt;h4 id=&quot;tabs-topic-${topicId}&quot;&gt;${tabsTopicNames[index] || issueItem.page}&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;text-small text-muted&quot;&gt;${topicItems.length} 张证据 · ${scenarios.length} 组场景&lt;/span&gt;
+              &lt;/div&gt;
+              ${renderTopicRule(topicId)}
+              &lt;div class=&quot;modal-scenario-list&quot;&gt;${renderScenarios(topicId, scenarios)}&lt;/div&gt;
+              ${traceMarkup(issueItem)}
+            &lt;/section&gt;
+          `;
+        }).join(&#x27;&#x27;);
+
+        host.querySelectorAll(&#x27;[data-tabs-evidence-index]&#x27;).forEach(button =&gt; {
+          button.addEventListener(&#x27;click&#x27;, () =&gt; {
+            openEvidenceLightbox(items[Number(button.dataset.tabsEvidenceIndex)]);
           });
         });
       }
@@ -4417,23 +4655,27 @@ html&gt;body{padding:0}&lt;/style&gt;
         const isSelect = selected.key === &#x27;select&#x27;;
         const isModal = selected.key === &#x27;modal&#x27;;
         const isStatistic = selected.key === &#x27;statistic&#x27;;
+        const isTabs = selected.key === &#x27;tabs&#x27;;
         root.querySelector(&#x27;#select-topic-section&#x27;).hidden = !isSelect;
         root.querySelector(&#x27;#modal-topic-section&#x27;).hidden = !isModal;
         root.querySelector(&#x27;#statistic-topic-section&#x27;).hidden = !isStatistic;
-        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic;
-        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic;
+        root.querySelector(&#x27;#tabs-topic-section&#x27;).hidden = !isTabs;
+        root.querySelector(&#x27;#evidence-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs;
+        root.querySelector(&#x27;#issue-section&#x27;).hidden = isSelect || isModal || isStatistic || isTabs;
         if (isSelect) {
           renderSelectTopics();
         } else if (isModal) {
           renderModalConfirmationTopic();
         } else if (isStatistic) {
           renderStatisticTopics();
+        } else if (isTabs) {
+          renderTabsTopics();
         } else {
           renderImageEvidence();
         }
 
         const issueHost = root.querySelector(&#x27;#issue-rows&#x27;);
-        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !selected.evidence.length) {
+        if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs &amp;&amp; !selected.evidence.length) {
           issueHost.innerHTML = `
             &lt;tr&gt;
               &lt;td&gt;${selected.label}&lt;/td&gt;
@@ -4442,7 +4684,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;td&gt;&lt;span class=&quot;viz-badge&quot;&gt;${selected.phaseComplete ? &#x27;结论已形成&#x27; : &#x27;待补真实证据&#x27;}&lt;/span&gt;&lt;/td&gt;
             &lt;/tr&gt;
           `;
-        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic) {
+        } else if (!isSelect &amp;&amp; !isModal &amp;&amp; !isStatistic &amp;&amp; !isTabs) {
           issueHost.innerHTML = selected.evidence.map(item =&gt; `
             &lt;tr&gt;
               &lt;td&gt;${item.page}&lt;/td&gt;
