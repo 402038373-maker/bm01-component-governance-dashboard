@@ -3097,7 +3097,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         checkbox: [
           issue(&#x27;Table 场景行选择&#x27;, &#x27;表格行复选框（pid/名称/时间列的选择列），统一使用 Checkbox 组件的行选择模式。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;规范已沉淀·待开发整改&#x27;),
           issue(&#x27;TreeSelect 层级勾选&#x27;, &#x27;树形分组复选框（片区分组/东部城区/英集智慧供热等层级勾选），统一使用 TreeSelect 组件。&#x27;, &#x27;station-filter.component.html：tree-select-search、nz-tree-select、nz-select 并存&#x27;, &#x27;规范已沉淀·待开发整改&#x27;),
-          issue(&#x27;配置节点默认状态&#x27;, &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站），默认状态错误，修正为组件默认态。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;已修正默认态&#x27;)
+          issue(&#x27;配置节点默认状态&#x27;, &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站），默认状态错误，修正为组件默认态。&#x27;, &#x27;BM01 页面 388:11036&#x27;, &#x27;已修正默认态&#x27;),
+          issue(&#x27;地图图层显隐与 Switch 边界&#x27;, &#x27;巡检部件、打卡点、缺陷等地图图层或对象可独立显隐，应使用 Checkbox；只有点击后立即启停系统能力时才使用 Switch。&#x27;, &#x27;生产管理系统 → 巡检记录：2 张当前问题/标准效果证据&#x27;, &#x27;规范已沉淀 · 代码待核验&#x27;)
         ],
         datePicker: [
           issue(&#x27;日期选择&#x27;, &#x27;需要补齐一级网页面证据，预计没有复杂分支。&#x27;, &#x27;真实页面待收集&#x27;, &#x27;低成本核验&#x27;)
@@ -3242,7 +3243,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const metrics = {
         pagination: [4, 45, 8, 1],
-        checkbox: [3, 11, 6, 3],
+        checkbox: [3, 11, 8, 4],
         statistic: [5, 31, 33, 4],
         select: [6, 8, 20, 5],
         switch: [1, 32, 6, 1],
@@ -3319,7 +3320,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → 站点归属&#x27;, src: &#x27;evidence-assets/checkbox/02-热力站监测-站点归属-TreeSelct场景-当前问题.png&#x27;, title: &#x27;当前问题：树形分组复选框混用&#x27;, note: &#x27;checkbox-style Select 与 tree-select-search / nz-tree-select 混用，交互与样式不统一。&#x27; },
           { topicId: &#x27;02&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;热力站监测 → 站点归属&#x27;, src: &#x27;evidence-assets/checkbox/02-热力站监测-站点归属-TreeSelct场景-标准答案.png&#x27;, title: &#x27;标准效果：统一 TreeSelect 层级勾选&#x27;, note: &#x27;有层级关系的多选统一为 TreeSelect，选中态、展开与勾选行为一致。&#x27; },
           { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;指标配置 → 配置节点&#x27;, src: &#x27;evidence-assets/checkbox/03-指标配置-配置节点-当前问题.png&#x27;, title: &#x27;当前问题：配置节点默认状态错误&#x27;, note: &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站）默认状态不符合组件规范。&#x27; },
-          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;指标配置 → 配置节点&#x27;, src: &#x27;evidence-assets/checkbox/03-指标配置-配置节点-标准答案.png&#x27;, title: &#x27;标准效果：修正为组件默认态&#x27;, note: &#x27;Checkbox 默认状态统一为组件规范默认态，禁用态与选中态表达一致。&#x27; }
+          { topicId: &#x27;03&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;指标配置 → 配置节点&#x27;, src: &#x27;evidence-assets/checkbox/03-指标配置-配置节点-标准答案.png&#x27;, title: &#x27;标准效果：修正为组件默认态&#x27;, note: &#x27;Checkbox 默认状态统一为组件规范默认态，禁用态与选中态表达一致。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;生产管理系统 → 巡检记录&#x27;, src: &#x27;evidence-assets/checkbox/04-生产管理系统-巡检记录-当前问题.png&#x27;, title: &#x27;当前问题：地图图层显隐误用 Switch&#x27;, note: &#x27;巡检部件、打卡点、缺陷等独立图层使用开关表达，混淆了对象选择与系统能力启停。&#x27; },
+          { topicId: &#x27;04&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;生产管理系统 → 巡检记录&#x27;, src: &#x27;evidence-assets/checkbox/04-生产管理系统-巡检记录-标准效果.png&#x27;, title: &#x27;标准效果：地图图层显隐统一使用 Checkbox&#x27;, note: &#x27;巡检部件、打卡点、缺陷作为可独立成立的图层选项，统一使用 Checkbox Group 表达。&#x27; }
         ],
         tabs: [
           { topicId: &#x27;01&#x27;, scenarioId: &#x27;01&#x27;, scene: &#x27;顶部 → 调控下发通知&#x27;, src: &#x27;evidence-assets/tabs/01/01-顶部-调控下发通知-当前问题.png&#x27;, title: &#x27;当前问题：调控下发通知 Tabs&#x27;, note: &#x27;激活项、底部分割线、内容空态与容器间距由页面分别拼装，样式责任不清。&#x27; },
@@ -3560,7 +3563,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         form: { status: &#x27;doing&#x27;, difficulty: 3, progress: 35, summary: &#x27;已做初步整理，仍需结合一级网的真实表单结构仔细治理。&#x27; },
         autoComplete: { status: &#x27;concluded&#x27;, stateLabel: &#x27;无需治理&#x27;, kind: &#x27;范围结论&#x27;, phaseComplete: true, summary: &#x27;一级网未使用，组件保留即可。&#x27; },
         cascader: { status: &#x27;watch&#x27;, stateLabel: &#x27;持续关注&#x27;, kind: &#x27;持续关注&#x27;, progress: 30, estimate: &#x27;依赖菜单方案&#x27;, summary: &#x27;随菜单整体交互方案持续关注，暂不单独定型。&#x27; },
-        checkbox: { status: &#x27;done&#x27;, stateLabel: &#x27;已完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, summary: &#x27;Table 行选择、TreeSelect 层级勾选与配置节点默认状态已完成治理。&#x27; },
+        checkbox: { status: &#x27;done&#x27;, stateLabel: &#x27;规范沉淀完成&#x27;, kind: &#x27;深度治理&#x27;, phaseComplete: true, deep: true, progress: 57, stages: [100, 0, 100, 100, 100, 0, 0], summary: &#x27;已形成 Table 行选择、TreeSelect 层级勾选、配置节点默认状态与地图图层显隐四类治理结论，并关联 4 组场景、8 张问题/标准效果证据；地图图层场景的真实 Angular 调用路径、开发整改与验收仍待核验。&#x27; },
         datePicker: { status: &#x27;doing&#x27;, difficulty: 1, progress: 20, estimate: &#x27;预计较快&#x27;, summary: &#x27;主要工作是补齐一级网页面证据，复杂度较低。&#x27; },
         input: { status: &#x27;doing&#x27;, difficulty: 3, progress: 10, estimate: &#x27;待评估&#x27;, summary: &#x27;一级网 Input 使用广、样式杂，需要投入时间做系统整理。&#x27; },
         inputNumber: { status: &#x27;doing&#x27;, difficulty: 3, progress: 25, estimate: &#x27;待评估&#x27;, summary: &#x27;范围输入形态在现有组件中缺失，需要新建组件并覆盖特殊业务场景。&#x27; },
@@ -4289,7 +4292,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       const checkboxTopicNames = [
         &#x27;Table 场景行选择&#x27;,
         &#x27;TreeSelect 层级勾选&#x27;,
-        &#x27;配置节点默认状态&#x27;
+        &#x27;配置节点默认状态&#x27;,
+        &#x27;地图图层显隐与 Switch 边界&#x27;
       ];
 
       const statisticTopicNames = [
@@ -5436,6 +5440,11 @@ html&gt;body{padding:0}&lt;/style&gt;
             [&#x27;默认状态&#x27;, &#x27;Checkbox 默认状态统一为组件规范默认态，不得自定义初始状态&#x27;],
             [&#x27;覆盖场景&#x27;, &#x27;弹框内一排 Checkbox（全网/分公司/供热处/中心站/热力站）&#x27;],
             [&#x27;开发映射&#x27;, &#x27;nz-checkbox-group；默认值由业务数据驱动，组件只负责渲染与交互&#x27;]
+          ],
+          &#x27;04&#x27;: [
+            [&#x27;组件边界&#x27;, &#x27;地图图层或对象显隐使用 Checkbox；系统能力即时启停使用 Switch&#x27;],
+            [&#x27;覆盖场景&#x27;, &#x27;生产管理系统巡检记录中的巡检部件、打卡点、缺陷图层显隐&#x27;],
+            [&#x27;开发映射&#x27;, &#x27;nz-checkbox / nz-checkbox-group；真实 Angular 调用路径与状态提交机制待核验&#x27;]
           ]
         };
 
